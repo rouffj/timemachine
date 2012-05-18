@@ -43,9 +43,23 @@ class CalendarDate
 
     public function isBefore(CalendarDate $other)
     {
-        return ($this->year < $other->getYear()) ? true : false;
-        return ($this->month < $other->getMonth()) ? true : false;
-        return $day < $other->getDay();
+        if ($this->year < $other->getYear()) {
+            return true;
+        }
+
+        if ($this->year > $other->getYear()) {
+            return false;
+        }
+
+        if ($this->month < $other->getMonth()) {
+            return true;
+        }
+
+        if ($this->month > $other->getMonth()) {
+            return false;
+        }
+
+        return $this->day < $other->getDay();
     }
 
     public function isAfter(CalendarDate $other)
