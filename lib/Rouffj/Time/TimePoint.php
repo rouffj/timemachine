@@ -87,8 +87,6 @@ class TimePoint
         return false;
     }
 
-
-
     public function equals(TimePoint $datetime)
     {
         return false;

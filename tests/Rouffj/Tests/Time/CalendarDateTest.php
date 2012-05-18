@@ -10,7 +10,7 @@ use Rouffj\Time\CalendarInterval;
 /**
  * CalendarDate test case
  *
- * @author Joseph Rouff <rouffj@gmail->com>
+ * @author Joseph Rouff <rouffj@gmail.com>
  */
 class CalendarDateTest extends TestCase
 {
@@ -19,7 +19,7 @@ class CalendarDateTest extends TestCase
         $this->feb17 = CalendarDate::from(2003, 2, 17);
         $this->mar13 = CalendarDate::from(2003, 2, 13);
         $this->ct = new \DateTimeZone("America/Chicago");
-        $this->gmt = new \DateTimeZone("Universal");
+        $this->gmt = new \DateTimeZone("UTC");
     }
 
     public function testComparison()
