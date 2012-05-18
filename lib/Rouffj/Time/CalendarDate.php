@@ -9,7 +9,16 @@ namespace Rouffj\Time;
  */
 class CalendarDate
 {
-    public static function from($year, $month, $day)
+
+    const SATURDAY = 6;
+    const MONDAY = 1;
+
+    public static function date($year, $month, $day)
+    {
+        return new self();
+    }
+
+    public static function from($year, $month, $day = null, $timezone = null)
     {
         return new self();
     }
@@ -28,5 +37,18 @@ class CalendarDate
 
     public function toString($pattern)
     {
+    }
+
+    public function equals(CalendarDate $date)
+    {
+    }
+
+    public function dayOfWeek()
+    {
+    }
+
+    public function nextDay()
+    {
+        return $this;
     }
 }
