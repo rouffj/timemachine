@@ -7,4 +7,8 @@ namespace Rouffj\Time;
  */
 class TimePoint
 {
+    public static function atMidnight($year, $month, $day, \DateTimeZone $timezone)
+    {
+        return new self();
+    }
 }

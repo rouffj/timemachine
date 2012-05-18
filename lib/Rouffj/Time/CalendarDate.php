@@ -1,5 +1,7 @@
 <?php
 
+namespace Rouffj\Time;
+
 /**
  * CalendarDate
  *
@@ -7,11 +9,24 @@
  */
 class CalendarDate
 {
-    
     public static function from($year, $month, $day)
     {
-        echo 'test';
+        return new self();
+    }
+
+    public function isBefore()
+    {
+    }
+
+    public function isAfter()
+    {
+    }
+
+    public function startAsTimePoint()
+    {
+    }
+
+    public function toString($pattern)
+    {
     }
 }
-
-CalendarDate::from(2012, 1, 1);
