@@ -35,7 +35,6 @@ class CalendarDateTest extends TestCase
         $this->assertFalse($feb17->isAfter($feb17));
     }
 
-/*
     public function testStartAsTimePoint()
     {
         $feb17 = $this->feb17;
@@ -55,6 +54,7 @@ class CalendarDateTest extends TestCase
         $this->assertEquals("#17-03/02 2003", $feb17->toString("#d-yy/MM yyyy"));
     }
 
+/*
     public function testFromFormattedString()
     {
         $feb17 = $this->feb17;
