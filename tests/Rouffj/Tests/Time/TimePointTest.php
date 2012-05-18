@@ -44,7 +44,7 @@ class TimePointTest extends TestCase
 
     public function testCreationWithDefaultTimeZone()
     {
-        $excpected = TimePoint::atGMT(2004, 1, 1, 0, 0, 0, 0);
+        $expected = TimePoint::atGMT(2004, 1, 1, 0, 0, 0, 0);
 
         $this->assertEquals($expected, TimePoint::atMidnightGMT(2004, 1, 1), "at midnight");
         $this->assertEquals($expected, TimePoint::atGMT(2004, 1, 1, 0, 0), "hours in 24hr clock");
