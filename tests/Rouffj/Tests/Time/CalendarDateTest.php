@@ -5,6 +5,7 @@ namespace Rouffj\Tests\Time;
 use Rouffj\Tests\TestCase;
 use Rouffj\Time\CalendarDate;
 use Rouffj\Time\TimePoint;
+use Rouffj\Time\CalendarInterval;
 
 /**
  * CalendarDate test case
@@ -92,4 +93,58 @@ class CalendarDateTest extends TestCase
         $this->assertEquals(CalendarDate::date(2004, 2, 29), $feb28_2004->nextDay());
         $this->assertEquals(CalendarDate::date(2004, 3, 1), $feb28_2004->nextDay()->nextDay());
     }
+
+
+    public function testPreviousDay()
+    {
+        $mar1_2004 = CalendarDate::date(2004, 3, 1);
+        $this->assertEquals(CalendarDate::date(2004, 2, 29), $mar1_2004->previousDay());
+        $this->assertEquals(CalendarDate::date(2004, 2, 28), $mar1_2004->previousDay()->previousDay());
+    }
+
+    public function testMonth()
+    {
+        $nov6_2004 = CalendarDate::date(2004, 11, 6);
+        $nov2004 = CalendarInterval::inclusive(2004, 11, 1, 2004, 11, 30);
+        $this->assertEquals($nov2004, $nov6_2004->month());
+
+        $dec6_2004 = CalendarDate::date(2004, 12, 6);
+        $dec2004 = CalendarInterval::inclusive(2004, 12, 1, 2004, 12, 31);
+        $this->assertEquals($dec2004, $dec6_2004->month());
+
+        $feb9_2004 = CalendarDate::date(2004, 2, 9);
+        $feb2004 = CalendarInterval::inclusive(2004, 2, 1, 2004, 2, 29);
+        $this->assertEquals($feb2004, $feb9_2004->month());
+
+        $feb9_2003 = CalendarDate::date(2003, 2, 9);
+        $feb2003 = CalendarInterval::inclusive(2003, 2, 1, 2003, 2, 28);
+        $this->assertEquals($feb2003, $feb9_2003->month());
+    }
+
+    public function testToString()
+    {
+        $date = CalendarDate::date(2004, 5, 28);
+        $this->assertEquals("2004-5-28", $date->toString());
+    }
+
+/*
+    public function testConversionToJavaUtil() {
+        Calendar expected = Calendar.getInstance(gmt);
+        expected.set(Calendar.YEAR, 1969);
+        expected.set(Calendar.MONTH, Calendar.JULY);
+        expected.set(Calendar.DATE, 20);
+        expected.set(Calendar.HOUR, 0);
+        expected.set(Calendar.AM_PM, Calendar.AM);
+        expected.set(Calendar.MINUTE, 0);
+        expected.set(Calendar.SECOND, 0);
+        expected.set(Calendar.MILLISECOND, 0);
+
+        CalendarDate date = CalendarDate.from(1969, 7, 20);
+        Calendar actual = date.asJavaCalendarUniversalZoneMidnight();
+        assertEquals(expected.get(Calendar.HOUR), actual.get(Calendar.HOUR));
+        assertEquals(expected.get(Calendar.AM_PM), actual.get(Calendar.AM_PM));
+        assertEquals(expected.get(Calendar.HOUR_OF_DAY), actual.get(Calendar.HOUR_OF_DAY));
+        assertEquals(expected, actual);
+    }
+*/
 }

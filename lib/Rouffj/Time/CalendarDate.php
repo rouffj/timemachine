@@ -35,7 +35,7 @@ class CalendarDate
     {
     }
 
-    public function toString($pattern)
+    public function toString($pattern = null)
     {
     }
 
@@ -50,5 +50,14 @@ class CalendarDate
     public function nextDay()
     {
         return $this;
+    }
+
+    public function previousDay()
+    {
+        return $this;
+    }
+
+    public function month()
+    {
     }
 }
