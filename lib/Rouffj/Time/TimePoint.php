@@ -7,115 +7,280 @@ namespace Rouffj\Time;
  */
 class TimePoint
 {
-    public static function atMidnight($year, $month, $day, \DateTimeZone $timezone)
+    protected $gmt;
+    protected $farPast;
+    protected $farFuture;
+
+    protected $millisecondsFromEpoc;
+
+    public function __contruct()
     {
-        return new self();
+        $this->gmt = new \DateTimeZone('UTC');
+        $this->farPast = $this->atMidnightGMT(0001, 1, 1);
+        $this->farFuture = $this->atMidnightGMT(9999, 9, 9);
     }
 
-    public static function atMidnightGMT($year, $month, $day)
+    /**
+     * @param  integer $year
+     * @param  integer $month
+     * @param  integer $date
+     * @return TimePoint
+     */
+    public static function atMidnightGMT($year, $month, $date)
     {
-        return new self();
+        return self::atMidnight($year, $month, $date, new \DateTimeZone('UTC'));
     }
 
+    /**
+     * @param  integer        $year
+     * @param  integer        $month
+     * @param  integer        $date
+     * @param  \DateTimeZone  $zone
+     * @return TimePoint
+     */
+    public static function atMidnight($year, $month, $date, \DateTimeZone $zone)
+    {
+        return self::at($year, $month, $date, 0, 0, 0, 0, $zone);
+    }
+
+    /**
+     * @param  integer  $year
+     * @param  integer  $month
+     * @param  integer  $date
+     * @param  integer  $hour
+     * @param  integer  $minute
+     * @param  integer $second
+     * @param  integer $millisecond
+     * @return TimePoint
+     */
     public static function atGMT($year, $month, $date, $hour, $minute, $second = 0, $millisecond = 0)
     {
-        return new self();
+        return self::at($year, $month, $date, $hour, $minute, $second, $millisecond);
     }
 
-    public static function at($year, $month, $date, $hour, $minute, $second, $millisecond, \DateTimeZone $zone)
+    public static function at12hr($year, $month, $date, $hour, $am_pm, $minute, $second, $millisecond, \DateTimeZone $zone) {
+        return self::at($year, $month, $date, self::convertedTo24hour($hour, $am_pm), $minute, $second, $millisecond, $zone);
+    }
+
+    private static function convertedTo24hour($hour, $am_pm) {
+        $translatedAmPm = "AM" == ($am_pm) ? 0 : 12;
+        $translatedAmPm -= ($hour == 12) ? 12 : 0;
+        return $hour + $translatedAmPm;
+    }
+
+    /**
+     * @param  integer        $year
+     * @param  integer        $month
+     * @param  integer        $date
+     * @param  integer        $hour
+     * @param  integer        $minute
+     * @param  integer        $second
+     * @param  integer        $millisecond
+     * @param  \DateTimeZone $zone
+     * @return TimePoint                     
+     */
+    public static function at($year, $month, $date, $hour, $minute, $second, $millisecond, \DateTimeZone $zone = null)
     {
-        return new self();
+        $calendar = new \DateTime('', $zone);
+        $calendar->setDate($year, $month, $date);
+        $calendar->setTime($hour, $minute, $second);
+
+        return self::from($calendar);
     }
 
-    public function at12hr($year, $month, $date, $hour, $am_pm, $minute, $second, $millisecond, \DateTimeZone $zone)
+    /**
+     * @param  string $dateString
+     * @param  string $pattern
+     * @return TimePoint
+     */
+    public static function parseGMTFrom($dateString, $pattern)
     {
-        return new self();
+        return self::parseFrom($dateString, $pattern, new \DateTimeZone('UTC'));
     }
 
-    public function parseGMTFrom($dateString, $pattern)
+    /**
+     * @param  string        $dateString
+     * @param  string        $pattern
+     * @param  \DateTimeZone $zone
+     * @return TimePoint      
+     */
+    public static function parseFrom($dateString, $pattern, \DateTimeZone $zone)
     {
-        return new self();
+        $format = new \DateTime($pattern);
+        $format->setTimeZone($zone);
+        $date = $format->format($dateString);
+        return self::from($date);
     }
 
-    public function toString($pattern = null, \DateTimeZone $zone = null)
+    /**
+     * @param  \DateTime $date
+     * @return TimePoint
+     */
+    public static function fromDateTime(\DateTime $date)
     {
-        return '';
+        return self::from($date.getTimestamp());
     }
 
-    public function asJavaUtilDate()
+    /**
+     * @param  integer $milliseconds
+     * @return TimePoint
+     */
+    public static function from($milliseconds)
     {
-        return new \DateTime();
+        $result =  new TimePoint($milliseconds);
+
+        return $result;
     }
 
-    public function backToMidnight(\DateTimeZone $zone)
+    /**
+     * @param integer $milliseconds [description]
+     */
+    protected function TimePoint($milliseconds)
     {
-        return new self();
+        $this->millisecondsFromEpoc = $milliseconds;
     }
 
-    public static function fromDate(\DateTime $datetime)
+    /**
+     * @param  TimePoint $other [description]
+     * @return boolean
+     */
+    public function equals(TimePoint $other)
     {
-        return $this->from($datetime->getTimestamp());
+        return 
+        //revisit: maybe use: Reflection.equalsOverClassAndNull(this, other)
+            ($other instanceof TimePoint) &&
+            ($other->millisecondsFromEpoc == $this->millisecondsFromEpoc);
     }
 
-    public static function from($millisecond)
+    /**
+     * @return integer
+     */
+    public function hashCode()
     {
-        return new self();
+        return (int) $this->millisecondsFromEpoc;
     }
 
+    /**
+     * @param  DateTimeZone $zone
+     * @return TimePoint
+     */
+    public function backToMidnight(\DateTimeZone $zone) {
+        return $this->calendarDate($zone)->asTimeInterval($zone)->start();
+    }
+
+    /**
+     * @param  \DateTimeZone $zone
+     * @return CalendarDate
+     */
+    public function calendarDate(\DateTimeZone $zone) {
+        return CalendarDate::from($this, $zone);
+    }
+
+    /**
+     * @param  TimePoint     $other
+     * @param  DateTimeZone  $zone
+     * @return boolean
+     */
     public function isSameDayAs(TimePoint $other, \DateTimeZone $zone)
     {
-        return false;
+        return $this->calendarDate($zone)->equals($other->calendarDate($zone));
+    }
+
+    /**
+     * @param string        $pattern
+     * @param DateTimeZone  $zone
+     * @return string
+     */
+    public function toString($pattern = null, \DateTimeZone $zone = null)
+    {
+        if (null !== $pattern && null !== $zone) {
+            $format = new \DateTime($pattern);
+            $format->setTimeZone($zone);
+            return $format->format($this->asJavaUtilDate());
+        }
+        return $this->asJavaUtilDate()->toString();
+    }
+
+    /**
+     * @param  TimePoint $other
+     * @return boolean
+     */
+    public function isBefore(TimePoint $other) {
+        return $this->millisecondsFromEpoc < $other->millisecondsFromEpoc;
+    }
+
+    /**
+     * @param  TimePoint $other [description]
+     * @return boolean          [description]
+     */
+    public function isAfter(TimePoint $other) {
+        return $this->millisecondsFromEpoc > $other->millisecondsFromEpoc;
+    }
+
+    /**
+     * @param  TimePoint $other
+     * @return integer
+     */
+    public function compareTo(TimePoint $other) {
+        $otherPoint = clone $other;
+        if ($this->isBefore($otherPoint)) return -1;
+        if ($this->isAfter($otherPoint)) return 1;
+        return 0;
+    }
+
+    /**
+     * @return TimePoint
+     */
+    public function nextDay() {
+        return $this->plus(Duration::days(1));
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function asJavaUtilDate() {
+        return new \DateTime($this->millisecondsFromEpoc);
+    }
+
+    /**
+     * @param  \DateTimeZone $zone
+     * @return \DateTime
+     */
+    public function asJavaCalendar(\DateTimeZone $zone = null) {
+        if (null === $zone) {
+            $zone = $this->gmt;
+        }
+        $result = new \DateTime('', $zone);
+        $result->setTimestamp($this->asJavaUtilDate()->getTimestamp());
+        return $result;
     }
 
     public function isBeforeInterval(TimeInterval $interval)
     {
-        return false;
+        return $interval->isAfter($this);
     }
 
-    public function isBefore(TimePoint $other)
-    {
-        return false;
+    public function isAfterInterval(TimeInterval $interval) {
+        return $interval->isBefore($this);
+    }
+    
+    public function plus(Duration $duration) {
+        return $duration->addedTo($this);
     }
 
-    public function isAfterInterval(TimeInterval $interval)
-    {
-        return false;
+    public function minus(Duration $duration) {
+        return $duration->subtractedFrom($this);
     }
 
-    public function isAfter(TimePoint $other)
-    {
-        return false;
+    public function until(TimePoint $end) {
+        return TimeInterval::over($this, $end);
     }
 
-
-
-    public function equals(TimePoint $datetime)
-    {
-        return false;
+    private function getMillisecondsFromEpocForPersistentMapping() {
+        return $this->millisecondsFromEpoc;
     }
 
-    public function plus(Duration $duration)
-    {
-        return new self();
-    }
-
-    public function minus(Duration $duration)
-    {
-        return new self();
-    }
-
-    public function nextDay()
-    {
-        return new self();
-    }
-
-    public function compareTo(TimePoint $other)
-    {
-        return 0;
-    }
-
-    public function asJavaCalendar()
-    {
-        return new \DateTime();
+    private function setMillisecondsFromEpocForPersistentMapping($millisecondsFromEpoc) {
+        $this->millisecondsFromEpoc = $millisecondsFromEpoc;
     }
 }

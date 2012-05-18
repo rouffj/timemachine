@@ -12,4 +12,13 @@ class TimeInterval
     {
         return new self();
     }
+
+    public function isAfter(TimePoint $point) {
+        return false;
+    }
+
+    public function start()
+    {
+        return new TimePoint();
+    }
 }

@@ -12,4 +12,13 @@ class Duration
     {
         return new self();
     }
+
+    public function addedTo(TimePoint $point)
+    {
+        return new TimePoint();
+    }
+
+    public function subtractedFrom(TimePoint $point) {
+        return new TimePoint();
+    }
 }

@@ -60,4 +60,8 @@ class CalendarDate
     public function month()
     {
     }
+
+    public function asTimeInterval(\DateTimeZone $zone) {
+        return new TimeInterval();
+    }
 }
