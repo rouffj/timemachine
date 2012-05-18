@@ -36,4 +36,86 @@ class TimePoint
     {
         return new self();
     }
+
+    public function toString($pattern = null, \DateTimeZone $zone = null)
+    {
+        return '';
+    }
+
+    public function asJavaUtilDate()
+    {
+        return new \DateTime();
+    }
+
+    public function backToMidnight(\DateTimeZone $zone)
+    {
+        return new self();
+    }
+
+    public static function fromDate(\DateTime $datetime)
+    {
+        return $this->from($datetime->getTimestamp());
+    }
+
+    public static function from($millisecond)
+    {
+        return new self();
+    }
+
+    public function isSameDayAs(TimePoint $other, \DateTimeZone $zone)
+    {
+        return false;
+    }
+
+    public function isBeforeInterval(TimeInterval $interval)
+    {
+        return false;
+    }
+
+    public function isBefore(TimePoint $other)
+    {
+        return false;
+    }
+
+    public function isAfterInterval(TimeInterval $interval)
+    {
+        return false;
+    }
+
+    public function isAfter(TimePoint $other)
+    {
+        return false;
+    }
+
+
+
+    public function equals(TimePoint $datetime)
+    {
+        return false;
+    }
+
+    public function plus(Duration $duration)
+    {
+        return new self();
+    }
+
+    public function minus(Duration $duration)
+    {
+        return new self();
+    }
+
+    public function nextDay()
+    {
+        return new self();
+    }
+
+    public function compareTo(TimePoint $other)
+    {
+        return 0;
+    }
+
+    public function asJavaCalendar()
+    {
+        return new \DateTime();
+    }
 }
