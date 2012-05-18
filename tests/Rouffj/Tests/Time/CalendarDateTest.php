@@ -1,5 +1,9 @@
 <?php
 
+namespace Rouffj\Tests\Time;
+
+use Rouffj\Tests\TestCase;
+
 /**
  * CalendarDate test case
  *

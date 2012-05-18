@@ -1,6 +1,6 @@
 <?php
 
-namespace Rouffj\Time\Tests;
+namespace Rouffj\Tests;
 
 /**
  *
