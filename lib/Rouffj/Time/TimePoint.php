@@ -228,6 +228,7 @@ class TimePoint
         return 0;
     }
 
+<<<<<<< HEAD
     /**
      * @return TimePoint
      */
@@ -253,6 +254,11 @@ class TimePoint
         $result = new \DateTime('', $zone);
         $result->setTimestamp($this->asJavaUtilDate()->getTimestamp());
         return $result;
+=======
+    public function equals(TimePoint $datetime)
+    {
+        return false;
+>>>>>>> c222bfaa71320744d1ef8fc0d8f68a0754f68b02
     }
 
     public function isBeforeInterval(TimeInterval $interval)

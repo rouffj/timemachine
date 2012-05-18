@@ -10,16 +10,16 @@ use Rouffj\Time\CalendarInterval;
 /**
  * CalendarDate test case
  *
- * @author Joseph Rouff <rouffj@gmail->com>
+ * @author Joseph Rouff <rouffj@gmail.com>
  */
 class CalendarDateTest extends TestCase
 {
     public function __construct()
     {
         $this->feb17 = CalendarDate::from(2003, 2, 17);
-        $this->mar13 = CalendarDate::from(2003, 2, 13);
+        $this->mar13 = CalendarDate::from(2003, 3, 13);
         $this->ct = new \DateTimeZone("America/Chicago");
-        $this->gmt = new \DateTimeZone("Universal");
+        $this->gmt = new \DateTimeZone("UTC");
     }
 
     public function testComparison()
@@ -54,6 +54,7 @@ class CalendarDateTest extends TestCase
         $this->assertEquals("#17-03/02 2003", $feb17->toString("#d-yy/MM yyyy"));
     }
 
+/*
     public function testFromFormattedString()
     {
         $feb17 = $this->feb17;
@@ -126,7 +127,7 @@ class CalendarDateTest extends TestCase
         $date = CalendarDate::date(2004, 5, 28);
         $this->assertEquals("2004-5-28", $date->toString());
     }
-
+*/
 /*
     public function testConversionToJavaUtil() {
         Calendar expected = Calendar.getInstance(gmt);
