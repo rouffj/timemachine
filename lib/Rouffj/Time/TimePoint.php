@@ -11,4 +11,19 @@ class TimePoint
     {
         return new self();
     }
+
+    public static function atMidnightGMT($year, $month, $day)
+    {
+        return new self();
+    }
+
+    public static function atGMT($year, $month, $date, $hour, $minute, $second, $millisecond)
+    {
+        return new self();
+    }
+
+    public static function at($year, $month, $date, $hour, $minute, $second, TimeZone $zone)
+    {
+        return new self();
+    }
 }
