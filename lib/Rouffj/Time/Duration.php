@@ -22,4 +22,9 @@ class Duration
 
         return new \DateInterval($timeSpec);
     }
+
+    public function getValue()
+    {
+        return $this->value;
+    }
 }

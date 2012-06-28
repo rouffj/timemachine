@@ -25,20 +25,18 @@ class TimePoint
 
     public function plus(Duration $duration)
     {
-        $date = new \Datetime();
-        $date->setDate($this->year, $this->month, $this->day);
-        $date->setTime($this->hour, $this->minute, $this->second);
-
+        $date = $this->asPHPDateTime();
         $date->add($duration->asPHPDateInterval());
 
-        return new self(
-            $date->format('Y'),
-            $date->format('m'),
-            $date->format('d'),
-            $date->format('H'),
-            $date->format('i'),
-            $date->format('s')
-        );
+        return $this->buildFromPHPDateTime($date);
+    }
+
+    public function minus(Duration $duration)
+    {
+        $date = $this->asPHPDateTime();
+        $date->sub($duration->asPHPDateInterval());
+
+        return $this->buildFromPHPDateTime($date);
     }
 
     public function equals(CalendarDate $date)
@@ -78,5 +76,26 @@ class TimePoint
     public function getDay()
     {
         return $this->day;
+    }
+
+    private function asPHPDateTime()
+    {
+        $date = new \Datetime();
+        $date->setDate($this->year, $this->month, $this->day);
+        $date->setTime($this->hour, $this->minute, $this->second);
+
+        return $date;
+    }
+
+    private function buildFromPHPDateTime(\DateTime $date)
+    {
+        return new self(
+            $date->format('Y'),
+            $date->format('m'),
+            $date->format('d'),
+            $date->format('H'),
+            $date->format('i'),
+            $date->format('s')
+        );
     }
 }
