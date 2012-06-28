@@ -25,5 +25,9 @@ class TimePointTest extends TestCase
         $point = new TimePoint(2012, 1, 1, 9, 30);
 
         $this->assertEquals(new TimePoint(2009, 1, 1, 9, 30), $point->minus(new Duration(3, TimeUnit::year())));
+        $this->assertEquals(new TimePoint(2011, 9, 1, 9, 30), $point->minus(new Duration(4, TimeUnit::month())));
+        $this->assertEquals(new TimePoint(2011, 12, 30, 9, 30), $point->minus(new Duration(2, TimeUnit::day())));
+        $this->assertEquals(new TimePoint(2012, 1, 1, 6, 30), $point->minus(new Duration(3, TimeUnit::hour())));
+        $this->assertEquals(new TimePoint(2012, 1, 1, 9, 0), $point->minus(new Duration(30, TimeUnit::minute())));
     }
 }
