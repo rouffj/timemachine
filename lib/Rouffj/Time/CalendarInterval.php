@@ -2,25 +2,37 @@
 
 namespace Rouffj\Time;
 
-/**
- * CalendarDate
- *
- * @author Joseph Rouff <rouffj@gmail.com>
- */
 class CalendarInterval
 {
-    public static function inclusive()
+    private $begin;
+    private $end;
+
+    public function __construct(CalendarDate $beginDate, CalendarDate $endDate)
     {
-        return new self();
+        $this->begin = $beginDate;
+        $this->end = $endDate;
     }
 
-    public static function month($year, $month)
+    public function getLength()
     {
-        return new self();
+        $begin = clone $this->begin;
+        $duration = 1;
+        while (false === $this->end->equals($begin)) {
+            $begin = $begin->next();
+            $duration = $duration + 1;
+        }
+
+        return $duration;
     }
 
-    public static function year($year)
+    /**
+     * Gets the value of begin
+     *
+     * @return 
+     */
+    public function getBegin()
     {
-        return new self();
+        return $this->begin;
     }
 }
+
