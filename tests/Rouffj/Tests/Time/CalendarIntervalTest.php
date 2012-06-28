@@ -2,8 +2,8 @@
 
 namespace Rouffj\Tests\Time;
 
-use Rouffj\Time\CalendarInterval;
-use Rouffj\Time\CalendarDate;
+use Rouffj\Time\Core\CalendarInterval;
+use Rouffj\Time\Core\CalendarDate;
 use Rouffj\Tests\TestCase;
 
 class CalendarIntervalTest extends TestCase

@@ -2,9 +2,9 @@
 
 namespace Rouffj\Tests\Time;
 
-use Rouffj\Time\TimePoint;
-use Rouffj\Time\Duration;
-use Rouffj\Time\TimeUnit;
+use Rouffj\Time\Core\TimePoint;
+use Rouffj\Time\Core\Duration;
+use Rouffj\Time\Core\TimeUnit;
 use Rouffj\Tests\TestCase;
 
 class TimePointTest extends TestCase

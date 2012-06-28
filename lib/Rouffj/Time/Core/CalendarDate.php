@@ -1,6 +1,6 @@
 <?php
 
-namespace Rouffj\Time;
+namespace Rouffj\Time\Core;
 
 class CalendarDate
 {

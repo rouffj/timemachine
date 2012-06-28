@@ -1,8 +1,6 @@
 <?php
 
-namespace Rouffj\Time;
-
-use Rouffj\Time\Duration;
+namespace Rouffj\Time\Core;
 
 class TimePoint
 {
