@@ -21,6 +21,13 @@ class TimePoint
         $this->second = (int)$second;
     }
 
+    public function until(Duration $duration)
+    {
+        $interval = $this->plus($duration);
+
+        return new TimeInterval($this, $interval);
+    }
+
     public function plus(Duration $duration)
     {
         $date = $this->asPHPDateTime();
@@ -37,12 +44,15 @@ class TimePoint
         return $this->buildFromPHPDateTime($date);
     }
 
-    public function equals(CalendarDate $date)
+    public function equals(TimePoint $point)
     {
         return
-            $this->year === $date->getYear() &&
-            $this->month === $date->getMonth() &&
-            $this->day === $date->getDay()
+            $this->year === $point->getYear() &&
+            $this->month === $point->getMonth() &&
+            $this->day === $point->getDay() &&
+            $this->hour === $point->getHour() &&
+            $this->minute === $point->getMinute() &&
+            $this->second === $point->getSecond()
         ;
     }
 
@@ -74,6 +84,21 @@ class TimePoint
     public function getDay()
     {
         return $this->day;
+    }
+
+    public function getHour()
+    {
+        return $this->hour;
+    }
+
+    public function getMinute()
+    {
+        return $this->minute;
+    }
+
+    public function getSecond()
+    {
+        return $this->second;
     }
 
     private function asPHPDateTime()
