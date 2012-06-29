@@ -21,11 +21,16 @@ class TimePoint
         $this->second = (int)$second;
     }
 
-    public function until(Duration $duration)
+    public function during(Duration $duration)
     {
         $interval = $this->plus($duration);
 
         return new TimeInterval($this, $interval);
+    }
+
+    public function until(TimePoint $point)
+    {
+        return new TimeInterval($this, $point);
     }
 
     public function plus(Duration $duration)
@@ -101,7 +106,7 @@ class TimePoint
         return $this->second;
     }
 
-    private function asPHPDateTime()
+    public function asPHPDateTime()
     {
         $date = new \Datetime();
         $date->setDate($this->year, $this->month, $this->day);

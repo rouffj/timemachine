@@ -32,11 +32,12 @@ class TimePointTest extends TestCase
         $this->assertEquals(new TimePoint(2012, 1, 1, 9, 0), $point->minus(new Duration(30, TimeUnit::minute())));
     }
 
-    public function testUntil()
+    public function testUntilDuring()
     {
         $point = new TimePoint(2012, 1, 1, 9, 30);
 
         $expectedInterval = new TimeInterval(new TimePoint(2012, 1, 1, 9, 30), new TimePoint(2012, 1, 1, 13, 30));
-        $this->assertTrue($expectedInterval->equals($point->until(new Duration(4, TimeUnit::hour()))));
+        $this->assertTrue($expectedInterval->equals($point->during(new Duration(4, TimeUnit::hour()))));
+        $this->assertTrue($expectedInterval->equals($point->until(new TimePoint(2012, 1, 1, 13, 30))));
     }
 }

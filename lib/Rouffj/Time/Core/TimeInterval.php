@@ -30,5 +30,14 @@ class TimeInterval
     {
         return $this->end;
     }
+
+    public function getLength()
+    {
+        $begin = $this->begin->asPHPDateTime();
+        $end = $this->end->asPHPDateTime();
+        $diff = $begin->diff($end);
+
+        return new Duration($diff->format('%H'), TimeUnit::hour());
+    }
 }
 
