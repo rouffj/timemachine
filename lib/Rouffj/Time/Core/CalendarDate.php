@@ -20,7 +20,7 @@ class CalendarDate
         $begin = new TimePoint($this->year, $this->month, $this->day, 0, 0);
         $end = $begin->plus($duration);
 
-        return new CalendarInterval($begin->toCalendarDate(), $end->toCalendarDate());
+        return new CalendarInterval($begin->getCalendarDate(), $end->getCalendarDate());
     }
 
     public function greater(CalendarDate $date)

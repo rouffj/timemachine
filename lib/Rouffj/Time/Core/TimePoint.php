@@ -44,12 +44,8 @@ class TimePoint
     public function equals(TimePoint $point)
     {
         return
-            $this->date->getYear() === $point->getYear() &&
-            $this->date->getMonth() === $point->getMonth() &&
-            $this->date->getDay() === $point->getDay() &&
-            $this->time->getHour() === $point->getHour() &&
-            $this->time->getMinutes() === $point->getMinutes() &&
-            $this->time->getSeconds() === $point->getSeconds()
+            $this->date->equals($point->getCalendarDate()) &&
+            $this->time->equals($point->getTimeOfDay())
         ;
     }
 
@@ -106,9 +102,14 @@ class TimePoint
         return $dtime;
     }
 
-    public function toCalendarDate()
+    public function getCalendarDate()
     {
         return $this->date;
+    }
+
+    public function getTimeOfDay()
+    {
+        return $this->time;
     }
 
     private function buildFromPHPDateTime(\DateTime $date)
