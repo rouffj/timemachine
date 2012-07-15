@@ -12,5 +12,10 @@ class TimeOfDay
         $this->hour = $hour;
         $this->minutes = $minutes;
     }
+
+    public function __toString()
+    {
+        return $this->hour.':'.$this->minutes;
+    }
 }
 

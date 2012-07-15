@@ -11,6 +11,18 @@ class CalendarInterval
     {
         $this->begin = $beginDate;
         $this->end = $endDate;
+        $this->current = $this->begin;
+    }
+
+    public function nextDate()
+    {
+        $this->current = $this->current->next();
+        return false === $this->current->greater($this->end);
+    }
+
+    public function getCurrent()
+    {
+        return $this->current;
     }
 
     public function getLength()
@@ -33,6 +45,11 @@ class CalendarInterval
     public function getBegin()
     {
         return $this->begin;
+    }
+
+    public function getEnd()
+    {
+        return $this->end;
     }
 }
 

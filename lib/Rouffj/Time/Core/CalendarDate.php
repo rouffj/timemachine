@@ -15,6 +15,15 @@ class CalendarDate
         $this->day = (int)$day;
     }
 
+    public function greater(CalendarDate $date)
+    {
+        return
+            $this->year > $date->getYear() ||
+            ($this->year >= $date->getYear() && $this->month > $date->getMonth()) ||
+            ($this->year >= $date->getYear() && $this->month >= $date->getMonth() && $this->day > $date->getDay())
+        ;
+    }
+
     public function equals(CalendarDate $date)
     {
         return
@@ -26,11 +35,18 @@ class CalendarDate
 
     public function next()
     {
-        $date = new \Datetime();
-        $date->setDate($this->year, $this->month, $this->day);
+        $date = $this->toDateTime();
         $date->add(new \DateInterval('P1D'));
 
         return new self($date->format('Y'), $date->format('m'), $date->format('d'));
+    }
+
+    public function toDateTime()
+    {
+        $date = new \Datetime();
+        $date->setDate($this->year, $this->month, $this->day);
+
+        return $date;
     }
 
     /**
