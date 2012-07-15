@@ -4,21 +4,13 @@ namespace Rouffj\Time\Core;
 
 class TimePoint
 {
-    private $year;
-    private $month;
-    private $day;
-    private $hour;
-    private $minute;
-    private $second;
+    private $date;
+    private $time;
 
     public function __construct($year, $month, $day, $hour, $minute, $second = 0)
     {
-        $this->year = (int)$year;
-        $this->month = (int)$month;
-        $this->day = (int)$day;
-        $this->hour = (int)$hour;
-        $this->minute = (int)$minute;
-        $this->second = (int)$second;
+        $this->date = new CalendarDate($year, $month, $day);
+        $this->time = new TimeOfDay($hour, $minute, $second);
     }
 
     public function during(Duration $duration)
@@ -52,12 +44,12 @@ class TimePoint
     public function equals(TimePoint $point)
     {
         return
-            $this->year === $point->getYear() &&
-            $this->month === $point->getMonth() &&
-            $this->day === $point->getDay() &&
-            $this->hour === $point->getHour() &&
-            $this->minute === $point->getMinute() &&
-            $this->second === $point->getSecond()
+            $this->date->getYear() === $point->getYear() &&
+            $this->date->getMonth() === $point->getMonth() &&
+            $this->date->getDay() === $point->getDay() &&
+            $this->time->getHour() === $point->getHour() &&
+            $this->time->getMinutes() === $point->getMinutes() &&
+            $this->time->getSeconds() === $point->getSeconds()
         ;
     }
 
@@ -68,7 +60,7 @@ class TimePoint
      */
     public function getYear()
     {
-        return $this->year;
+        return $this->date->getYear();
     }
 
     /**
@@ -78,7 +70,7 @@ class TimePoint
      */
     public function getMonth()
     {
-        return $this->month;
+        return $this->date->getMonth();
     }
 
     /**
@@ -88,31 +80,35 @@ class TimePoint
      */
     public function getDay()
     {
-        return $this->day;
+        return $this->date->getDay();;
     }
 
     public function getHour()
     {
-        return $this->hour;
+        return $this->time->getHour();
     }
 
-    public function getMinute()
+    public function getMinutes()
     {
-        return $this->minute;
+        return $this->time->getMinutes();
     }
 
-    public function getSecond()
+    public function getSeconds()
     {
-        return $this->second;
+        return $this->time->getSeconds();
     }
 
     public function asPHPDateTime()
     {
-        $date = new \Datetime();
-        $date->setDate($this->year, $this->month, $this->day);
-        $date->setTime($this->hour, $this->minute, $this->second);
+        $dtime = $this->date->toDateTime();
+        $dtime->setTime($this->time->getHour(), $this->time->getMinutes(), $this->time->getSeconds());
 
-        return $date;
+        return $dtime;
+    }
+
+    public function toCalendarDate()
+    {
+        return $this->date;
     }
 
     private function buildFromPHPDateTime(\DateTime $date)

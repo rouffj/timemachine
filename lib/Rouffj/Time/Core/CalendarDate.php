@@ -15,6 +15,14 @@ class CalendarDate
         $this->day = (int)$day;
     }
 
+    public function during(Duration $duration)
+    {
+        $begin = new TimePoint($this->year, $this->month, $this->day, 0, 0);
+        $end = $begin->plus($duration);
+
+        return new CalendarInterval($begin->toCalendarDate(), $end->toCalendarDate());
+    }
+
     public function greater(CalendarDate $date)
     {
         return
@@ -33,10 +41,34 @@ class CalendarDate
         ;
     }
 
+    public function beginOfWeek()
+    {
+        $i = 0;
+        $curDate = $this;
+        while ($i < 8) {
+            $dtime = $curDate->toDateTime();
+            $numOfWeek = (int)$dtime->format('N');
+            if (1 === $numOfWeek) {
+                return $curDate;
+            }
+            $curDate = $curDate->previous();
+            $i = $i + 1;
+        }
+        throw new \RunTimeException('Loop error with begin of week');
+    }
+
     public function next()
     {
         $date = $this->toDateTime();
         $date->add(new \DateInterval('P1D'));
+
+        return new self($date->format('Y'), $date->format('m'), $date->format('d'));
+    }
+
+    public function previous()
+    {
+        $date = $this->toDateTime();
+        $date->sub(new \DateInterval('P1D'));
 
         return new self($date->format('Y'), $date->format('m'), $date->format('d'));
     }

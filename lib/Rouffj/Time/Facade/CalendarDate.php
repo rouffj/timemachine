@@ -10,11 +10,16 @@ class CalendarDate extends BaseCalendarDate
     {
         $now = new \DateTime('now');
 
+        return self::fromDateTime($now);
+    }
+
+    static public function fromDateTime(\DateTime $dtime)
+    {
         return new CalendarDate(
-            $now->format('Y'),
-            $now->format('m'),
-            $now->format('d')
-        )
+            $dtime->format('Y'),
+            $dtime->format('m'),
+            $dtime->format('d')
+        );
     }
 }
 
