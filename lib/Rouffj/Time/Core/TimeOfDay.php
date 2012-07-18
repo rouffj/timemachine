@@ -21,6 +21,7 @@ class TimeOfDay
             $this->hour === $other->getHour() && $this->minutes === $other->getMinutes()
         ;
     }
+
     public function greater(TimeOfDay $other)
     {
         return

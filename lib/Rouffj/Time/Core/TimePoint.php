@@ -41,6 +41,19 @@ class TimePoint
         return $this->buildFromPHPDateTime($date);
     }
 
+    public function greater(TimePoint $point)
+    {
+         if (( $this->date->equals($point->getCalendarDate()) )) {
+            if ($this->time->greater($point->getTimeOfDay())){
+                return true;
+            }
+         } else if ($this->date->greater($point->getCalendarDate())) {
+            return true;
+         }
+
+        return false;
+    }
+
     public function equals(TimePoint $point)
     {
         return

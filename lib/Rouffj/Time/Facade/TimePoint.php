@@ -13,6 +13,14 @@ class TimePoint extends BaseTimePoint
         return self::fromDateTime($now);
     }
 
+    static public function fromTimestamp($timestamp)
+    {
+        $dtime = new \DateTime();
+        $dtime->setTimestamp($timestamp);
+
+        return self::fromDateTime($dtime);
+    }
+
     static public function fromDateTime(\DateTime $dtime)
     {
         return new self(
