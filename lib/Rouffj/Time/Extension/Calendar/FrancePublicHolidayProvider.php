@@ -3,7 +3,7 @@
 namespace Rouffj\Time\Extension\Calendar;
 
 use Rouffj\Time\Core\DateProviderInterface;
-use Rouffj\Time\Core\CalendarDate;
+use Rouffj\Time\Core\Date;
 
 /**
  * 
@@ -22,9 +22,9 @@ class FrancePublicHolidayProvider implements DateProviderInterface
     public function getDates()
     {
         return array(
-            new CalendarDate(2012, 1, 1),
-            new CalendarDate(2012, 5, 1),
-            new CalendarDate(2012, 5, 8),
+            new Date(2012, 1, 1),
+            new Date(2012, 5, 1),
+            new Date(2012, 5, 8),
         );
     }
 

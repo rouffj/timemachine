@@ -2,7 +2,7 @@
 
 namespace Rouffj\Time\Core;
 
-class CalendarDate
+class Date
 {
     private $year;
     private $month;
@@ -20,10 +20,10 @@ class CalendarDate
         $begin = new TimePoint($this->year, $this->month, $this->day, 0, 0);
         $end = $begin->plus($duration);
 
-        return new CalendarInterval($begin->getCalendarDate(), $end->getCalendarDate());
+        return new CalendarInterval($begin->getDate(), $end->getCalendarDate());
     }
 
-    public function greater(CalendarDate $date)
+    public function greater(Date $date)
     {
         return
             $this->year > $date->getYear() ||
@@ -32,7 +32,7 @@ class CalendarDate
         ;
     }
 
-    public function equals(CalendarDate $date)
+    public function equals(Date $date)
     {
         return
             $this->year === $date->getYear() &&

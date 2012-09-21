@@ -2,9 +2,9 @@
 
 namespace Rouffj\Time\Facade;
 
-use Rouffj\Time\Core\CalendarDate as BaseCalendarDate;
+use Rouffj\Time\Core\Date as BaseCalendarDate;
 
-class CalendarDate extends BaseCalendarDate
+class Date extends BaseCalendarDate
 {
     static public function today()
     {
@@ -15,7 +15,7 @@ class CalendarDate extends BaseCalendarDate
 
     static public function fromDateTime(\DateTime $dtime)
     {
-        return new CalendarDate(
+        return new Date(
             $dtime->format('Y'),
             $dtime->format('m'),
             $dtime->format('d')

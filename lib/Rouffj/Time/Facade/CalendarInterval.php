@@ -10,7 +10,7 @@ class CalendarInterval extends BaseCalendarInterval
     {
         $begin = \DateTime::createFromFormat('Y-m-d', $beginDate);
 
-        return new CalendarDate(
+        return new Date(
             $now->format('Y'),
             $now->format('m'),
             $now->format('d')
@@ -23,8 +23,8 @@ class CalendarInterval extends BaseCalendarInterval
         $begin = \DateTime::createFromFormat('Y-m-d', $end);
 
         return new CalendarInterval(
-            new CalendarDate($begin->format('Y'), $begin->format('m'), $begin->format('d')),
-            new CalendarDate($end->format('Y'), $end->format('m'), $end->format('d')),
+            new Date($begin->format('Y'), $begin->format('m'), $begin->format('d')),
+            new Date($end->format('Y'), $end->format('m'), $end->format('d')),
         );
     }
 }

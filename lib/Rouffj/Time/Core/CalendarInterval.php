@@ -7,7 +7,7 @@ class CalendarInterval
     private $begin;
     private $end;
 
-    public function __construct(CalendarDate $beginDate, CalendarDate $endDate)
+    public function __construct(Date $beginDate, Date $endDate)
     {
         $this->begin = $beginDate;
         $this->end = $endDate;

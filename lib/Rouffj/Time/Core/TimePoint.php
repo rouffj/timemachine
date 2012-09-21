@@ -9,7 +9,7 @@ class TimePoint
 
     public function __construct($year, $month, $day, $hour, $minute, $second = 0)
     {
-        $this->date = new CalendarDate($year, $month, $day);
+        $this->date = new Date($year, $month, $day);
         $this->time = new TimeOfDay($hour, $minute, $second);
     }
 
@@ -43,11 +43,11 @@ class TimePoint
 
     public function greater(TimePoint $point)
     {
-         if (( $this->date->equals($point->getCalendarDate()) )) {
+         if (( $this->date->equals($point->getDate()) )) {
             if ($this->time->greater($point->getTimeOfDay())){
                 return true;
             }
-         } else if ($this->date->greater($point->getCalendarDate())) {
+         } else if ($this->date->greater($point->getDate())) {
             return true;
          }
 
@@ -57,7 +57,7 @@ class TimePoint
     public function equals(TimePoint $point)
     {
         return
-            $this->date->equals($point->getCalendarDate()) &&
+            $this->date->equals($point->getDate()) &&
             $this->time->equals($point->getTimeOfDay())
         ;
     }
@@ -115,7 +115,7 @@ class TimePoint
         return $dtime;
     }
 
-    public function getCalendarDate()
+    public function getDate()
     {
         return $this->date;
     }
