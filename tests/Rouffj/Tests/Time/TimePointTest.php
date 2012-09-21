@@ -43,8 +43,11 @@ class TimePointTest extends TestCase
 
     public function testGreater()
     {
-        $point = new TimePoint(2012, 2, 1, 0, 0);
-        $this->assertTrue($point->greater(new TimePoint(2012, 1, 1, 0, 0)));
-        $this->assertFalse($point->greater(new TimePoint(2012, 3, 1, 0, 0)));
+        $point = new TimePoint(2012, 2, 1, 1, 0, 30);
+
+        // second
+        $this->assertTrue($point->greater(new TimePoint(2012, 2, 1, 1, 0, 29)));
+        $this->assertFalse($point->greater(new TimePoint(2012, 2, 1, 1, 0, 30)));
+        $this->assertFalse($point->greater(new TimePoint(2012, 2, 1, 1, 0, 31)));
     }
 }

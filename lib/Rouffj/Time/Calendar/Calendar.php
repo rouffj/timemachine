@@ -3,6 +3,8 @@
 namespace Rouffj\Time\Calendar;
 
 use Rouffj\Time\Core\TimePoint;
+use Rouffj\Time\Core\TimeInterval;
+use Rouffj\Time\Factory\TimePointFactory;
 
 /**
  * Represents a calendar
@@ -28,13 +30,9 @@ class Calendar implements \IteratorAggregate, \Countable
      */
     public function __construct(EventProviderInterface $provider)
     {
-        if (0 === count($provider->getEvents())) {
-            throw new \LogicException('Cannot initialize empty calendar.');
-        }
-
         $this->provider = $provider;
         $events = $provider->getEvents();
-        $this->cursor = $events[0]->getInterval()->getBegin();
+        $this->cursor = 0 === count($events) ? TimePointFactory::now() : $events[0]->getInterval()->getBegin();
     }
 
     /**
@@ -42,7 +40,7 @@ class Calendar implements \IteratorAggregate, \Countable
      */
     public function getIterator()
     {
-        return new \ArrayIterator($this->getEvents());
+        return new \ArrayIterator($this->getEvents($this->cursor));
     }
 
     /**
@@ -50,12 +48,21 @@ class Calendar implements \IteratorAggregate, \Countable
      */
     public function count()
     {
-        return count($this->getEvents());
+        return count($this->getEvents($this->cursor));
     }
 
-    public function between()
+    /**
+     * @param TimeInterval $interval
+     * @param string|null  $name
+     *
+     * @return Calendar
+     */
+    public function between(TimeInterval $interval, $name = null)
     {
-
+        return new self(new EventProvider(
+            $name ?: $this->getName(),
+            $this->getEvents($interval->getBegin(), $interval->getEnd())
+        ));
     }
 
     /**
@@ -85,18 +92,33 @@ class Calendar implements \IteratorAggregate, \Countable
     /**
      * @return array
      */
-    protected function getEvents()
+    private function getEvents(TimePoint $begin, TimePoint $end = null)
     {
-        $offset = 0;
         $events = $this->provider->getEvents();
+
+        $offset = 0;
         foreach ($events as $event) {
-            if ($event->getInterval()->getEnd()->greater($this->cursor)) {
+            if ($event->getInterval()->getEnd()->greater($begin)) {
                 break;
             } else {
                 $offset ++;
             }
         }
+        $events = array_slice($events, $offset);
 
-        return array_slice($events, $offset);
+        if (null === $end) {
+            return $events;
+        }
+
+        $length = count($events);
+        foreach (array_reverse($events) as $event) {
+            if ($end->greater($event->getInterval()->getBegin())) {
+                break;
+            } else {
+                $length --;
+            }
+        }
+
+        return array_slice($events, 0, $length);
     }
 }

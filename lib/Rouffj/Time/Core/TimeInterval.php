@@ -2,7 +2,7 @@
 
 namespace Rouffj\Time\Core;
 
-class TimeInterval
+class TimeInterval implements IntervalInterface
 {
     private $begin;
     private $end;

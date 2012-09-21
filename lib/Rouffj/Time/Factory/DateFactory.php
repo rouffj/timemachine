@@ -13,12 +13,12 @@ class DateFactory
         return self::fromDateTime($now);
     }
 
-    static public function fromDateTime(\DateTime $dtime)
+    static public function fromDateTime(\DateTime $dateTime)
     {
         return new Date(
-            $dtime->format('Y'),
-            $dtime->format('m'),
-            $dtime->format('d')
+            $dateTime->format('Y'),
+            $dateTime->format('m'),
+            $dateTime->format('d')
         );
     }
 }

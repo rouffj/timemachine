@@ -26,7 +26,8 @@ class TimeOfDay
     {
         return
             $this->hour > $other->getHour() ||
-            ($this->hour >= $other->getHour() && $this->minutes > $other->getMinutes())
+            ($this->hour === $other->getHour() && $this->minutes > $other->getMinutes()) ||
+            ($this->hour === $other->getHour() && $this->minutes === $other->getMinutes() && $this->seconds > $other->getSeconds())
         ;
     }
 

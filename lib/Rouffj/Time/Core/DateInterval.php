@@ -2,7 +2,7 @@
 
 namespace Rouffj\Time\Core;
 
-class DateInterval
+class DateInterval implements IntervalInterface
 {
     private $begin;
     private $end;
@@ -40,7 +40,7 @@ class DateInterval
     /**
      * Gets the value of begin
      *
-     * @return 
+     * @return
      */
     public function getBegin()
     {

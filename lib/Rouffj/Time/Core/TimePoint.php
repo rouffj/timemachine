@@ -43,7 +43,7 @@ class TimePoint
 
     public function greater(TimePoint $point)
     {
-         if (( $this->date->equals($point->getDate()) )) {
+         if ($this->date->equals($point->getDate())) {
             if ($this->time->greater($point->getTimeOfDay())){
                 return true;
             }

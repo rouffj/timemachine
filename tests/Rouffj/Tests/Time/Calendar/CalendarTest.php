@@ -3,7 +3,6 @@
 namespace Rouffj\Tests\Time\Calendar;
 
 use Rouffj\Tests\TestCase;
-
 use Rouffj\Time\Core\TimePoint;
 use Rouffj\Time\Core\TimeInterval;
 use Rouffj\Time\Calendar\Calendar;
@@ -42,6 +41,20 @@ class CalendarTest extends TestCase
 
         $calendar->setCursor(new TimePoint(2012, 1, 23, 8, 1));
         $this->assertSame(0, count($calendar));
+    }
+
+    public function testBetween()
+    {
+        $calendar = new Calendar(new EventProvider());
+
+        $this->assertCount(0, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 1, 0, 0), new TimePoint(2012, 1, 15, 15, 59, 59))));
+        $this->assertCount(1, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 1, 0, 0), new TimePoint(2012, 1, 15, 16, 1, 0))));
+
+        $this->assertCount(0, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 23, 8, 0, 1), new TimePoint(2012, 2, 0, 0, 0))));
+        $this->assertCount(1, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 20, 7, 59, 59), new TimePoint(2012, 2, 0, 0, 0))));
+
+        $this->assertCount(0, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 15, 18, 30, 1), new TimePoint(2012, 1, 20, 7, 59, 59))));
+        $this->assertCount(2, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 15, 18, 29, 59), new TimePoint(2012, 1, 20, 8, 0, 1))));
     }
 }
 
