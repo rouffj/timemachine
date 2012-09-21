@@ -53,6 +53,11 @@ class Calendar implements \IteratorAggregate, \Countable
         return count($this->getEvents());
     }
 
+    public function between()
+    {
+
+    }
+
     /**
      * @param TimePoint $cursor
      */

@@ -15,10 +15,8 @@ class Duration
 
     public function asPHPDateInterval()
     {
-        $code = $this->type->getCode();
         $timeSpec = ($this->type->isTime()) ? 'PT' : 'P';
         $timeSpec = sprintf('%s%s%s', $timeSpec, $this->value, $this->type->getCode());
-        //echo $timeSpec."\n";
 
         return new \DateInterval($timeSpec);
     }

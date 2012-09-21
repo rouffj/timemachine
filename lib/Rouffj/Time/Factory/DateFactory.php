@@ -1,10 +1,10 @@
 <?php
 
-namespace Rouffj\Time\Facade;
+namespace Rouffj\Time\Factory;
 
-use Rouffj\Time\Core\Date as BaseCalendarDate;
+use Rouffj\Time\Core\Date;
 
-class Date extends BaseCalendarDate
+class DateFactory
 {
     static public function today()
     {

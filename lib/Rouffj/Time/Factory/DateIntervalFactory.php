@@ -1,14 +1,15 @@
 <?php
 
-namespace Rouffj\Time\Facade;
+namespace Rouffj\Time\Factory;
 
-use Rouffj\Time\Core\DateInterval as BaseCalendarInterval;
+use Rouffj\Time\Core\Date;
+use Rouffj\Time\Core\DateInterval;
 
-class DateInterval extends BaseCalendarInterval
+class DateIntervalFactory
 {
     static public function today()
     {
-        $begin = \DateTime::createFromFormat('Y-m-d', $beginDate);
+        $now = new \DateTime();
 
         return new Date(
             $now->format('Y'),
@@ -20,11 +21,11 @@ class DateInterval extends BaseCalendarInterval
     static public function create($begin, $end)
     {
         $begin = \DateTime::createFromFormat('Y-m-d', $begin);
-        $begin = \DateTime::createFromFormat('Y-m-d', $end);
+        $end = \DateTime::createFromFormat('Y-m-d', $end);
 
         return new DateInterval(
             new Date($begin->format('Y'), $begin->format('m'), $begin->format('d')),
-            new Date($end->format('Y'), $end->format('m'), $end->format('d')),
+            new Date($end->format('Y'), $end->format('m'), $end->format('d'))
         );
     }
 }
