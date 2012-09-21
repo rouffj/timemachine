@@ -14,7 +14,6 @@ class Calendar
     function __construct(EventProviderInterface $provider)
     {
         $this->provider = $provider;
-        $this->events = $provider->getDates();
-        $this->setDate(1, 1);
+        $this->events = $provider->getEvents();
     }
 }
