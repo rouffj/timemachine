@@ -14,6 +14,11 @@ use Rouffj\Time\Factory\TimePointFactory;
 class Calendar implements \IteratorAggregate, \Countable
 {
     /**
+     * @var EventPersisterInterface
+     */
+    private $persister;
+
+    /**
      * @var EventProviderInterface
      */
     private $provider;
@@ -28,9 +33,10 @@ class Calendar implements \IteratorAggregate, \Countable
      *
      * @throws \LogicException
      */
-    public function __construct(EventProviderInterface $provider)
+    public function __construct(EventProviderInterface $provider, EventPersisterInterface $persister = null)
     {
         $this->provider = $provider;
+        $this->persister = $persister;
         $events = $provider->getEvents();
         $this->cursor = 0 === count($events) ? TimePointFactory::now() : $events[0]->getInterval()->getBegin();
     }
@@ -63,6 +69,11 @@ class Calendar implements \IteratorAggregate, \Countable
             $name ?: $this->getName(),
             $this->getEvents($interval->getBegin(), $interval->getEnd())
         ));
+    }
+
+    public function add(EventInterface $event)
+    {
+        $this->persister->addEvent($event);
     }
 
     /**
