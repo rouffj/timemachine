@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Rouffj": ["./lib/", "./tests"]
+            "Rouffj": ["./lib/", "./tests", "./examples"]
         }
     }
 }
