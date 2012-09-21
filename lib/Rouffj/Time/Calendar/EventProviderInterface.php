@@ -1,8 +1,11 @@
 <?php
 
-namespace Rouffj\Time\Core;
+namespace Rouffj\Time\Calendar;
 
 interface EventProviderInterface
 {
+    /**
+     * @return array
+     */
     function getEvents();
 }
