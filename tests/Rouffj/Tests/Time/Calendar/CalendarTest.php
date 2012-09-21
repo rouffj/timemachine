@@ -54,4 +54,9 @@ class EventProvider implements EventProviderInterface
             new Event(new TimeInterval(new TimePoint(2012, 1, 20, 8, 0), new TimePoint(2012, 1, 23, 8, 0))),
         );
     }
+
+    public function getName()
+    {
+        return 'test';
+    }
 }

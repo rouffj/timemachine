@@ -12,9 +12,9 @@ use Rouffj\Time\Core\TimePoint;
 class Calendar implements \IteratorAggregate, \Countable
 {
     /**
-     * @var Event[]
+     * @var EventProviderInterface
      */
-    private $events;
+    private $provider;
 
     /**
      * @var TimePoint
@@ -28,13 +28,13 @@ class Calendar implements \IteratorAggregate, \Countable
      */
     public function __construct(EventProviderInterface $provider)
     {
-        $this->events = $provider->getEvents();
-
-        if (0 === count($this->events)) {
+        if (0 === count($provider->getEvents())) {
             throw new \LogicException('Cannot initialize empty calendar.');
         }
 
-        $this->cursor = $this->events[0]->getInterval()->getBegin();
+        $this->provider = $provider;
+        $events = $provider->getEvents();
+        $this->cursor = $events[0]->getInterval()->getBegin();
     }
 
     /**
@@ -70,12 +70,21 @@ class Calendar implements \IteratorAggregate, \Countable
     }
 
     /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->provider->getName();
+    }
+
+    /**
      * @return array
      */
     protected function getEvents()
     {
         $offset = 0;
-        foreach ($this->events as $event) {
+        $events = $this->provider->getEvents();
+        foreach ($events as $event) {
             if ($event->getInterval()->getEnd()->greater($this->cursor)) {
                 break;
             } else {
@@ -83,6 +92,6 @@ class Calendar implements \IteratorAggregate, \Countable
             }
         }
 
-        return array_slice($this->events, $offset);
+        return array_slice($events, $offset);
     }
 }
