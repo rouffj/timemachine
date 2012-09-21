@@ -2,7 +2,7 @@
 
 namespace Rouffj\Tests\Time;
 
-use Rouffj\Time\Core\CalendarInterval;
+use Rouffj\Time\Core\DateInterval;
 use Rouffj\Time\Core\Date;
 use Rouffj\Tests\TestCase;
 

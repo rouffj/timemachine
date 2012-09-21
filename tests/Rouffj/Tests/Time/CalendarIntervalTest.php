@@ -2,18 +2,18 @@
 
 namespace Rouffj\Tests\Time;
 
-use Rouffj\Time\Core\CalendarInterval;
+use Rouffj\Time\Core\DateInterval;
 use Rouffj\Time\Core\Date;
 use Rouffj\Tests\TestCase;
 
-class CalendarIntervalTest extends TestCase
+class DateIntervalTest extends TestCase
 {
     public function testGetLength()
     {
-        $interval = new CalendarInterval(new Date(2012, 01, 01), new Date(2012, 01, 01));
+        $interval = new DateInterval(new Date(2012, 01, 01), new Date(2012, 01, 01));
         $this->assertEquals(1, $interval->getLength());
 
-        $interval = new CalendarInterval(new Date(2012, 01, 01), new Date(2012, 01, 03));
+        $interval = new DateInterval(new Date(2012, 01, 01), new Date(2012, 01, 03));
         $this->assertEquals(3, $interval->getLength());
     }
 
@@ -22,7 +22,7 @@ class CalendarIntervalTest extends TestCase
         $startDate = new Date(2012, 01, 01);
         $endDate = new Date(2012, 01, 03);
 
-        $interval = new CalendarInterval($startDate, $endDate);
+        $interval = new DateInterval($startDate, $endDate);
         $this->assertEquals($startDate, $interval->getBegin());
         $this->assertEquals(new Date(2012, 01, 02), $interval->getBegin()->next());
         $this->assertEquals(new Date(2012, 01, 03), $interval->getBegin()->next()->next());

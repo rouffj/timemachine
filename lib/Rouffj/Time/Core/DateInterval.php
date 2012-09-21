@@ -2,7 +2,7 @@
 
 namespace Rouffj\Time\Core;
 
-class CalendarInterval
+class DateInterval
 {
     private $begin;
     private $end;
