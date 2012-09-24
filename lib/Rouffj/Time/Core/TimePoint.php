@@ -136,4 +136,14 @@ class TimePoint
             $date->format('s')
         );
     }
+
+    public function __toString()
+    {
+        return strtr('{year}/{month}/{day} at {time}', array(
+            '{year}' => $this->date->getYear(),
+            '{month}' => $this->date->getMonth(),
+            '{day}' => $this->date->getDay(),
+            '{time}' => $this->time,
+        ));
+    }
 }

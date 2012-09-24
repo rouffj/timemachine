@@ -17,4 +17,9 @@ class Event implements EventInterface
     {
         return $this->interval;
     }
+
+    public function __toString()
+    {
+        return 'From ' . $this->interval->getBegin() . ' To ' . $this->interval->getEnd();
+    }
 }

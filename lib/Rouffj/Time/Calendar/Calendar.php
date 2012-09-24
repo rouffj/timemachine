@@ -5,6 +5,9 @@ namespace Rouffj\Time\Calendar;
 use Rouffj\Time\Core\TimePoint;
 use Rouffj\Time\Core\TimeInterval;
 use Rouffj\Time\Factory\TimePointFactory;
+use Rouffj\Time\Calendar\Overlap\AllowOverlapStrategy;
+use Rouffj\Time\Calendar\Overlap\ForbidOverlapStrategy;
+
 
 /**
  * Represents a calendar
@@ -14,14 +17,19 @@ use Rouffj\Time\Factory\TimePointFactory;
 class Calendar implements \IteratorAggregate, \Countable
 {
     /**
-     * @var EventPersisterInterface
+     * @var Event[]
      */
-    private $persister;
+    private $events;
 
     /**
-     * @var EventProviderInterface
+     * @var bool
      */
-    private $provider;
+    private $overlapStrategy;
+
+    /**
+     * @var string
+     */
+    private $title;
 
     /**
      * @var TimePoint
@@ -33,12 +41,18 @@ class Calendar implements \IteratorAggregate, \Countable
      *
      * @throws \LogicException
      */
-    public function __construct(EventProviderInterface $provider, EventPersisterInterface $persister = null)
+    public function __construct(EventProviderInterface $eventProvider, array $options = array())
     {
-        $this->provider = $provider;
-        $this->persister = $persister;
-        $events = $provider->getEvents();
-        $this->cursor = 0 === count($events) ? TimePointFactory::now() : $events[0]->getInterval()->getBegin();
+        $options = array_merge(array(
+            'overlap' => true
+        ), $options);
+
+        $overlap = (bool)$options['overlap'];
+        $this->overlapStrategy = (true === $overlap) ? new AllowOverlapStrategy() : new ForbidOverlapStrategy();
+
+        $this->events = $eventProvider->getEvents();
+        $this->title = $eventProvider->getName();
+        $this->cursor = 0 === count($this->events) ? TimePointFactory::now() : $this->events[0]->getInterval()->getBegin();
     }
 
     /**
@@ -54,6 +68,14 @@ class Calendar implements \IteratorAggregate, \Countable
      */
     public function count()
     {
+        return count($this->events);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function countRemaining()
+    {
         return count($this->getEvents($this->cursor));
     }
 
@@ -65,15 +87,18 @@ class Calendar implements \IteratorAggregate, \Countable
      */
     public function between(TimeInterval $interval, $name = null)
     {
-        return new self(new EventProvider(
-            $name ?: $this->getName(),
+        $narrowerCalendar = new self(new EventProvider(
+            $name ?: $this->title,
             $this->getEvents($interval->getBegin(), $interval->getEnd())
         ));
+
+        return $narrowerCalendar;
     }
 
-    public function add(EventInterface $event)
+    public function add(EventInterface $newEvent)
     {
-        $this->persister->addEvent($event);
+        $this->events = $this->overlapStrategy->add($newEvent, $this->events);
+        //$this->setCursor($this->events[0]->getInterval()->getBegin());
     }
 
     /**
@@ -95,9 +120,9 @@ class Calendar implements \IteratorAggregate, \Countable
     /**
      * @return string
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->provider->getName();
+        return $this->title;
     }
 
     /**
@@ -105,7 +130,7 @@ class Calendar implements \IteratorAggregate, \Countable
      */
     private function getEvents(TimePoint $begin, TimePoint $end = null)
     {
-        $events = $this->provider->getEvents();
+        $events = $this->events;
 
         $offset = 0;
         foreach ($events as $event) {

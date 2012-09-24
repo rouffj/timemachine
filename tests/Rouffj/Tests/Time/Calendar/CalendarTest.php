@@ -9,6 +9,8 @@ use Rouffj\Time\Calendar\Calendar;
 use Rouffj\Time\Calendar\EventProviderInterface;
 use Rouffj\Time\Calendar\EventInterface;
 use Rouffj\Time\Calendar\Event;
+use Rouffj\Time\Calendar\Overlap\OverlapException;
+use Rouffj\Time\Factory\TimeIntervalFactory;
 
 class CalendarTest extends TestCase
 {
@@ -34,13 +36,13 @@ class CalendarTest extends TestCase
         $calendar = new Calendar(new EventProvider());
 
         $calendar->setCursor(new TimePoint(2012, 1, 15, 15, 59));
-        $this->assertCount(2, $calendar);
+        $this->assertSame(2, $calendar->countRemaining());
 
         $calendar->setCursor(new TimePoint(2012, 1, 17, 0, 0));
-        $this->assertCount(1, $calendar);
+        $this->assertSame(1, $calendar->countRemaining());
 
         $calendar->setCursor(new TimePoint(2012, 1, 23, 8, 1));
-        $this->assertSame(0, count($calendar));
+        $this->assertSame(0, $calendar->countRemaining());
     }
 
     public function testBetween()
@@ -55,6 +57,47 @@ class CalendarTest extends TestCase
 
         $this->assertCount(0, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 15, 18, 30, 1), new TimePoint(2012, 1, 20, 7, 59, 59))));
         $this->assertCount(2, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 15, 18, 29, 59), new TimePoint(2012, 1, 20, 8, 0, 1))));
+    }
+
+    public function testAdd()
+    {
+        $calendar = new Calendar(new EventProvider());
+        $this->assertCount(2, $calendar);
+
+        $calendar->add(new Event(TimeIntervalFactory::create('2012-01-01 20:00', '2012-01-01 21:59')));
+        $this->assertCount(3, $calendar);
+
+        // AllowOverlapStrategy
+        $calendar->add(new Event(TimeIntervalFactory::create('2012-01-01 19:30', '2012-01-01 19:59')));
+        $this->assertCount(4, $calendar);
+        $this->assertCount(2, $calendar->between(TimeIntervalFactory::create('2012-01-01 19:30', '2012-01-01 21:30')));
+    }
+
+    public function testAddWithForbidOverlapStrategy()
+    {
+        $calendar = new Calendar(new EventProvider(), array('overlap' => false));
+        $this->assertCount(2, $calendar);
+
+        $calendar->add(new Event(TimeIntervalFactory::create('2012-01-15 15:30', '2012-01-15 15:59')));
+        $this->assertCount(3, $calendar);
+
+        try {
+            $calendar->add(new Event(TimeIntervalFactory::create('2012-01-15 15:00', '2012-01-15 15:40')));
+            $this->fail('An OverlapException should be raised');
+        } catch (OverlapException $e) {
+        }
+        try {
+            // exact same Event as reference
+            $calendar->add(new Event(TimeIntervalFactory::create('2012-01-15 15:30', '2012-01-15 15:59')));
+            $this->fail('An OverlapException should be raised');
+        } catch (OverlapException $e) {
+        }
+
+        try {
+            $calendar->add(new Event(TimeIntervalFactory::create('2012-01-16 17:50', '2012-01-17 18:00')));
+            $this->fail('An OverlapException should be raised');
+        } catch (OverlapException $e) {
+        }
     }
 }
 

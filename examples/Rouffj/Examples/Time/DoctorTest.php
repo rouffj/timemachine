@@ -15,7 +15,7 @@ class DoctorTest extends TestCase
     {
         $calendar = new Calendar(new DoctorEventRepository());
 
-        $this->assertSame('Doctor Smith\'s appointments', $calendar->getName());
+        $this->assertSame('Doctor Smith\'s appointments', $calendar->getTitle());
         $this->assertCount(3, $calendar);
     }
 
@@ -44,7 +44,7 @@ class DoctorTest extends TestCase
     public function testHowToAddNewAppointment()
     {
         $repo = new DoctorEventRepository();
-        $calendar = new Calendar($repo, $repo);
+        $calendar = new Calendar($repo);
         $event = new Event(TimeIntervalFactory::create('2012-01-01 17:00', '2012-01-01 18:00'));
         $calendar->add($event);
         $this->assertCount(4, $calendar);

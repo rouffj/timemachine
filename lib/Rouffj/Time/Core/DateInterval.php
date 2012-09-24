@@ -51,5 +51,20 @@ class DateInterval implements IntervalInterface
     {
         return $this->end;
     }
+
+    public function isBefore(IntervalInterface $interval)
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    public function isAfter(IntervalInterface $interval)
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    public function isDuring(IntervalInterface $interval)
+    {
+        throw new \Exception('Not implemented');
+    }
 }
 
