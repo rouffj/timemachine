@@ -3,20 +3,22 @@
 namespace Rouffj\Tests\Time\Calendar;
 
 use Rouffj\Tests\TestCase;
-use Rouffj\Time\Core\TimePoint;
-use Rouffj\Time\Core\TimeInterval;
-use Rouffj\Time\Calendar\Calendar;
-use Rouffj\Time\Calendar\EventProviderInterface;
-use Rouffj\Time\Calendar\EventInterface;
-use Rouffj\Time\Calendar\Event;
-use Rouffj\Time\Calendar\Overlap\OverlapException;
-use Rouffj\Time\Factory\TimeIntervalFactory;
+use Rouffj\Time\Domain\Calendar\Calendar;
+use Rouffj\Time\Domain\Calendar\BaseStrategy;
+use Rouffj\Time\Domain\Calendar\NoOverlapStrategy;
+use Rouffj\Time\Domain\Model\Core\TimePoint;
+use Rouffj\Time\Domain\Model\Core\TimeInterval;
+use Rouffj\Time\Domain\Model\Event\EventInterface;
+use Rouffj\Time\Domain\Model\Event\Event;
+use Rouffj\Time\Domain\Factory\TimeIntervalFactory;
+use Rouffj\Time\Domain\Exception\OverlapException;
+use Rouffj\Time\Domain\Service\EventProviderInterface;
 
 class CalendarTest extends TestCase
 {
     public function testConstructor()
     {
-        $calendar = new Calendar(new EventProvider());
+        $calendar = new Calendar(new BaseStrategy(), new EventProvider());
 
         $this->assertCount(2, $calendar);
         foreach ($calendar as $event) {
@@ -26,14 +28,14 @@ class CalendarTest extends TestCase
 
     public function testDefaultCursor()
     {
-        $calendar = new Calendar(new EventProvider());
+        $calendar = new Calendar(new BaseStrategy(), new EventProvider());
         $cursor = new TimePoint(2012, 1, 15, 16, 0);
         $this->assertEquals($cursor, $calendar->getCursor());
     }
 
     public function testCursorFiltering()
     {
-        $calendar = new Calendar(new EventProvider());
+        $calendar = new Calendar(new BaseStrategy(), new EventProvider());
 
         $calendar->setCursor(new TimePoint(2012, 1, 15, 15, 59));
         $this->assertSame(2, $calendar->countRemaining());
@@ -47,7 +49,7 @@ class CalendarTest extends TestCase
 
     public function testBetween()
     {
-        $calendar = new Calendar(new EventProvider());
+        $calendar = new Calendar(new BaseStrategy(), new EventProvider());
 
         $this->assertCount(0, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 1, 0, 0), new TimePoint(2012, 1, 15, 15, 59, 59))));
         $this->assertCount(1, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 1, 0, 0), new TimePoint(2012, 1, 15, 16, 1, 0))));
@@ -61,7 +63,7 @@ class CalendarTest extends TestCase
 
     public function testAdd()
     {
-        $calendar = new Calendar(new EventProvider());
+        $calendar = new Calendar(new BaseStrategy(), new EventProvider());
         $this->assertCount(2, $calendar);
 
         $calendar->add(new Event(TimeIntervalFactory::create('2012-01-01 20:00', '2012-01-01 21:59')));
@@ -73,9 +75,9 @@ class CalendarTest extends TestCase
         $this->assertCount(2, $calendar->between(TimeIntervalFactory::create('2012-01-01 19:30', '2012-01-01 21:30')));
     }
 
-    public function testAddWithForbidOverlapStrategy()
+    public function testAddWithNoOverlapStrategy()
     {
-        $calendar = new Calendar(new EventProvider(), array('overlap' => false));
+        $calendar = new Calendar(new NoOverlapStrategy(), new EventProvider());
         $this->assertCount(2, $calendar);
 
         $calendar->add(new Event(TimeIntervalFactory::create('2012-01-15 15:30', '2012-01-15 15:59')));
@@ -93,11 +95,8 @@ class CalendarTest extends TestCase
         } catch (OverlapException $e) {
         }
 
-        try {
-            $calendar->add(new Event(TimeIntervalFactory::create('2012-01-16 17:50', '2012-01-17 18:00')));
-            $this->fail('An OverlapException should be raised');
-        } catch (OverlapException $e) {
-        }
+        $calendar->add(new Event(TimeIntervalFactory::create('2012-01-16 17:50', '2012-01-17 18:00')));
+        $this->assertCount(4, $calendar);
     }
 }
 
@@ -106,8 +105,8 @@ class EventProvider implements EventProviderInterface
     public function getEvents()
     {
         return array(
-            new Event(new TimeInterval(new TimePoint(2012, 1, 15, 16, 0), new TimePoint(2012, 1, 15, 18, 30))),
-            new Event(new TimeInterval(new TimePoint(2012, 1, 20, 8, 0), new TimePoint(2012, 1, 23, 8, 0))),
+            new Event(TimeIntervalFactory::create('2012-01-15 16:00', '2012-01-15 18:30')),
+            new Event(TimeIntervalFactory::create('2012-01-20 08:00', '2012-01-23 08:00')),
         );
     }
 

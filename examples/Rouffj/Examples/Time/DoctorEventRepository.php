@@ -1,13 +1,12 @@
 <?php
 
 namespace Rouffj\Examples\Time;
-use Rouffj\Time\Calendar\EventProviderInterface;
-use Rouffj\Time\Calendar\Event;
-use Rouffj\Time\Factory\TimeIntervalFactory;
-use Rouffj\Time\Factory\DateIntervalFactory;
 
-use Rouffj\Time\Calendar\EventPersisterInterface;
-use Rouffj\Time\Calendar\EventInterface;
+use Rouffj\Time\Domain\Service\EventProviderInterface;
+use Rouffj\Time\Domain\Service\EventPersisterInterface;
+use Rouffj\Time\Domain\Model\Event\Event;
+use Rouffj\Time\Domain\Model\Event\EventInterface;
+use Rouffj\Time\Domain\Factory\TimeIntervalFactory;
 
 class DoctorEventRepository implements EventProviderInterface, EventPersisterInterface
 {

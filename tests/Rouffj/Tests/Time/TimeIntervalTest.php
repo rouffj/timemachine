@@ -2,12 +2,12 @@
 
 namespace Rouffj\Tests\Time;
 
-use Rouffj\Time\Core\TimePoint;
-use Rouffj\Time\Core\Duration;
-use Rouffj\Time\Core\TimeUnit;
-use Rouffj\Time\Core\TimeInterval;
+use Rouffj\Time\Domain\Model\Core\TimePoint;
+use Rouffj\Time\Domain\Model\Core\Duration;
+use Rouffj\Time\Domain\Model\Core\TimeUnit;
+use Rouffj\Time\Domain\Model\Core\TimeInterval;
 use Rouffj\Tests\TestCase;
-use Rouffj\Time\Factory\TimeIntervalFactory;
+use Rouffj\Time\Domain\Factory\TimeIntervalFactory;
 
 class TimeIntervalTest extends TestCase
 {
