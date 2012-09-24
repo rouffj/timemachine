@@ -24,6 +24,6 @@ class NoOverlapStrategy extends BaseStrategy
             }
         }
 
-        parent::add($newEvent, $events);
+        return parent::add($newEvent, $events);
     }
 }

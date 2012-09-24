@@ -33,7 +33,7 @@ class TimeInterval implements IntervalInterface
 
     public function isDuring(IntervalInterface $interval)
     {
-        return false === $this->isBefore($interval) || false === $this->isAfter($interval);
+        return !$this->isBefore($interval) && !$this->isAfter($interval);
     }
 
     public function getBegin()
