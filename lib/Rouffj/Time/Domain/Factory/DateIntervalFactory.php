@@ -1,9 +1,9 @@
 <?php
 
-namespace Rouffj\Time\Factory;
+namespace Rouffj\Time\Domain\Factory;
 
-use Rouffj\Time\Domain\Model\Date;
-use Rouffj\Time\Domain\Model\DateInterval;
+use Rouffj\Time\Domain\Model\Core\Date;
+use Rouffj\Time\Domain\Model\Core\DateInterval;
 
 class DateIntervalFactory
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Rouffj\Time\Factory;
+namespace Rouffj\Time\Domain\Factory;
 
-use Rouffj\Time\Domain\Model\DateInterval;
-use Rouffj\Time\Domain\Model\TimeInterval;
-use Rouffj\Time\Domain\Model\TimePoint;
+use Rouffj\Time\Domain\Model\Core\DateInterval;
+use Rouffj\Time\Domain\Model\Core\TimeInterval;
+use Rouffj\Time\Domain\Model\Core\TimePoint;
 
 class TimeIntervalFactory
 {

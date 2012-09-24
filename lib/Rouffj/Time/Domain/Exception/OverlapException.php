@@ -1,6 +1,6 @@
 <?php
 
-namespace Rouffj\Time\Domain\Calendar;
+namespace Rouffj\Time\Domain\Exception;
 
 /**
  * OverlapException

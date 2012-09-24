@@ -1,8 +1,9 @@
 <?php
 
-namespace Rouffj\Time\Calendar\Overlap;
+namespace Rouffj\Time\Domain\Calendar;
 
-use Rouffj\Time\Calendar\EventInterface;
+use Rouffj\Time\Domain\Model\Event\EventInterface;
+use Rouffj\Time\Domain\Exception\OverlapException;
 
 /**
  * Overlap strategy which permits introducing a new event event if existing event is present

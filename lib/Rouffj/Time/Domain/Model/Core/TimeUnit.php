@@ -1,6 +1,6 @@
 <?php
 
-namespace Rouffj\Time\Domain\Model;
+namespace Rouffj\Time\Domain\Model\Core;
 
 class TimeUnit
 {

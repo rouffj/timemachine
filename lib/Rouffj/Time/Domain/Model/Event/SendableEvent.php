@@ -1,8 +1,8 @@
 <?php
 
-namespace Rouffj\Time\Calendar;
+namespace Rouffj\Time\Domain\Model\Event;
 
-use Rouffj\Time\Domain\Model\TimeInterval;
+use Rouffj\Time\Domain\Model\Core\TimeInterval;
 
 class SendableEvent extends Event implements SendableEventInterface
 {

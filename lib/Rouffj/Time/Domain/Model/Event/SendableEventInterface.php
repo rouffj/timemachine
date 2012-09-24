@@ -1,6 +1,6 @@
 <?php
 
-namespace Rouffj\Time\Calendar;
+namespace Rouffj\Time\Domain\Model\Event;
 
 interface SendableEventInterface extends EventInterface
 {

@@ -1,5 +1,5 @@
 <?php
-namespace Rouffj\Time\Doctrine;
+namespace Rouffj\TimeInfra\Doctrine;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Rouffj\Time\Factory;
+namespace Rouffj\Time\Domain\Factory;
 
-use Rouffj\Time\Domain\Model\TimeUnit;
-use Rouffj\Time\Domain\Model\Duration;
+use Rouffj\Time\Domain\Model\Core\TimeUnit;
+use Rouffj\Time\Domain\Model\Core\Duration;
 
 class DurationFactory
 {
