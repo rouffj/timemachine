@@ -11,19 +11,19 @@ use Rouffj\Time\Domain\Exception\OverlapException;
  *
  * @author Joseph Rouff <rouffj@gmail.com>
  */
-class ForbidOverlapStrategy implements OverlapStrategyInterface
+class NoOverlapStrategy extends BaseStrategy
 {
+    /**
+     * {@inheritdoc}
+     */
     public function add(EventInterface $newEvent, array $events)
     {
-        foreach ($events as $pos => $event) {
-            if ($newEvent->getInterval()->isBefore($event->getInterval())) {
-                $offset = (0 === $pos) ? 0 : $pos - 1;
-                array_splice($events, $offset, 0, array($newEvent));
-
-                return $events;
-            } else if ($newEvent->getInterval()->isDuring($event->getInterval())) {
+        foreach ($events as $event) {
+            if ($newEvent->getInterval()->isDuring($event->getInterval())) {
                 throw new OverlapException('An overlap is detected with the following event: ');
             }
         }
+
+        parent::add($newEvent, $events);
     }
 }

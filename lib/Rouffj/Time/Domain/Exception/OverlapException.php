@@ -7,6 +7,6 @@ namespace Rouffj\Time\Domain\Exception;
  *
  * @author Joseph Rouff <rouffj@gmail.com>
  */
-class OverlapException extends \Exception
+class OverlapException extends \LogicException
 {
 }

@@ -3,24 +3,28 @@
 namespace Rouffj\Time\Domain\Calendar;
 
 use Rouffj\Time\Domain\Model\Event\EventInterface;
+use Rouffj\Time\Domain\Exception\FrozenCalendarException;
 
 /**
- * Overlap strategy which permits introducing a new event event if existing event is present
- * in the same interval of time.
+ * Strategy which don't permit anything.
  *
- * @author Joseph Rouff <rouffj@gmail.com>
+ * @author Jean-François Simon <contact@jfsimon.fr>
  */
-class AllowOverlapStrategy implements OverlapStrategyInterface
+class FrozenStrategy implements StrategyInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function add(EventInterface $newEvent, array $events)
     {
-        foreach ($events as $pos => $event) {
-            if ($newEvent->getInterval()->isBefore($event->getInterval())) {
-                $offset = (0 === $pos) ? 0 : $pos - 1;
-                array_splice($events, $offset, 0, array($newEvent));
+        throw new FrozenCalendarException();
+    }
 
-                return $events;
-            }
-        }
+    /**
+     * {@inheritdoc}
+     */
+    public function remove(EventInterface $newEvent, array $events)
+    {
+        throw new FrozenCalendarException();
     }
 }
