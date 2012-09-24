@@ -1,6 +1,6 @@
 <?php
 
-namespace Rouffj\Time\Core;
+namespace Rouffj\Time\Domain\Model;
 
 /**
  * @author Jean-François Simon <jeanfrancois.simon@sensiolabs.com>

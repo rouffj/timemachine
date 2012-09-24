@@ -1,9 +1,9 @@
 <?php
 
-namespace Rouffj\Time\Calendar;
+namespace Rouffj\Time\Domain\Model;
 
-use Rouffj\Time\Core\TimePoint;
-use Rouffj\Time\Core\TimeInterval;
+use Rouffj\Time\Domain\Model\Core\TimePoint;
+use Rouffj\Time\Domain\Model\Core\TimeInterval;
 use Rouffj\Time\Factory\TimePointFactory;
 use Rouffj\Time\Calendar\Overlap\AllowOverlapStrategy;
 use Rouffj\Time\Calendar\Overlap\ForbidOverlapStrategy;

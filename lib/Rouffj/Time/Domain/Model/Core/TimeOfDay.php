@@ -1,6 +1,6 @@
 <?php
 
-namespace Rouffj\Time\Core;
+namespace Rouffj\Time\Domain\Model;
 
 class TimeOfDay
 {

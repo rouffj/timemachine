@@ -2,8 +2,8 @@
 
 namespace Rouffj\Time\Factory;
 
-use Rouffj\Time\Core\TimeUnit;
-use Rouffj\Time\Core\Duration;
+use Rouffj\Time\Domain\Model\TimeUnit;
+use Rouffj\Time\Domain\Model\Duration;
 
 class DurationFactory
 {

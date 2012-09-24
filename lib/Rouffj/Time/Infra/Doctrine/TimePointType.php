@@ -4,7 +4,7 @@ namespace Rouffj\Time\Doctrine;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
-use Rouffj\Time\Factory\TimePoint;
+use Rouffj\Time\Domain\Factory\TimePointFactory;
 
 /**
  * My custom datatype.
@@ -25,7 +25,7 @@ class TimePointType extends Type
             throw ConversionException::conversionFailedFormat($value, $this->getName(), $platform->getDateTimeFormatString());
         }
 
-        return TimePoint::fromDateTime($dtime);
+        return TimePointFactory::fromDateTime($dtime);
     }
 
     public function convertToDatabaseValue($timepoint, AbstractPlatform $platform)

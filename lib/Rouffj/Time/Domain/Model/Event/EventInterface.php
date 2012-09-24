@@ -5,7 +5,7 @@ namespace Rouffj\Time\Calendar;
 interface EventInterface
 {
     /**
-     * @return \Rouffj\Time\Core\TimeInterval
+     * @return \Rouffj\Time\Domain\Model\TimeInterval
      */
     function getInterval();
 }
