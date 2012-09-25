@@ -34,16 +34,6 @@ interface CalendarInterface extends \IteratorAggregate, \Countable
     public function remove(EventInterface $event);
 
     /**
-     * @param StrategyInterface $strategy
-     */
-    public function setStrategy(StrategyInterface $strategy);
-
-    /**
-     * @return StrategyInterface
-     */
-    public function getStrategy();
-
-    /**
      * @param TimePoint $cursor
      */
     public function setCursor(TimePoint $cursor);

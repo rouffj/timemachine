@@ -16,68 +16,70 @@ use Rouffj\Time\Domain\Service\EventProviderInterface;
 
 class CalendarTest extends TestCase
 {
+    private $calendar;
+    private $loader;
+
+
+    public function setup()
+    {
+        $this->loader = new EventProvider();
+        $this->calendar = new Calendar('foo calendar', $this->loader->getEvents());
+    }
+
     public function testConstructor()
     {
-        $calendar = new Calendar(new BaseStrategy(), new EventProvider());
-
-        $this->assertCount(2, $calendar);
-        foreach ($calendar as $event) {
+        $this->assertCount(2, $this->calendar);
+        foreach ($this->calendar as $event) {
             $this->assertTrue($event instanceof EventInterface);
         }
     }
 
     public function testDefaultCursor()
     {
-        $calendar = new Calendar(new BaseStrategy(), new EventProvider());
         $cursor = new TimePoint(2012, 1, 15, 16, 0);
-        $this->assertEquals($cursor, $calendar->getCursor());
+        $this->assertEquals($cursor, $this->calendar->getCursor());
     }
 
     public function testCursorFiltering()
     {
-        $calendar = new Calendar(new BaseStrategy(), new EventProvider());
+        $this->calendar->setCursor(new TimePoint(2012, 1, 15, 15, 59));
+        $this->assertSame(2, $this->calendar->countRemaining());
 
-        $calendar->setCursor(new TimePoint(2012, 1, 15, 15, 59));
-        $this->assertSame(2, $calendar->countRemaining());
+        $this->calendar->setCursor(new TimePoint(2012, 1, 17, 0, 0));
+        $this->assertSame(1, $this->calendar->countRemaining());
 
-        $calendar->setCursor(new TimePoint(2012, 1, 17, 0, 0));
-        $this->assertSame(1, $calendar->countRemaining());
-
-        $calendar->setCursor(new TimePoint(2012, 1, 23, 8, 1));
-        $this->assertSame(0, $calendar->countRemaining());
+        $this->calendar->setCursor(new TimePoint(2012, 1, 23, 8, 1));
+        $this->assertSame(0, $this->calendar->countRemaining());
     }
 
     public function testBetween()
     {
-        $calendar = new Calendar(new BaseStrategy(), new EventProvider());
+        $this->assertCount(0, $this->calendar->between(new TimeInterval(new TimePoint(2012, 1, 1, 0, 0), new TimePoint(2012, 1, 15, 15, 59, 59))));
+        $this->assertCount(1, $this->calendar->between(new TimeInterval(new TimePoint(2012, 1, 1, 0, 0), new TimePoint(2012, 1, 15, 16, 1, 0))));
 
-        $this->assertCount(0, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 1, 0, 0), new TimePoint(2012, 1, 15, 15, 59, 59))));
-        $this->assertCount(1, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 1, 0, 0), new TimePoint(2012, 1, 15, 16, 1, 0))));
+        $this->assertCount(0, $this->calendar->between(new TimeInterval(new TimePoint(2012, 1, 23, 8, 0, 1), new TimePoint(2012, 2, 0, 0, 0))));
+        $this->assertCount(1, $this->calendar->between(new TimeInterval(new TimePoint(2012, 1, 20, 7, 59, 59), new TimePoint(2012, 2, 0, 0, 0))));
 
-        $this->assertCount(0, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 23, 8, 0, 1), new TimePoint(2012, 2, 0, 0, 0))));
-        $this->assertCount(1, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 20, 7, 59, 59), new TimePoint(2012, 2, 0, 0, 0))));
-
-        $this->assertCount(0, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 15, 18, 30, 1), new TimePoint(2012, 1, 20, 7, 59, 59))));
-        $this->assertCount(2, $calendar->between(new TimeInterval(new TimePoint(2012, 1, 15, 18, 29, 59), new TimePoint(2012, 1, 20, 8, 0, 1))));
+        $this->assertCount(0, $this->calendar->between(new TimeInterval(new TimePoint(2012, 1, 15, 18, 30, 1), new TimePoint(2012, 1, 20, 7, 59, 59))));
+        $this->assertCount(2, $this->calendar->between(new TimeInterval(new TimePoint(2012, 1, 15, 18, 29, 59), new TimePoint(2012, 1, 20, 8, 0, 1))));
     }
 
     public function testAdd()
     {
-        $calendar = new Calendar(new BaseStrategy(), new EventProvider());
-        $this->assertCount(2, $calendar);
+        $this->assertCount(2, $this->calendar);
 
-        $calendar->add(new Event(TimeIntervalFactory::create('2012-01-01 20:00', '2012-01-01 21:59')));
-        $this->assertCount(3, $calendar);
+        $this->calendar->add(new Event(TimeIntervalFactory::create('2012-01-01 20:00', '2012-01-01 21:59')));
+        $this->assertCount(3, $this->calendar);
 
         // AllowOverlapStrategy
-        $calendar->add(new Event(TimeIntervalFactory::create('2012-01-01 19:30', '2012-01-01 19:59')));
-        $this->assertCount(4, $calendar);
-        $this->assertCount(2, $calendar->between(TimeIntervalFactory::create('2012-01-01 19:30', '2012-01-01 21:30')));
+        $this->calendar->add(new Event(TimeIntervalFactory::create('2012-01-01 19:30', '2012-01-01 19:59')));
+        $this->assertCount(4, $this->calendar);
+        $this->assertCount(2, $this->calendar->between(TimeIntervalFactory::create('2012-01-01 19:30', '2012-01-01 21:30')));
     }
 
     public function testAddWithNoOverlapStrategy()
     {
-        $calendar = new Calendar(new NoOverlapStrategy(), new EventProvider());
+        $calendar = new Calendar('foo', $this->loader->getEvents(), new NoOverlapStrategy());
         $this->assertCount(2, $calendar);
 
         $calendar->add(new Event(TimeIntervalFactory::create('2012-01-15 15:30', '2012-01-15 15:59')));
@@ -88,6 +90,7 @@ class CalendarTest extends TestCase
             $this->fail('A CalendarEventException should be thrown');
         } catch (CalendarEventException $e) {
         }
+
         try {
             // exact same Event as reference
             $calendar->add(new Event(TimeIntervalFactory::create('2012-01-15 15:30', '2012-01-15 15:59')));
