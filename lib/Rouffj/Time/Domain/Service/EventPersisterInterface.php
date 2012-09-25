@@ -7,7 +7,12 @@ use Rouffj\Time\Domain\Model\Event\EventInterface;
 interface EventPersisterInterface
 {
     /**
-     * @return array
+     * @param EventInterface $event
      */
     function addEvent(EventInterface $event);
+
+    /**
+     * @param EventInterface $event
+     */
+    function removeEvent(EventInterface $event);
 }

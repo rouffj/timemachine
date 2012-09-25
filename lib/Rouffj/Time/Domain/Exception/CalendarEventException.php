@@ -9,7 +9,7 @@ use Rouffj\Time\Domain\Model\Event\EventInterface;
  *
  * @author Jean-François Simon <contact@jfsimon.fr>
  */
-class CalendarEventException extends \LogicException
+class CalendarEventException extends \LogicException implements CalendarExceptionInterface
 {
     /**
      * @var EventInterface

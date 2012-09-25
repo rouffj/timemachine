@@ -13,7 +13,7 @@ use Rouffj\Time\Domain\Service\EventProviderInterface;
  *
  * @author Joseph Rouff <rouffj@gmail.com>
  */
-class Calendar implements \IteratorAggregate, \Countable
+class Calendar implements CalendarInterface
 {
     /**
      * @var Event[]
@@ -38,7 +38,6 @@ class Calendar implements \IteratorAggregate, \Countable
     /**
      * @param StrategyInterface      $strategy
      * @param EventProviderInterface $eventProvider
-     *
      */
     public function __construct(StrategyInterface $strategy, EventProviderInterface $eventProvider = null)
     {
@@ -49,10 +48,7 @@ class Calendar implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @param TimeInterval $interval
-     * @param string       $title
-     *
-     * @return Calendar
+     * {@inheritdoc}
      */
     public function between(TimeInterval $interval, $title = '')
     {
@@ -66,7 +62,7 @@ class Calendar implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @param EventInterface $newEvent
+     * {@inheritdoc}
      */
     public function add(EventInterface $newEvent)
     {
@@ -75,7 +71,7 @@ class Calendar implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @param EventInterface $event
+     * {@inheritdoc}
      */
     public function remove(EventInterface $event)
     {
@@ -84,7 +80,7 @@ class Calendar implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @param StrategyInterface $strategy
+     * {@inheritdoc}
      */
     public function setStrategy(StrategyInterface $strategy)
     {
@@ -92,7 +88,7 @@ class Calendar implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @return StrategyInterface
+     * {@inheritdoc}
      */
     public function getStrategy()
     {
@@ -100,7 +96,7 @@ class Calendar implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @param TimePoint $cursor
+     * {@inheritdoc}
      */
     public function setCursor(TimePoint $cursor)
     {
@@ -108,7 +104,7 @@ class Calendar implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @return TimePoint
+     * {@inheritdoc}
      */
     public function getCursor()
     {
@@ -116,7 +112,7 @@ class Calendar implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @param string $title
+     * {@inheritdoc}
      */
     public function setTitle($title)
     {
@@ -124,7 +120,7 @@ class Calendar implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getTitle()
     {
