@@ -6,7 +6,7 @@ use Rouffj\Time\Domain\Model\Event\EventInterface;
 use Rouffj\Time\Domain\Service\EventPersisterInterface;
 
 /**
- * Base strategy which permit everything.
+ * Strategy decorator with persister.
  *
  * @author Jean-François Simon <contact@jfsimon.fr>
  */
