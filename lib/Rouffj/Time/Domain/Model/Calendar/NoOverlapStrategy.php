@@ -3,7 +3,7 @@
 namespace Rouffj\Time\Domain\Model\Calendar;
 
 use Rouffj\Time\Domain\Model\Event\EventInterface;
-use Rouffj\Time\Domain\Exception\OverlapException;
+use Rouffj\Time\Domain\Exception\CalendarEventException;
 
 /**
  * Overlap strategy which permits introducing a new event event if existing event is present
@@ -20,7 +20,7 @@ class NoOverlapStrategy extends BaseStrategy
     {
         foreach ($events as $event) {
             if ($newEvent->getInterval()->isDuring($event->getInterval())) {
-                throw new OverlapException('An overlap is detected with the following event: ');
+                throw CalendarEventException::eventOverlap($newEvent);
             }
         }
 

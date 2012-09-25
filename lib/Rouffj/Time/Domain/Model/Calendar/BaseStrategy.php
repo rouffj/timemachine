@@ -3,7 +3,6 @@
 namespace Rouffj\Time\Domain\Model\Calendar;
 
 use Rouffj\Time\Domain\Model\Event\EventInterface;
-use Rouffj\Time\Domain\Exception\OverlapException;
 
 /**
  * Base strategy which permit everything.

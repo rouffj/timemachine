@@ -3,7 +3,7 @@
 namespace Rouffj\Time\Domain\Model\Calendar;
 
 use Rouffj\Time\Domain\Model\Event\EventInterface;
-use Rouffj\Time\Domain\Exception\FrozenCalendarException;
+use Rouffj\Time\Domain\Exception\CalendarEventException;
 
 /**
  * Strategy which don't permit anything.
@@ -17,14 +17,14 @@ class FrozenStrategy implements StrategyInterface
      */
     public function add(EventInterface $newEvent, array $events)
     {
-        throw new FrozenCalendarException();
+        throw CalendarEventException::addWhileFrozen($newEvent);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function remove(EventInterface $newEvent, array $events)
+    public function remove(EventInterface $removedEvent, array $events)
     {
-        throw new FrozenCalendarException();
+        throw CalendarEventException::removeWhileFrozen($removedEvent);
     }
 }

@@ -11,7 +11,7 @@ use Rouffj\Time\Domain\Model\Core\TimeInterval;
 use Rouffj\Time\Domain\Model\Event\EventInterface;
 use Rouffj\Time\Domain\Model\Event\Event;
 use Rouffj\Time\Domain\Factory\TimeIntervalFactory;
-use Rouffj\Time\Domain\Exception\OverlapException;
+use Rouffj\Time\Domain\Exception\CalendarEventException;
 use Rouffj\Time\Domain\Service\EventProviderInterface;
 
 class CalendarTest extends TestCase
@@ -85,14 +85,14 @@ class CalendarTest extends TestCase
 
         try {
             $calendar->add(new Event(TimeIntervalFactory::create('2012-01-15 15:00', '2012-01-15 15:40')));
-            $this->fail('An OverlapException should be raised');
-        } catch (OverlapException $e) {
+            $this->fail('A CalendarEventException should be thrown');
+        } catch (CalendarEventException $e) {
         }
         try {
             // exact same Event as reference
             $calendar->add(new Event(TimeIntervalFactory::create('2012-01-15 15:30', '2012-01-15 15:59')));
-            $this->fail('An OverlapException should be raised');
-        } catch (OverlapException $e) {
+            $this->fail('A CalendarEventException should be thrown');
+        } catch (CalendarEventException $e) {
         }
 
         $calendar->add(new Event(TimeIntervalFactory::create('2012-01-16 17:50', '2012-01-17 18:00')));
