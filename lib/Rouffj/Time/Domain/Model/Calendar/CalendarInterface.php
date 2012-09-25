@@ -13,7 +13,7 @@ use Rouffj\Time\Domain\Service\EventProviderInterface;
  *
  * @author Jean-François Simon <contact@jfsimon.fr>
  */
-interface CalendarInterface extends \Traversable, \Countable
+interface CalendarInterface extends \IteratorAggregate, \Countable
 {
     /**
      * @param TimeInterval $interval
