@@ -1,6 +1,6 @@
 <?php
 
-namespace Rouffj\Time\Domain\Calendar;
+namespace Rouffj\Time\Domain\Model\Calendar;
 
 use Rouffj\Time\Domain\Model\Core\TimePoint;
 use Rouffj\Time\Domain\Model\Core\TimeInterval;

@@ -4,8 +4,8 @@ namespace Rouffj\Examples\Time;
 
 use Rouffj\Tests\TestCase;
 use Rouffj\Time\Domain\Model\Core\TimePoint;
-use Rouffj\Time\Domain\Calendar\Calendar;
-use Rouffj\Time\Domain\Calendar\BaseStrategy;
+use Rouffj\Time\Domain\Model\Calendar\Calendar;
+use Rouffj\Time\Domain\Model\Calendar\BaseStrategy;
 use Rouffj\Time\Domain\Model\Event\Event;
 use Rouffj\Time\Domain\Factory\TimeIntervalFactory;
 use Rouffj\Time\Domain\Factory\DateIntervalFactory;

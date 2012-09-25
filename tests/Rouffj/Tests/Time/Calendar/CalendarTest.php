@@ -3,9 +3,9 @@
 namespace Rouffj\Tests\Time\Calendar;
 
 use Rouffj\Tests\TestCase;
-use Rouffj\Time\Domain\Calendar\Calendar;
-use Rouffj\Time\Domain\Calendar\BaseStrategy;
-use Rouffj\Time\Domain\Calendar\NoOverlapStrategy;
+use Rouffj\Time\Domain\Model\Calendar\Calendar;
+use Rouffj\Time\Domain\Model\Calendar\BaseStrategy;
+use Rouffj\Time\Domain\Model\Calendar\NoOverlapStrategy;
 use Rouffj\Time\Domain\Model\Core\TimePoint;
 use Rouffj\Time\Domain\Model\Core\TimeInterval;
 use Rouffj\Time\Domain\Model\Event\EventInterface;
