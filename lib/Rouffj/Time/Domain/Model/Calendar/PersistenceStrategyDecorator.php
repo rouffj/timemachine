@@ -38,7 +38,7 @@ class PersistenceStrategyDecorator implements StrategyInterface
     public function add(EventInterface $newEvent, array $events)
     {
         $result = $this->innerStrategy->add($newEvent, $events);
-        $this->persister->addEvent($newEvent);
+        $this->persister->add($newEvent);
 
         return $result;
     }
@@ -49,8 +49,16 @@ class PersistenceStrategyDecorator implements StrategyInterface
     public function remove(EventInterface $removedEvent, array $events)
     {
         $result = $this->innerStrategy->remove($removedEvent, $events);
-        $this->persister->removeEvent($removedEvent);
+        $this->persister->remove($removedEvent);
 
         return $result;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function update(EventInterface $originalEvent, EventInterface $updatedEvent, array $events)
+    {
+        return $this->innerStrategy->update($originalEvent, $updatedEvent, $events);
     }
 }

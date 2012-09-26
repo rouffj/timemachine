@@ -37,8 +37,9 @@ class Calendar implements CalendarInterface
     private $cursor;
 
     /**
-     * @param StrategyInterface      $strategy
-     * @param EventProviderInterface $eventProvider
+     * @param string                 $title
+     * @param array                  $events
+     * @param StrategyInterface|null $strategy
      */
     public function __construct($title, array $events, StrategyInterface $strategy = null)
     {
@@ -78,6 +79,15 @@ class Calendar implements CalendarInterface
     public function remove(EventInterface $event)
     {
         $this->events = $this->strategy->remove($event, $this->events);
+        $this->checkCursor();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function update(EventInterface $originalEvent, EventInterface $updatedEvent)
+    {
+        $this->events = $this->strategy->update($originalEvent, $updatedEvent, $this->events);
         $this->checkCursor();
     }
 

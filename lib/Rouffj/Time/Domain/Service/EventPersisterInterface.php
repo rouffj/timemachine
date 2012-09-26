@@ -9,10 +9,15 @@ interface EventPersisterInterface
     /**
      * @param EventInterface $event
      */
-    function addEvent(EventInterface $event);
+    function add(EventInterface $event);
 
     /**
      * @param EventInterface $event
      */
-    function removeEvent(EventInterface $event);
+    function update(EventInterface $event);
+
+    /**
+     * @param EventInterface $event
+     */
+    function remove(EventInterface $event);
 }

@@ -34,6 +34,12 @@ interface CalendarInterface extends \IteratorAggregate, \Countable
     public function remove(EventInterface $event);
 
     /**
+     * @param EventInterface $originalEvent
+     * @param EventInterface $updatedEvent
+     */
+    public function update(EventInterface $originalEvent, EventInterface $updatedEvent);
+
+    /**
      * @param TimePoint $cursor
      */
     public function setCursor(TimePoint $cursor);
@@ -44,19 +50,9 @@ interface CalendarInterface extends \IteratorAggregate, \Countable
     public function getCursor();
 
     /**
-     * @param string $title
-     */
-    public function setTitle($title);
-
-    /**
      * @return string
      */
     public function getTitle();
-
-    /**
-     * {@inheritdoc}
-     */
-    public function count();
 
     /**
      * {@inheritdoc}
