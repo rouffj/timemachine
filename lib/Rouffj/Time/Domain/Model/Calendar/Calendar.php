@@ -6,7 +6,6 @@ use Rouffj\Time\Domain\Model\Core\TimePoint;
 use Rouffj\Time\Domain\Model\Core\TimeInterval;
 use Rouffj\Time\Domain\Model\Event\EventInterface;
 use Rouffj\Time\Domain\Factory\TimePointFactory;
-use Rouffj\Time\Domain\Service\EventProviderInterface;
 use Rouffj\Time\Domain\Model\Calendar\BaseStrategy;
 
 /**
@@ -17,7 +16,7 @@ use Rouffj\Time\Domain\Model\Calendar\BaseStrategy;
 class Calendar implements CalendarInterface
 {
     /**
-     * @var Event[]
+     * @var EventInterface[]
      */
     private $events;
 
@@ -108,7 +107,7 @@ class Calendar implements CalendarInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
     public function setTitle($title)
     {
@@ -121,6 +120,22 @@ class Calendar implements CalendarInterface
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @param StrategyInterface $strategy
+     */
+    public function setStrategy($strategy)
+    {
+        $this->strategy = $strategy;
+    }
+
+    /**
+     * @return StrategyInterface
+     */
+    public function getStrategy()
+    {
+        return $this->strategy;
     }
 
     /**

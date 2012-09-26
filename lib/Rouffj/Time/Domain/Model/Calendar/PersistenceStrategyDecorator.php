@@ -3,7 +3,7 @@
 namespace Rouffj\Time\Domain\Model\Calendar;
 
 use Rouffj\Time\Domain\Model\Event\EventInterface;
-use Rouffj\Time\Domain\Service\EventPersisterInterface;
+use Rouffj\Time\Domain\Service\CalendarPersisterInterface;
 
 /**
  * Strategy decorator with persister.
@@ -13,21 +13,28 @@ use Rouffj\Time\Domain\Service\EventPersisterInterface;
 class PersistenceStrategyDecorator implements StrategyInterface
 {
     /**
+     * @var CalendarInterface
+     */
+    private $calendar;
+
+    /**
      * @var StrategyInterface
      */
     private $innerStrategy;
 
     /**
-     * @var EventPersisterInterface
+     * @var CalendarPersisterInterface
      */
     private $persister;
 
     /**
-     * @param StrategyInterface       $innerStrategy
-     * @param EventPersisterInterface $persister
+     * @param CalendarInterface          $calendar
+     * @param StrategyInterface          $innerStrategy
+     * @param CalendarPersisterInterface $persister
      */
-    public function __construct(StrategyInterface $innerStrategy, EventPersisterInterface $persister)
+    public function __construct(CalendarInterface $calendar, StrategyInterface $innerStrategy, CalendarPersisterInterface $persister)
     {
+        $this->calendar      = $calendar;
         $this->innerStrategy = $innerStrategy;
         $this->persister     = $persister;
     }
@@ -38,7 +45,7 @@ class PersistenceStrategyDecorator implements StrategyInterface
     public function add(EventInterface $newEvent, array $events)
     {
         $result = $this->innerStrategy->add($newEvent, $events);
-        $this->persister->add($newEvent);
+        $this->persister->persist($this->calendar);
 
         return $result;
     }
@@ -49,7 +56,7 @@ class PersistenceStrategyDecorator implements StrategyInterface
     public function remove(EventInterface $removedEvent, array $events)
     {
         $result = $this->innerStrategy->remove($removedEvent, $events);
-        $this->persister->remove($removedEvent);
+        $this->persister->persist($this->calendar);
 
         return $result;
     }

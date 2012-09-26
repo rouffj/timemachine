@@ -4,7 +4,6 @@ namespace Rouffj\Tests\Time\Calendar;
 
 use Rouffj\Tests\TestCase;
 use Rouffj\Time\Domain\Model\Calendar\Calendar;
-use Rouffj\Time\Domain\Model\Calendar\BaseStrategy;
 use Rouffj\Time\Domain\Model\Calendar\NoOverlapStrategy;
 use Rouffj\Time\Domain\Model\Core\TimePoint;
 use Rouffj\Time\Domain\Model\Core\TimeInterval;
@@ -12,24 +11,20 @@ use Rouffj\Time\Domain\Model\Event\EventInterface;
 use Rouffj\Time\Domain\Model\Event\Event;
 use Rouffj\Time\Domain\Factory\TimeIntervalFactory;
 use Rouffj\Time\Domain\Exception\CalendarEventException;
-use Rouffj\Time\Domain\Service\EventProviderInterface;
 
 class CalendarTest extends TestCase
 {
     /**
-     * @var \Rouffj\Time\Domain\Model\Calendar\CalendarInterface
+     * @var Calendar
      */
     private $calendar;
 
-    /**
-     * @var EventProviderInterface
-     */
-    private $loader;
-
     public function setup()
     {
-        $this->loader = new EventProvider();
-        $this->calendar = new Calendar('foo calendar', $this->loader->getEvents());
+        $this->calendar = new Calendar('foo calendar', array(
+            new Event(TimeIntervalFactory::create('2012-01-15 16:00', '2012-01-15 18:30')),
+            new Event(TimeIntervalFactory::create('2012-01-20 08:00', '2012-01-23 08:00')),
+        ));
     }
 
     public function testConstructor()
@@ -95,42 +90,26 @@ class CalendarTest extends TestCase
 
     public function testAddWithNoOverlapStrategy()
     {
-        $calendar = new Calendar('foo', $this->loader->getEvents(), new NoOverlapStrategy());
-        $this->assertCount(2, $calendar);
+        $this->calendar->setStrategy(new NoOverlapStrategy());
+        $this->assertCount(2, $this->calendar);
 
-        $calendar->add(new Event(TimeIntervalFactory::create('2012-01-15 15:30', '2012-01-15 15:59')));
-        $this->assertCount(3, $calendar);
+        $this->calendar->add(new Event(TimeIntervalFactory::create('2012-01-15 15:30', '2012-01-15 15:59')));
+        $this->assertCount(3, $this->calendar);
 
         try {
-            $calendar->add(new Event(TimeIntervalFactory::create('2012-01-15 15:00', '2012-01-15 15:40')));
+            $this->calendar->add(new Event(TimeIntervalFactory::create('2012-01-15 15:00', '2012-01-15 15:40')));
             $this->fail('A CalendarEventException should be thrown');
         } catch (CalendarEventException $e) {
         }
 
         try {
             // exact same Event as reference
-            $calendar->add(new Event(TimeIntervalFactory::create('2012-01-15 15:30', '2012-01-15 15:59')));
+            $this->calendar->add(new Event(TimeIntervalFactory::create('2012-01-15 15:30', '2012-01-15 15:59')));
             $this->fail('A CalendarEventException should be thrown');
         } catch (CalendarEventException $e) {
         }
 
-        $calendar->add(new Event(TimeIntervalFactory::create('2012-01-16 17:50', '2012-01-17 18:00')));
-        $this->assertCount(4, $calendar);
-    }
-}
-
-class EventProvider implements EventProviderInterface
-{
-    public function getEvents()
-    {
-        return array(
-            new Event(TimeIntervalFactory::create('2012-01-15 16:00', '2012-01-15 18:30')),
-            new Event(TimeIntervalFactory::create('2012-01-20 08:00', '2012-01-23 08:00')),
-        );
-    }
-
-    public function getName()
-    {
-        return 'test';
+        $this->calendar->add(new Event(TimeIntervalFactory::create('2012-01-16 17:50', '2012-01-17 18:00')));
+        $this->assertCount(4, $this->calendar);
     }
 }

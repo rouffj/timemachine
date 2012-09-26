@@ -38,6 +38,6 @@ class TimePointType extends Type
 
     public function getName()
     {
-        return self::TIMEPOINT; // modify to match your constant name
+        return self::TIMEPOINT;
     }
 }
