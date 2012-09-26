@@ -16,9 +16,15 @@ use Rouffj\Time\Domain\Service\EventProviderInterface;
 
 class CalendarTest extends TestCase
 {
+    /**
+     * @var \Rouffj\Time\Domain\Model\Calendar\CalendarInterface
+     */
     private $calendar;
-    private $loader;
 
+    /**
+     * @var EventProviderInterface
+     */
+    private $loader;
 
     public function setup()
     {
@@ -75,6 +81,16 @@ class CalendarTest extends TestCase
         $this->calendar->add(new Event(TimeIntervalFactory::create('2012-01-01 19:30', '2012-01-01 19:59')));
         $this->assertCount(4, $this->calendar);
         $this->assertCount(2, $this->calendar->between(TimeIntervalFactory::create('2012-01-01 19:30', '2012-01-01 21:30')));
+    }
+
+    public function testUpdate()
+    {
+        $originalEvent = current(iterator_to_array($this->calendar));
+        $updatedEvent  = new Event(TimeIntervalFactory::create('2012-01-15 17:00', '2012-01-15 19:30'));
+        $this->calendar->update($originalEvent, $updatedEvent);
+
+        $this->assertCount(2, $this->calendar);
+        $this->assertSame($updatedEvent, current(iterator_to_array($this->calendar)));
     }
 
     public function testAddWithNoOverlapStrategy()
