@@ -13,7 +13,7 @@ use Rouffj\Time\Domain\Service\EventProviderInterface;
  *
  * @author Jean-François Simon <contact@jfsimon.fr>
  */
-interface CalendarInterface extends \Traversable, \Countable
+interface CalendarInterface extends \IteratorAggregate, \Countable
 {
     /**
      * @param TimeInterval $interval
@@ -32,16 +32,6 @@ interface CalendarInterface extends \Traversable, \Countable
      * @param EventInterface $event
      */
     public function remove(EventInterface $event);
-
-    /**
-     * @param StrategyInterface $strategy
-     */
-    public function setStrategy(StrategyInterface $strategy);
-
-    /**
-     * @return StrategyInterface
-     */
-    public function getStrategy();
 
     /**
      * @param TimePoint $cursor

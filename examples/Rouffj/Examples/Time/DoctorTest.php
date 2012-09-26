@@ -32,7 +32,7 @@ class DoctorTest extends TestCase
         $calendar = new Calendar(new BaseStrategy(), new DoctorEventRepository());
         $today = new TimePoint(2012, 1, 1, 10, 0);
         $calendar->setCursor($today);
-        $this->assertCount(2, $calendar);
+        $this->assertSame(2, $calendar->countRemaining());
     }
 
     public function testHowToRetrieveMyAppointmentsForCurrentWeek()

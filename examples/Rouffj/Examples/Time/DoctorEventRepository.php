@@ -31,6 +31,10 @@ class DoctorEventRepository implements EventProviderInterface, EventPersisterInt
         $this->events[] = $event;
     }
 
+    public function removeEvent(EventInterface $event)
+    {
+    }
+
     public function getName()
     {
         return 'Doctor Smith\'s appointments';

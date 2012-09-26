@@ -7,6 +7,7 @@ use Rouffj\Time\Domain\Model\Core\TimeInterval;
 use Rouffj\Time\Domain\Model\Event\EventInterface;
 use Rouffj\Time\Domain\Factory\TimePointFactory;
 use Rouffj\Time\Domain\Service\EventProviderInterface;
+use Rouffj\Time\Domain\Model\Calendar\BaseStrategy;
 
 /**
  * Represents a calendar
@@ -39,12 +40,16 @@ class Calendar implements CalendarInterface
      * @param StrategyInterface      $strategy
      * @param EventProviderInterface $eventProvider
      */
-    public function __construct(StrategyInterface $strategy, EventProviderInterface $eventProvider = null)
+    public function __construct($title, array $events, StrategyInterface $strategy = null)
     {
-        $this->strategy = $strategy;
-        $this->events   = $eventProvider ? $eventProvider->getEvents() : array();
-        $this->title    = $eventProvider ? $eventProvider->getName() : '';
-        $this->cursor   = 0 === count($this->events) ? TimePointFactory::now() : $this->events[0]->getInterval()->getBegin();
+        $this->strategy = (null === $strategy) ? new BaseStrategy() : $strategy;
+        $this->title    = $title;
+        $this->events   = array();
+
+        foreach ($events as $event) {
+            $this->add($event);
+        }
+        $this->cursor = (0 === count($this->events)) ? TimePointFactory::now() : $this->events[0]->getInterval()->getBegin();
     }
 
     /**
@@ -52,11 +57,8 @@ class Calendar implements CalendarInterface
      */
     public function between(TimeInterval $interval, $title = '')
     {
-        $narrowerCalendar = new self($this->strategy);
-        $narrowerCalendar->setTitle($title);
-        foreach ($this->getEvents($interval->getBegin(), $interval->getEnd()) as $event) {
-            $narrowerCalendar->add($event);
-        }
+        $selectedEvents = $this->getEvents($interval->getBegin(), $interval->getEnd());
+        $narrowerCalendar = new self($title, $selectedEvents, $this->strategy);
 
         return $narrowerCalendar;
     }
@@ -77,22 +79,6 @@ class Calendar implements CalendarInterface
     {
         $this->events = $this->strategy->remove($event, $this->events);
         $this->checkCursor();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setStrategy(StrategyInterface $strategy)
-    {
-        $this->strategy = $strategy;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getStrategy()
-    {
-        return $this->strategy;
     }
 
     /**
