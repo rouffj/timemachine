@@ -20,6 +20,7 @@
     },
     "autoload": {
         "psr-0": {
+            "TimeMachine": ["./lib/", "./tests", "./examples"],
             "Rouffj": ["./lib/", "./tests", "./examples"]
         }
     }
