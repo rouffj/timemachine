@@ -2,10 +2,10 @@
 
 namespace Rouffj\Tests\Time;
 
-use Rouffj\Time\Domain\Model\Core\TimePoint;
-use Rouffj\Time\Domain\Model\Core\Duration;
-use Rouffj\Time\Domain\Model\Core\TimeUnit;
-use Rouffj\Time\Domain\Model\Core\TimeInterval;
+use TimeMachine\Time\Model\TimePoint;
+use TimeMachine\Time\Model\Duration;
+use TimeMachine\Time\Model\TimeUnit;
+use TimeMachine\Time\Model\TimeInterval;
 use Rouffj\Tests\TestCase;
 
 class TimePointTest extends TestCase

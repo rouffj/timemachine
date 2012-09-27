@@ -3,7 +3,7 @@
 namespace Rouffj\Examples\Time;
 
 use Rouffj\Tests\TestCase;
-use Rouffj\Time\Domain\Model\Core\TimePoint;
+use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Calendar\Model\Calendar;
 use TimeMachine\Calendar\Model\BaseStrategy;
 use TimeMachine\Calendar\Model\Event;
