@@ -7,7 +7,7 @@ use Rouffj\Time\Domain\Model\Core\Duration;
 use Rouffj\Time\Domain\Model\Core\TimeUnit;
 use Rouffj\Time\Domain\Model\Core\TimeInterval;
 use Rouffj\Tests\TestCase;
-use Rouffj\Time\Domain\Factory\TimeIntervalFactory;
+use TimeMachine\Time\Factory\TimeIntervalFactory;
 
 class TimeIntervalTest extends TestCase
 {

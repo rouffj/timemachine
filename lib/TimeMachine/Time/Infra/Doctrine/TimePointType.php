@@ -4,7 +4,7 @@ namespace Rouffj\TimeInfra\Doctrine;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
-use Rouffj\Time\Domain\Factory\TimePointFactory;
+use TimeMachine\Time\Factory\TimePointFactory;
 
 /**
  * My custom datatype.

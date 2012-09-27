@@ -10,7 +10,7 @@ use Rouffj\Time\Domain\Model\Core\TimePoint;
 use Rouffj\Time\Domain\Model\Core\TimeInterval;
 use TimeMachine\Calendar\Model\EventInterface;
 use TimeMachine\Calendar\Model\Event;
-use Rouffj\Time\Domain\Factory\TimeIntervalFactory;
+use TimeMachine\Time\Factory\TimeIntervalFactory;
 use Rouffj\Time\Domain\Exception\CalendarEventException;
 use Rouffj\Time\Domain\Service\EventProviderInterface;
 

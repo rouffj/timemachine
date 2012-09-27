@@ -5,7 +5,7 @@ namespace TimeMachine\Calendar\Model;
 use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Time\Model\TimeInterval;
 use TimeMachine\Calendar\Model\EventInterface;
-use Rouffj\Time\Domain\Factory\TimePointFactory;
+use TimeMachine\Time\Factory\TimePointFactory;
 use Rouffj\Time\Domain\Service\EventProviderInterface;
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rouffj\Time\Domain\Factory;
+namespace TimeMachine\Time\Factory;
 
 use TimeMachine\Time\Model\DateInterval;
 use TimeMachine\Time\Model\TimeInterval;

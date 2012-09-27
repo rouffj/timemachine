@@ -6,7 +6,7 @@ use Rouffj\Time\Domain\Service\EventProviderInterface;
 use Rouffj\Time\Domain\Service\EventPersisterInterface;
 use TimeMachine\Calendar\Model\Event;
 use TimeMachine\Calendar\Model\EventInterface;
-use Rouffj\Time\Domain\Factory\TimeIntervalFactory;
+use TimeMachine\Time\Factory\TimeIntervalFactory;
 
 class DoctorEventRepository implements EventProviderInterface, EventPersisterInterface
 {
