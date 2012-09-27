@@ -1,6 +1,6 @@
 <?php
 
-namespace Rouffj\Time\Domain\Model\Event;
+namespace TimeMachine\Calendar\Model;
 
 interface NamedEventInterface extends EventInterface
 {

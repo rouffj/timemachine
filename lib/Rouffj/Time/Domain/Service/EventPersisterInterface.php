@@ -2,7 +2,7 @@
 
 namespace Rouffj\Time\Domain\Service;
 
-use Rouffj\Time\Domain\Model\Event\EventInterface;
+use TimeMachine\Calendar\Model\EventInterface;
 
 interface EventPersisterInterface
 {

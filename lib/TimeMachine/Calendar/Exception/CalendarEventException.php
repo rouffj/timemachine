@@ -2,7 +2,7 @@
 
 namespace Rouffj\Time\Domain\Exception;
 
-use Rouffj\Time\Domain\Model\Event\EventInterface;
+use TimeMachine\Calendar\Model\EventInterface;
 
 /**
  * Calendar event exception.

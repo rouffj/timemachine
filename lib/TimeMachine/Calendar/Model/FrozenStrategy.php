@@ -1,8 +1,8 @@
 <?php
 
-namespace Rouffj\Time\Domain\Model\Calendar;
+namespace TimeMachine\Calendar\Model;
 
-use Rouffj\Time\Domain\Model\Event\EventInterface;
+use TimeMachine\Calendar\Model\EventInterface;
 use Rouffj\Time\Domain\Exception\CalendarEventException;
 
 /**

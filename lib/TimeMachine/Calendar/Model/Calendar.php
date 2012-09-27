@@ -1,10 +1,10 @@
 <?php
 
-namespace Rouffj\Time\Domain\Model\Calendar;
+namespace TimeMachine\Calendar\Model;
 
 use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Time\Model\TimeInterval;
-use Rouffj\Time\Domain\Model\Event\EventInterface;
+use TimeMachine\Calendar\Model\EventInterface;
 use Rouffj\Time\Domain\Factory\TimePointFactory;
 use Rouffj\Time\Domain\Service\EventProviderInterface;
 
