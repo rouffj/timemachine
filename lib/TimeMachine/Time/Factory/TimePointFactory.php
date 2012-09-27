@@ -2,7 +2,7 @@
 
 namespace Rouffj\Time\Domain\Factory;
 
-use Rouffj\Time\Domain\Model\Core\TimePoint;
+use TimeMachine\Time\Model\TimePoint;
 
 class TimePointFactory
 {

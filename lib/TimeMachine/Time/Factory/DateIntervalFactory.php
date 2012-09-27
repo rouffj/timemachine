@@ -2,8 +2,8 @@
 
 namespace Rouffj\Time\Domain\Factory;
 
-use Rouffj\Time\Domain\Model\Core\Date;
-use Rouffj\Time\Domain\Model\Core\DateInterval;
+use TimeMachine\Time\Model\Date;
+use TimeMachine\Time\Model\DateInterval;
 
 class DateIntervalFactory
 {

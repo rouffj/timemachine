@@ -1,6 +1,6 @@
 <?php
 
-namespace Rouffj\Time\Domain\Model\Core;
+namespace TimeMachine\Time\Model;
 
 class TimePoint
 {

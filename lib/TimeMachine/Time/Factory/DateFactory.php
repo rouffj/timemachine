@@ -2,7 +2,7 @@
 
 namespace Rouffj\Time\Domain\Factory;
 
-use Rouffj\Time\Domain\Model\Core\Date;
+use TimeMachine\Time\Model\Date;
 
 class DateFactory
 {

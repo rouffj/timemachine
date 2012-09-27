@@ -2,7 +2,7 @@
 
 namespace Rouffj\Time\Domain\Model\Event;
 
-use Rouffj\Time\Domain\Model\Core\TimeInterval;
+use TimeMachine\Time\Model\TimeInterval;
 
 class NamedEvent extends Event implements NamedEventInterface
 {

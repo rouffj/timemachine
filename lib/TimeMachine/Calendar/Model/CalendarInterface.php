@@ -2,8 +2,8 @@
 
 namespace Rouffj\Time\Domain\Model\Calendar;
 
-use Rouffj\Time\Domain\Model\Core\TimePoint;
-use Rouffj\Time\Domain\Model\Core\TimeInterval;
+use TimeMachine\Time\Model\TimePoint;
+use TimeMachine\Time\Model\TimeInterval;
 use Rouffj\Time\Domain\Model\Event\EventInterface;
 use Rouffj\Time\Domain\Factory\TimePointFactory;
 use Rouffj\Time\Domain\Service\EventProviderInterface;

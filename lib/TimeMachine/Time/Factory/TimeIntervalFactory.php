@@ -2,9 +2,9 @@
 
 namespace Rouffj\Time\Domain\Factory;
 
-use Rouffj\Time\Domain\Model\Core\DateInterval;
-use Rouffj\Time\Domain\Model\Core\TimeInterval;
-use Rouffj\Time\Domain\Model\Core\TimePoint;
+use TimeMachine\Time\Model\DateInterval;
+use TimeMachine\Time\Model\TimeInterval;
+use TimeMachine\Time\Model\TimePoint;
 
 class TimeIntervalFactory
 {
