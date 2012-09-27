@@ -3,16 +3,18 @@
 namespace Rouffj\Tests\Time\Calendar;
 
 use Rouffj\Tests\TestCase;
-use TimeMachine\Calendar\Model\Calendar;
-use TimeMachine\Calendar\Model\BaseStrategy;
-use TimeMachine\Calendar\Model\NoOverlapStrategy;
+
 use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Time\Model\TimeInterval;
-use TimeMachine\Calendar\Model\EventInterface;
-use TimeMachine\Calendar\Model\Event;
 use TimeMachine\Time\Factory\TimeIntervalFactory;
+
 use TimeMachine\Calendar\Exception\CalendarEventException;
 use TimeMachine\Calendar\Service\EventProviderInterface;
+use TimeMachine\Calendar\Model\Calendar;
+use TimeMachine\Calendar\Model\Strategy\BaseStrategy;
+use TimeMachine\Calendar\Model\Strategy\NoOverlapStrategy;
+use TimeMachine\Calendar\Model\EventInterface;
+use TimeMachine\Calendar\Model\Event;
 
 class CalendarTest extends TestCase
 {

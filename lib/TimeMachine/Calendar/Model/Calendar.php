@@ -4,9 +4,12 @@ namespace TimeMachine\Calendar\Model;
 
 use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Time\Model\TimeInterval;
-use TimeMachine\Calendar\Model\EventInterface;
 use TimeMachine\Time\Factory\TimePointFactory;
+
 use TimeMachine\Calendar\Service\EventProviderInterface;
+use TimeMachine\Calendar\Model\EventInterface;
+use TimeMachine\Calendar\Model\Strategy\BaseStrategy;
+use TimeMachine\Calendar\Model\Strategy\StrategyInterface;
 
 /**
  * Represents a calendar

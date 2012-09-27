@@ -1,6 +1,6 @@
 <?php
 
-namespace TimeMachine\Calendar\Model;
+namespace TimeMachine\Calendar\Model\Strategy;
 
 use TimeMachine\Calendar\Model\EventInterface;
 
