@@ -3,12 +3,12 @@
 namespace Rouffj\Examples\Time;
 
 use Rouffj\Tests\TestCase;
-use Rouffj\Time\Domain\Model\Core\TimePoint;
-use Rouffj\Time\Domain\Model\Calendar\Calendar;
-use Rouffj\Time\Domain\Model\Calendar\BaseStrategy;
-use Rouffj\Time\Domain\Model\Event\Event;
-use Rouffj\Time\Domain\Factory\TimeIntervalFactory;
-use Rouffj\Time\Domain\Factory\DateIntervalFactory;
+use TimeMachine\Time\Model\TimePoint;
+use TimeMachine\Calendar\Model\Calendar;
+use TimeMachine\Calendar\Model\BaseStrategy;
+use TimeMachine\Calendar\Model\Event;
+use TimeMachine\Time\Factory\TimeIntervalFactory;
+use TimeMachine\Time\Factory\DateIntervalFactory;
 
 class DoctorTest extends TestCase
 {

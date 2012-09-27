@@ -2,11 +2,11 @@
 
 namespace Rouffj\Examples\Time;
 
-use Rouffj\Time\Domain\Service\EventProviderInterface;
-use Rouffj\Time\Domain\Service\EventPersisterInterface;
-use Rouffj\Time\Domain\Model\Event\Event;
-use Rouffj\Time\Domain\Model\Event\EventInterface;
-use Rouffj\Time\Domain\Factory\TimeIntervalFactory;
+use TimeMachine\Calendar\Service\EventProviderInterface;
+use TimeMachine\Calendar\Service\EventPersisterInterface;
+use TimeMachine\Calendar\Model\Event;
+use TimeMachine\Calendar\Model\EventInterface;
+use TimeMachine\Time\Factory\TimeIntervalFactory;
 
 class DoctorEventRepository implements EventProviderInterface, EventPersisterInterface
 {

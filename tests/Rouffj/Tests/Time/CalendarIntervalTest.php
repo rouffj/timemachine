@@ -2,8 +2,8 @@
 
 namespace Rouffj\Tests\Time;
 
-use Rouffj\Time\Domain\Model\Core\DateInterval;
-use Rouffj\Time\Domain\Model\Core\Date;
+use TimeMachine\Time\Model\DateInterval;
+use TimeMachine\Time\Model\Date;
 use Rouffj\Tests\TestCase;
 
 class DateIntervalTest extends TestCase
