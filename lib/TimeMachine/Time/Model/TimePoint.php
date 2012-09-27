@@ -41,7 +41,7 @@ class TimePoint
         return $this->buildFromPHPDateTime($date);
     }
 
-    public function greater(TimePoint $point)
+    public function after(TimePoint $point)
     {
          if ($this->date->equals($point->getDate())) {
             if ($this->time->greater($point->getTimeOfDay())){

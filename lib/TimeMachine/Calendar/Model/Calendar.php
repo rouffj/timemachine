@@ -151,7 +151,7 @@ class Calendar implements CalendarInterface
 
         $offset = 0;
         foreach ($events as $event) {
-            if ($event->getInterval()->getEnd()->greater($begin)) {
+            if ($event->getInterval()->getEnd()->after($begin)) {
                 break;
             } else {
                 $offset ++;
@@ -165,7 +165,7 @@ class Calendar implements CalendarInterface
 
         $length = count($events);
         foreach (array_reverse($events) as $event) {
-            if ($end->greater($event->getInterval()->getBegin())) {
+            if ($end->after($event->getInterval()->getBegin())) {
                 break;
             } else {
                 $length --;

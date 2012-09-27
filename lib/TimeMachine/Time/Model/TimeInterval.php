@@ -23,12 +23,12 @@ class TimeInterval implements IntervalInterface
 
     public function isBefore(IntervalInterface $interval)
     {
-        return $interval->getEnd()->greater($this->getBegin()) && $interval->getBegin()->greater($this->getEnd());
+        return $interval->getEnd()->after($this->getBegin()) && $interval->getBegin()->after($this->getEnd());
     }
 
     public function isAfter(IntervalInterface $interval)
     {
-        return $this->begin->greater($interval->getEnd());
+        return $this->begin->after($interval->getEnd());
     }
 
     public function isDuring(IntervalInterface $interval)

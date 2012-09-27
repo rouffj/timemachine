@@ -46,8 +46,8 @@ class TimePointTest extends TestCase
         $point = new TimePoint(2012, 2, 1, 1, 0, 30);
 
         // second
-        $this->assertTrue($point->greater(new TimePoint(2012, 2, 1, 1, 0, 29)));
-        $this->assertFalse($point->greater(new TimePoint(2012, 2, 1, 1, 0, 30)));
-        $this->assertFalse($point->greater(new TimePoint(2012, 2, 1, 1, 0, 31)));
+        $this->assertTrue($point->after(new TimePoint(2012, 2, 1, 1, 0, 29)));
+        $this->assertFalse($point->after(new TimePoint(2012, 2, 1, 1, 0, 30)));
+        $this->assertFalse($point->after(new TimePoint(2012, 2, 1, 1, 0, 31)));
     }
 }
