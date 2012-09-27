@@ -3,7 +3,7 @@
 namespace TimeMachine\Calendar\Model;
 
 use TimeMachine\Calendar\Model\EventInterface;
-use Rouffj\Time\Domain\Service\EventPersisterInterface;
+use TimeMachine\Calendar\Service\EventPersisterInterface;
 
 /**
  * Strategy decorator with persister.

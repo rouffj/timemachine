@@ -6,7 +6,7 @@ use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Time\Model\TimeInterval;
 use TimeMachine\Calendar\Model\EventInterface;
 use TimeMachine\Time\Factory\TimePointFactory;
-use Rouffj\Time\Domain\Service\EventProviderInterface;
+use TimeMachine\Calendar\Service\EventProviderInterface;
 
 /**
  * Represents a calendar

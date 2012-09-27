@@ -2,8 +2,8 @@
 
 namespace Rouffj\Examples\Time;
 
-use Rouffj\Time\Domain\Service\EventProviderInterface;
-use Rouffj\Time\Domain\Service\EventPersisterInterface;
+use TimeMachine\Calendar\Service\EventProviderInterface;
+use TimeMachine\Calendar\Service\EventPersisterInterface;
 use TimeMachine\Calendar\Model\Event;
 use TimeMachine\Calendar\Model\EventInterface;
 use TimeMachine\Time\Factory\TimeIntervalFactory;
