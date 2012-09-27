@@ -3,7 +3,7 @@
 namespace TimeMachine\Calendar\Model;
 
 use TimeMachine\Calendar\Model\EventInterface;
-use Rouffj\Time\Domain\Exception\CalendarEventException;
+use TimeMachine\Calendar\Exception\CalendarEventException;
 
 /**
  * Strategy which don't permit anything.

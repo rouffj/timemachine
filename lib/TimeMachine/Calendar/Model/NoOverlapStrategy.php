@@ -3,7 +3,7 @@
 namespace TimeMachine\Calendar\Model;
 
 use TimeMachine\Calendar\Model\EventInterface;
-use Rouffj\Time\Domain\Exception\CalendarEventException;
+use TimeMachine\Calendar\Exception\CalendarEventException;
 
 /**
  * Overlap strategy which permits introducing a new event event if existing event is present

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rouffj\Time\Domain\Exception;
+namespace TimeMachine\Calendar\Exception;
 
 use TimeMachine\Calendar\Model\EventInterface;
 

@@ -11,7 +11,7 @@ use TimeMachine\Time\Model\TimeInterval;
 use TimeMachine\Calendar\Model\EventInterface;
 use TimeMachine\Calendar\Model\Event;
 use TimeMachine\Time\Factory\TimeIntervalFactory;
-use Rouffj\Time\Domain\Exception\CalendarEventException;
+use TimeMachine\Calendar\Exception\CalendarEventException;
 use Rouffj\Time\Domain\Service\EventProviderInterface;
 
 class CalendarTest extends TestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rouffj\Time\Domain\Exception;
+namespace TimeMachine\Calendar\Exception;
 
 /**
  * @author Jean-François Simon <contact@jfsimon.fr>
