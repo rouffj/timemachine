@@ -20,7 +20,7 @@ class Date
         $begin = new TimePoint($this->year, $this->month, $this->day, 0, 0);
         $end = $begin->plus($duration);
 
-        return new DateInterval($begin->getDate(), $end->getCalendarDate());
+        return new DateInterval($begin->getDate(), $end->getDate());
     }
 
     public function greater(Date $date)
