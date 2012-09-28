@@ -77,6 +77,18 @@ class Calendar implements CalendarInterface
     /**
      * {@inheritdoc}
      */
+    public function getEventAfter(TimePoint $point)
+    {
+        foreach ($this->events as $event) {
+            if ($event->getInterval()->getBegin()->after($point)) {
+                return $event;
+            }
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function add(EventInterface $newEvent)
     {
         $this->events = $this->strategy->add($newEvent, $this->events);
@@ -234,6 +246,26 @@ class Calendar implements CalendarInterface
         }
 
         return array_slice($events, 0, $length);
+    }
+
+    public function offsetExists($offset)
+    {
+        return isset($this->events[$offset]);
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->offsetExists($offset) ? $this->events[$offset] : null;
+    }
+
+    public function offsetUnset($offset)
+    {
+        throw new BadMethodCallException('READ ONLY');
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        throw new BadMethodCallException('READ ONLY');
     }
 
     private function checkCursor()

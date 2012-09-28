@@ -13,7 +13,7 @@ use TimeMachine\Calendar\Service\EventProviderInterface;
  *
  * @author Jean-François Simon <contact@jfsimon.fr>
  */
-interface CalendarInterface extends \IteratorAggregate, \Countable
+interface CalendarInterface extends \IteratorAggregate, \Countable, \ArrayAccess
 {
     /**
      * @param TimeInterval $interval
