@@ -6,6 +6,8 @@ use Rouffj\Tests\TestCase;
 
 use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Time\Model\TimeInterval;
+use TimeMachine\Time\Model\Duration;
+use TimeMachine\Time\Model\TimeUnit;
 use TimeMachine\Time\Factory\TimeIntervalFactory;
 
 use TimeMachine\Calendar\Exception\CalendarEventException;
@@ -77,6 +79,16 @@ class CalendarTest extends TestCase
         $this->calendar->add(new Event(TimeIntervalFactory::create('2012-01-01 19:30', '2012-01-01 19:59')));
         $this->assertCount(4, $this->calendar);
         $this->assertCount(2, $this->calendar->between(TimeIntervalFactory::create('2012-01-01 19:30', '2012-01-01 21:30')));
+    }
+
+    public function testGroup()
+    {
+        $cal = new Calendar('my calendar');
+        $cal->add(new Event(TimeIntervalFactory::create('2012-01-01 01:00', '2012-01-01 10:00')));
+        $cal->add(new Event(TimeIntervalFactory::create('2012-01-03 01:01', '2012-01-03 10:00')));
+
+        $cal->group(new Duration(1, TimeUnit::day()));
+        $this->assertCount(3, $cal->getCalendars());
     }
 
     public function testAddWithNoOverlapStrategy()

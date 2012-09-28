@@ -5,6 +5,7 @@ namespace TimeMachine\Calendar\Model;
 use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Time\Model\TimeInterval;
 use TimeMachine\Time\Factory\TimePointFactory;
+use TimeMachine\Time\Model\Duration;
 
 use TimeMachine\Calendar\Service\EventProviderInterface;
 use TimeMachine\Calendar\Model\EventInterface;
@@ -22,6 +23,11 @@ class Calendar implements CalendarInterface
      * @var Event[]
      */
     private $events;
+
+    /**
+     * @var Event[]
+     */
+    private $calendars;
 
     /**
      * @var StrategyInterface
@@ -42,16 +48,18 @@ class Calendar implements CalendarInterface
      * @param StrategyInterface      $strategy
      * @param EventProviderInterface $eventProvider
      */
-    public function __construct($title, array $events, StrategyInterface $strategy = null)
+    public function __construct($title, array $events = array(), StrategyInterface $strategy = null)
     {
         $this->strategy = (null === $strategy) ? new BaseStrategy() : $strategy;
         $this->title    = $title;
         $this->events   = array();
+        $this->calendars = array();
 
         foreach ($events as $event) {
             $this->add($event);
         }
         $this->cursor = (0 === count($this->events)) ? TimePointFactory::now() : $this->events[0]->getInterval()->getBegin();
+        //$this->cursor = null;
     }
 
     /**
@@ -107,6 +115,33 @@ class Calendar implements CalendarInterface
         $this->title = $title;
     }
 
+    public function getFirst()
+    {
+        return reset($this->events);
+    }
+
+    public function getLast()
+    {
+        return end($this->events);
+    }
+
+    public function group(Duration $duration)
+    {
+        $calendars = array();
+        $first = $current = $this->getFirst()->getInterval()->getBegin();
+        $end = $this->getLast()->getInterval()->getEnd();
+        while (!$current->after($end)) {
+            $newCurrent = $current->plus($duration);
+            $this->calendars[] = $this->between($current->until($newCurrent));
+            $current = $newCurrent;
+        }
+    }
+
+    public function getCalendars()
+    {
+        return $this->calendars;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -151,7 +186,7 @@ class Calendar implements CalendarInterface
 
         $offset = 0;
         foreach ($events as $event) {
-            if ($event->getInterval()->getEnd()->after($begin)) {
+            if ($event->getInterval()->getEnd()->after($begin) || $event->getInterval()->getEnd()->equals($begin)) {
                 break;
             } else {
                 $offset ++;
