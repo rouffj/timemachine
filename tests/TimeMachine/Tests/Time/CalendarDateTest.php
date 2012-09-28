@@ -1,10 +1,10 @@
 <?php
 
-namespace Rouffj\Tests\Time;
+namespace TimeMachine\Tests\Time;
 
 use TimeMachine\Time\Model\DateInterval;
 use TimeMachine\Time\Model\Date;
-use Rouffj\Tests\TestCase;
+use TimeMachine\Tests\TestCase;
 
 class DateTest extends TestCase
 {

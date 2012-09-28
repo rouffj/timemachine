@@ -3,6 +3,7 @@
 namespace TimeMachine\Calendar\Model\Strategy;
 
 use TimeMachine\Calendar\Model\EventInterface;
+use TimeMachine\Calendar\Exception\CalendarExceptionInterface;
 
 /**
  * Base strategy which permit everything.
@@ -42,6 +43,24 @@ class BaseStrategy implements StrategyInterface
             } else {
                 $index ++;
             }
+        }
+
+        return $events;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function update(EventInterface $originalEvent, EventInterface $updatedEvent, array $events)
+    {
+        $events = $this->add($updatedEvent, $events);
+
+        try {
+            $events = $this->remove($originalEvent, $events);
+        } catch (CalendarExceptionInterface $exception) {
+            $this->remove($updatedEvent, $events);
+
+            throw $exception;
         }
 
         return $events;

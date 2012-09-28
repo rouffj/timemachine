@@ -2,8 +2,10 @@
 
 namespace TimeMachine\Calendar\Model\Strategy;
 
+use TimeMachine\Calendar\Model\CalendarInterface;
 use TimeMachine\Calendar\Model\EventInterface;
 use TimeMachine\Calendar\Service\EventPersisterInterface;
+use TimeMachine\Calendar\Service\CalendarPersisterInterface;
 
 /**
  * Strategy decorator with persister.
@@ -13,21 +15,28 @@ use TimeMachine\Calendar\Service\EventPersisterInterface;
 class PersistenceStrategyDecorator implements StrategyInterface
 {
     /**
+     * @var CalendarInterface
+     */
+    private $calendar;
+
+    /**
      * @var StrategyInterface
      */
     private $innerStrategy;
 
     /**
-     * @var EventPersisterInterface
+     * @var CalendarPersisterInterface
      */
     private $persister;
 
     /**
-     * @param StrategyInterface       $innerStrategy
-     * @param EventPersisterInterface $persister
+     * @param CalendarInterface          $calendar
+     * @param StrategyInterface          $innerStrategy
+     * @param CalendarPersisterInterface $persister
      */
-    public function __construct(StrategyInterface $innerStrategy, EventPersisterInterface $persister)
+    public function __construct(CalendarInterface $calendar, StrategyInterface $innerStrategy, CalendarPersisterInterface $persister)
     {
+        $this->calendar      = $calendar;
         $this->innerStrategy = $innerStrategy;
         $this->persister     = $persister;
     }
@@ -38,7 +47,7 @@ class PersistenceStrategyDecorator implements StrategyInterface
     public function add(EventInterface $newEvent, array $events)
     {
         $result = $this->innerStrategy->add($newEvent, $events);
-        $this->persister->addEvent($newEvent);
+        $this->persister->persist($this->calendar);
 
         return $result;
     }
@@ -49,8 +58,16 @@ class PersistenceStrategyDecorator implements StrategyInterface
     public function remove(EventInterface $removedEvent, array $events)
     {
         $result = $this->innerStrategy->remove($removedEvent, $events);
-        $this->persister->removeEvent($removedEvent);
+        $this->persister->persist($this->calendar);
 
         return $result;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function update(EventInterface $originalEvent, EventInterface $updatedEvent, array $events)
+    {
+        return $this->innerStrategy->update($originalEvent, $updatedEvent, $events);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Rouffj\TimeInfra\Doctrine;
+namespace TimeMachine\Calendar\Infra\Doctrine;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
@@ -38,6 +38,6 @@ class TimePointType extends Type
 
     public function getName()
     {
-        return self::TIMEPOINT; // modify to match your constant name
+        return self::TIMEPOINT;
     }
 }

@@ -27,4 +27,11 @@ class FrozenStrategy implements StrategyInterface
     {
         throw CalendarEventException::removeWhileFrozen($removedEvent);
     }
+    /**
+     * {@inheritdoc}
+     */
+    public function update(EventInterface $originalEvent, EventInterface $updatedEvent, array $events)
+    {
+        throw CalendarEventException::updateWhileFrozen($originalEvent);
+    }
 }

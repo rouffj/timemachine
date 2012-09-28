@@ -19,7 +19,7 @@ use TimeMachine\Calendar\Model\Strategy\StrategyInterface;
 class Calendar implements CalendarInterface
 {
     /**
-     * @var Event[]
+     * @var EventInterface[]
      */
     private $events;
 
@@ -39,8 +39,9 @@ class Calendar implements CalendarInterface
     private $cursor;
 
     /**
-     * @param StrategyInterface      $strategy
-     * @param EventProviderInterface $eventProvider
+     * @param string                 $title
+     * @param array                  $events
+     * @param StrategyInterface|null $strategy
      */
     public function __construct($title, array $events, StrategyInterface $strategy = null)
     {
@@ -86,6 +87,15 @@ class Calendar implements CalendarInterface
     /**
      * {@inheritdoc}
      */
+    public function update(EventInterface $originalEvent, EventInterface $updatedEvent)
+    {
+        $this->events = $this->strategy->update($originalEvent, $updatedEvent, $this->events);
+        $this->checkCursor();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setCursor(TimePoint $cursor)
     {
         $this->cursor = $cursor;
@@ -100,7 +110,7 @@ class Calendar implements CalendarInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
     public function setTitle($title)
     {
@@ -113,6 +123,22 @@ class Calendar implements CalendarInterface
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @param StrategyInterface $strategy
+     */
+    public function setStrategy($strategy)
+    {
+        $this->strategy = $strategy;
+    }
+
+    /**
+     * @return StrategyInterface
+     */
+    public function getStrategy()
+    {
+        return $this->strategy;
     }
 
     /**

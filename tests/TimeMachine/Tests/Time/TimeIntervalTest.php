@@ -1,12 +1,12 @@
 <?php
 
-namespace Rouffj\Tests\Time;
+namespace TimeMachine\Tests\Time;
 
 use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Time\Model\Duration;
 use TimeMachine\Time\Model\TimeUnit;
 use TimeMachine\Time\Model\TimeInterval;
-use Rouffj\Tests\TestCase;
+use TimeMachine\Tests\TestCase;
 use TimeMachine\Time\Factory\TimeIntervalFactory;
 
 class TimeIntervalTest extends TestCase
