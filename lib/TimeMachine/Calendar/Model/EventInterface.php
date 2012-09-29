@@ -15,4 +15,14 @@ interface EventInterface
      * @return bool
      */
     function equals(EventInterface $event);
+
+    /**
+     * @return string
+     */
+    function getTitle();
+
+    /**
+     * @return string
+     */
+    function getDescription();
 }
