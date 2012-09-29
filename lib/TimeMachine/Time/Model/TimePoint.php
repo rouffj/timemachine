@@ -54,6 +54,11 @@ class TimePoint
         return false;
     }
 
+    public function before(TimePoint $point)
+    {
+        return !$this->after($point) && !$this->equals($point);
+    }
+
     public function equals(TimePoint $point)
     {
         return
