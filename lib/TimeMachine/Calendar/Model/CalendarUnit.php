@@ -31,6 +31,30 @@ class CalendarUnit extends EventsList
     private $unitInterval;
 
     /**
+     * Builds an array of CalendarUnit for given calendar and time unit.
+     *
+     * @param CalendarInterface $calendar Parent calendar
+     * @param null|TimeUnit     $unit     Time unit, year by default
+     *
+     * @return CalendarUnit[]
+     */
+    public static function collection(CalendarInterface $calendar, TimeUnit $unit = null)
+    {
+        $range = TimeUnitIntervalFactory::rangeContaining(
+            $calendar->getFirst()->getInterval()->getBegin(),
+            $calendar->getLast()->getInterval()->getEnd(),
+            $unit ?: TimeUnitFactory::year()
+        );
+
+        $collection = array();
+        foreach ($range as $unitInterval) {
+            $collection[] = new self($calendar, $unitInterval);
+        }
+
+        return $collection;
+    }
+
+    /**
      * @param CalendarInterface $calendar
      * @param TimeUnitInterval  $unitInterval
      */
