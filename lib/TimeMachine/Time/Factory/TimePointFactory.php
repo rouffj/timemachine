@@ -32,5 +32,12 @@ class TimePointFactory
             $dateTime->format('s')
         );
     }
+
+    static public function fromString($string)
+    {
+        $dateTime = new \DateTime($string);
+
+        return self::fromDateTime($dateTime);
+    }
 }
 

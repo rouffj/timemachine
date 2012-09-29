@@ -68,4 +68,26 @@ class TimeUnit
     {
         return $unit->getRank() < $this->getRank();
     }
+
+    public function getParent()
+    {
+        $ranks = array_keys(self::$names);
+
+        if ('Y' === $this->type) {
+            throw new \LogicException('Year unit has no parent.');
+        }
+
+        return new self($ranks[$this->getRank() - 1]);
+    }
+
+    public function getChild()
+    {
+        $ranks = array_keys(self::$names);
+
+        if ('S' === $this->type) {
+            throw new \LogicException('Second unit has no child.');
+        }
+
+        return new self($ranks[$this->getRank() + 1]);
+    }
 }
