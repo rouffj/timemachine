@@ -10,6 +10,11 @@ namespace TimeMachine\Calendar\Model;
 interface EventsListInterface  extends \IteratorAggregate, \Countable, \ArrayAccess
 {
     /**
+     * @return EventInterface[]
+     */
+    function getEvents();
+
+    /**
      * @return EventInterface
      */
     function getFirst();

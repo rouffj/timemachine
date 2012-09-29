@@ -21,7 +21,16 @@ class EventsList implements EventsListInterface
      */
     public function __construct(array $events)
     {
-        $this->events = $events;
+        // ensure events are ordered
+        $this->events = EventsExtractor::create($events)->getEvents();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEvents()
+    {
+        return $this->events;
     }
 
     /**
