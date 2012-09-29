@@ -7,7 +7,7 @@ use TimeMachine\Time\Model\TimePoint;
 /**
  * @author Jean-François Simon <contact@jfsimon.fr>
  */
-class CursorInterface extends EventsList implements CalendarCursorInterface
+class CalendarCursor extends EventsList
 {
     /**
      * @var CalendarInterface
@@ -30,7 +30,7 @@ class CursorInterface extends EventsList implements CalendarCursorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return CalendarInterface
      */
     public function getCalendar()
     {
@@ -50,7 +50,7 @@ class CursorInterface extends EventsList implements CalendarCursorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return TimePoint
      */
     public function getPoint()
     {
