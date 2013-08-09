@@ -37,8 +37,8 @@ class TimePointTest extends TestCase
         $point = new TimePoint(2012, 1, 1, 9, 30);
 
         $expectedInterval = new TimeInterval(new TimePoint(2012, 1, 1, 9, 30), new TimePoint(2012, 1, 1, 13, 30));
-        $this->assertTrue($expectedInterval->equals($point->during(new Duration(4, TimeUnit::hour()))));
-        $this->assertTrue($expectedInterval->equals($point->until(new TimePoint(2012, 1, 1, 13, 30))));
+        $this->assertTrue($expectedInterval->isEquals($point->during(new Duration(4, TimeUnit::hour()))));
+        $this->assertTrue($expectedInterval->isEquals($point->until(new TimePoint(2012, 1, 1, 13, 30))));
     }
 
     public function testGreater()

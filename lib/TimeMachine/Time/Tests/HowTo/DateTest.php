@@ -34,7 +34,7 @@ class DateTest extends TestCase
     {
         $this->assertTrue($this->date->isBefore(new Date(2013, 3, 1)));
         $this->assertTrue($this->date->isAfter(new Date(2011, 3, 1)));
-        $this->assertTrue($this->date->equals($this->date));
+        $this->assertTrue($this->date->isEquals($this->date));
     }
 
     public function testHowToConvertADddTimeDateObjectIntoRegularDateTimeObject()

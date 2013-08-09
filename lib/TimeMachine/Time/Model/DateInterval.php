@@ -35,7 +35,7 @@ class DateInterval implements IntervalInterface
     {
         $begin = clone $this->begin;
         $duration = 1;
-        while (false === $this->end->equals($begin)) {
+        while (false === $this->end->isEquals($begin)) {
             $begin = $begin->next();
             $duration = $duration + 1;
         }

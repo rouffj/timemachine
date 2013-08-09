@@ -38,7 +38,7 @@ class BaseStrategy implements StrategyInterface
     {
         $index = 0;
         foreach ($events as $event) {
-            if ($removedEvent->equals($event)) {
+            if ($removedEvent->isEquals($event)) {
                 array_splice($events, $index, 1);
             } else {
                 $index ++;

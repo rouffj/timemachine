@@ -18,7 +18,7 @@ class TimePointTest extends TestCase
         $this->assertEquals($second->isAfter($first), true);
         $this->assertEquals($second->isBefore($third), false);
         $this->assertEquals($first->isAfter($second), false);
-        $this->assertEquals($third->equals($second), true);
+        $this->assertEquals($third->isEquals($second), true);
     }
 
     public function testHowToKnowIfAItIsBbeforeAfterEqualAGivenDate()

@@ -15,7 +15,7 @@ class TimeOfDay
         $this->seconds = (int)$seconds;
     }
 
-    public function equals(TimeOfDay $other)
+    public function isEquals(TimeOfDay $other)
     {
         return
             $this->hour === $other->getHour() && $this->minutes === $other->getMinutes()

@@ -29,8 +29,8 @@ class DateIntervalTest extends TestCase
         $this->assertEquals(new Date(2012, 01, 02), $interval->getBegin()->next());
         $this->assertEquals(new Date(2012, 01, 03), $interval->getBegin()->next()->next());
 
-        $this->assertFalse($endDate->equals($interval->getBegin()));
-        $this->assertFalse($endDate->equals($interval->getBegin()->next()));
-        $this->assertTrue($endDate->equals($interval->getBegin()->next()->next()));
+        $this->assertFalse($endDate->isEquals($interval->getBegin()));
+        $this->assertFalse($endDate->isEquals($interval->getBegin()->next()));
+        $this->assertTrue($endDate->isEquals($interval->getBegin()->next()->next()));
     }
 }
