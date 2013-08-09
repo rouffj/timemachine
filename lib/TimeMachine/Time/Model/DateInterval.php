@@ -5,6 +5,7 @@ namespace TimeMachine\Time\Model;
 class DateInterval implements IntervalInterface
 {
     private $begin;
+    private $current;
     private $end;
 
     public function __construct(Date $beginDate, Date $endDate)

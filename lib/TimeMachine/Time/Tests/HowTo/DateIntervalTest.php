@@ -35,7 +35,15 @@ class DateIntervalTest extends TestCase
 
     public function testHowToGetEachDayBetween2Dates()
     {
-        $this->markTestIncomplete();
+        $interval = new DateInterval(new Date(2013, 1, 1), new Date(2013, 1, 2));
+        $duration = $interval->getDuration();
+        $dates = array();
+        do {
+            $nextDate = $interval->getCurrent();
+            $dates[] = $nextDate;
+        } while ($interval->nextDate());
+
+        $this->assertEquals(array(new Date(2013, 1, 1), new Date(2013, 1, 2)), $dates);
     }
 
     public function testHowToKnowIfADateIntervalIsBeforeAfterDuringOtherDateInterval()
