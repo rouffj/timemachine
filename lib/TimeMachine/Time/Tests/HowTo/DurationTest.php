@@ -1,37 +1,37 @@
 <?php
 
-namespace TimeMachine\Time\Tests\HowTo;
+namespace TimeMachine\Time\Tests\testHowTo;
 
 use TimeMachine\Time\Tests\TestCase;
 
 class DurationTest extends TestCase
 {
-    public function HowToKnowHowLongXDaysInHoursMinutesSecondsTest()
+    public function testHowToKnowHowLongXDaysInHoursMinutesSeconds()
     {
 
     }
 
-    public function HowToKnowHowLongXWeeksInDaysHoursMinutesSecondsTest()
+    public function testHowToKnowHowLongXWeeksInDaysHoursMinutesSeconds()
     {
 
     }
 
-    public function HowToKnowHowLongXMonthsInWeeksDaysHoursMinutesSecondsTest()
+    public function testHowToKnowHowLongXMonthsInWeeksDaysHoursMinutesSeconds()
     {
 
     }
 
-    public function HowToKnowHowLongXYearsInMonthsWeeksDaysHoursMinutesSecondsTest()
+    public function testHowToKnowHowLongXYearsInMonthsWeeksDaysHoursMinutesSeconds()
     {
 
     }
 
-    public function HowToKnowHowLongXCenturiesInYearsMonthsWeeksDaysHoursMinutesSecondsTest()
+    public function testHowToKnowHowLongXCenturiesInYearsMonthsWeeksDaysHoursMinutesSeconds()
     {
 
     }
 
-    public function HowToKnowHowLongAYearsBMonthsCWeeksDDaysInHoursMinutesSecondsTest()
+    public function testHowToKnowHowLongAYearsBMonthsCWeeksDDaysInHoursMinutesSeconds()
     {
 
     }
