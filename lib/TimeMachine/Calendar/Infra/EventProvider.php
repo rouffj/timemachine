@@ -1,6 +1,6 @@
 <?php
 
-namespace Rouffj\Time\Calendar;
+namespace Rouffj\TimeMachine\Calendar\Infra;
 
 /**
  * @author Jean-François Simon <jeanfrancois.simon@sensiolabs.com>
