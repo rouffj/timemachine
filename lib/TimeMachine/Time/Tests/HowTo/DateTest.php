@@ -3,6 +3,7 @@
 namespace TimeMachine\Time\Tests\HowTo;
 
 use TimeMachine\Time\Model\Duration;
+use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Time\Model\TimeUnit;
 use TimeMachine\Time\Tests\TestCase;
 use TimeMachine\Time\Model\Date;
@@ -46,7 +47,13 @@ class DateTest extends TestCase
 
     public function testHowToKnowIfDateIsDuringWeekendOrWeekday()
     {
-        $this->markTestIncomplete();
+        $this->assertTrue($this->date->isWeekEndDay());
+        $this->assertFalse($this->date->isWeekDay());
+
+        $weekday = $this->date->plus(new Duration(3, TimeUnit::day()));
+
+        $this->assertFalse($weekday->isWeekEndDay());
+        $this->assertTrue($weekday->isWeekDay());
     }
 
     public function testHowToGetPreviousNextDate()
@@ -77,14 +84,22 @@ class DateTest extends TestCase
         $this->assertEquals($timePoint->getDay(), 10);
     }
 
-    public function testHowToKnowThePositionInDaysWeeksMonthsYearsSinceAnOtherDate()
-    {
-        $this->markTestIncomplete();
-    }
-
+    /**
+     * Use cases :
+     *  - Calculate difference between 2 days
+     *  - Fetch the position of a date from another
+     *  - How many days form my birthday
+     *
+     * Returns a Duration Class @see TimeMachine\Time\Model\Duration.
+     *
+     */
     public function testHowToKnowDiffBetweenItAndAnOtherDate()
     {
-        $this->markTestIncomplete();
+        $date = new Date(2013, 2, 1);
+        $diff = $this->date->diff($date);
+
+        $this->assertInstanceOf('TimeMachine\Time\Model\Duration', $diff);
+        $this->assertEquals($diff, new Duration(9, TimeUnit::day()));
     }
 
     public function testHowToKnowDiffBetweenItAndATimePoint()

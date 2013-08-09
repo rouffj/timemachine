@@ -4,6 +4,9 @@ namespace TimeMachine\Time\Model;
 
 class Date
 {
+    const SUNDAY = 0;
+    const SATURDAY = 6;
+
     private $year;
     private $month;
     private $day;
@@ -40,6 +43,11 @@ class Date
             ($this->year >= $date->getYear() && $this->month > $date->getMonth()) ||
             ($this->year >= $date->getYear() && $this->month >= $date->getMonth() && $this->day > $date->getDay())
         ;
+    }
+
+    public function diff(Date $date)
+    {
+        return new Duration($this->toDateTime()->diff($date->toDateTime())->d, TimeUnit::day());
     }
 
     public function isBefore(Date $date)
@@ -96,6 +104,16 @@ class Date
     public function toTimePoint()
     {
         return new TimePoint($this->year, $this->month, $this->day, null, null);
+    }
+
+    public function isWeekDay()
+    {
+        return !$this->isWeekEndDay();
+    }
+
+    public function isWeekEndDay()
+    {
+        return intval($this->toDateTime()->format('w')) === self::SUNDAY || intval($this->toDateTime()->format('w')) === self::SATURDAY;
     }
 
     /**
