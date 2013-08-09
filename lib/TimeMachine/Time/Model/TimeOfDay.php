@@ -22,7 +22,7 @@ class TimeOfDay
         ;
     }
 
-    public function greater(TimeOfDay $other)
+    public function isGreater(TimeOfDay $other)
     {
         return
             $this->hour > $other->getHour() ||
