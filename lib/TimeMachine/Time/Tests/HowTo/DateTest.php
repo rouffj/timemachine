@@ -1,62 +1,62 @@
 <?php
 
-namespace TimeMachine\Time\Tests\HowTo;
+namespace TimeMachine\Time\Tests\testHowTo;
 
 use TimeMachine\Time\Tests\TestCase;
 
 class DateTest extends TestCase
 {
-    public function HowToCreateADateOnlyTest()
+    public function testHowToCreateADateOnly()
     {
 
     }
 
-    public function HowToComeBackAtBeginOfCurrentWeekTest()
+    public function testHowToComeBackAtBeginOfCurrentWeek()
     {
 
     }
 
-    public function HowToKnowIfADateIsAfterBeforeEqualToAnOtherTest()
+    public function testHowToKnowIfADateIsAfterBeforeEqualToAnOther()
     {
 
     }
 
-    public function HowToConvertADddTimeDateObjectIntoRegularDateTimeObjectTest()
+    public function testHowToConvertADddTimeDateObjectIntoRegularDateTimeObject()
     {
 
     }
 
-    public function HowToKnowIfDateIsDuringWeekendOrWeekdayTest()
+    public function testHowToKnowIfDateIsDuringWeekendOrWeekday()
     {
 
     }
 
-    public function HowToGetPreviousNextDateTest()
+    public function testHowToGetPreviousNextDate()
     {
 
     }
 
-    public function HowToAddRemoveADurationFromItCanReturnDateOrTimePointTest()
+    public function testHowToAddRemoveADurationFromItCanReturnDateOrTimePoint()
     {
 
     }
 
-    public function HowToTransformADateIntoATimePointTest()
+    public function testHowToTransformADateIntoATimePoint()
     {
 
     }
 
-    public function HowToKnowThePositionInDaysWeeksMonthsYearsSinceAnOtherDateTest()
+    public function testHowToKnowThePositionInDaysWeeksMonthsYearsSinceAnOtherDate()
     {
 
     }
 
-    public function HowToKnowDiffBetweenItAndAnOtherDateTest()
+    public function testHowToKnowDiffBetweenItAndAnOtherDate()
     {
 
     }
 
-    public function HowToKnowDiffBetweenItAndATimePointTest()
+    public function testHowToKnowDiffBetweenItAndATimePoint()
     {
 
     }
