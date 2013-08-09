@@ -2,6 +2,8 @@
 
 namespace TimeMachine\Time\Tests\HowTo;
 
+use TimeMachine\Time\Model\Duration;
+use TimeMachine\Time\Model\TimeUnit;
 use TimeMachine\Time\Tests\TestCase;
 use TimeMachine\Time\Model\Date;
 
@@ -32,7 +34,7 @@ class DateTest extends TestCase
 
     public function testHowToKnowIfADateIsAfterBeforeEqualToAnOther()
     {
-        $this->assertTrue($this->date->before(new Date(2013, 3, 1)));
+        $this->assertTrue($this->date->isBefore(new Date(2013, 3, 1)));
         $this->assertTrue($this->date->isAfter(new Date(2011, 3, 1)));
         $this->assertTrue($this->date->equals($this->date));
     }
@@ -58,7 +60,11 @@ class DateTest extends TestCase
 
     public function testHowToAddRemoveADurationFromItCanReturnDateOrTimePoint()
     {
-        $this->markTestIncomplete();
+        $daysBefore = $this->date->minus(new Duration(1, TimeUnit::day()));
+        $daysAfter  = $this->date->plus(new Duration(2, TimeUnit::day()));
+
+        $this->assertEquals($daysBefore, new Date(2013, 2, 9));
+        $this->assertEquals($daysAfter, new Date(2013, 2, 12));
     }
 
     public function testHowToTransformADateIntoATimePoint()

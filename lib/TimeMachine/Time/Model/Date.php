@@ -23,6 +23,16 @@ class Date
         return new DateInterval($begin->getDate(), $end->getDate());
     }
 
+    public function minus(Duration $duration)
+    {
+        return $this->toTimePoint()->minus($duration)->getDate();
+    }
+
+    public function plus(Duration $duration)
+    {
+        return $this->toTimePoint()->plus($duration)->getDate();
+    }
+
     public function isAfter(Date $date)
     {
         return
@@ -32,7 +42,7 @@ class Date
         ;
     }
 
-    public function before(Date $date)
+    public function isBefore(Date $date)
     {
         return !$this->isAfter($date);
     }
