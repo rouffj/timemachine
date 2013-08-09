@@ -44,7 +44,7 @@ class TimePoint
     public function isAfter(TimePoint $point)
     {
          if ($this->date->isEquals($point->getDate())) {
-            if ($this->time->isGreater($point->getTimeOfDay())){
+            if ($this->time->isAfter($point->getTimeOfDay())){
                 return true;
             }
          } else if ($this->date->isAfter($point->getDate())) {

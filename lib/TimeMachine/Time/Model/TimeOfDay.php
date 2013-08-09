@@ -18,17 +18,36 @@ class TimeOfDay
     public function isEquals(TimeOfDay $other)
     {
         return
-            $this->hour === $other->getHour() && $this->minutes === $other->getMinutes()
+            $this->hour === $other->getHour() &&
+            $this->minutes === $other->getMinutes() &&
+            $this->seconds === $other->getSeconds()
         ;
     }
 
-    public function isGreater(TimeOfDay $other)
+    public function isBefore(TimeOfDay $other)
+    {
+        return
+            false === $this->isEquals($other) &&
+            false === $this->isAfter($other);
+    }
+
+    public function isAfter(TimeOfDay $other)
     {
         return
             $this->hour > $other->getHour() ||
             ($this->hour === $other->getHour() && $this->minutes > $other->getMinutes()) ||
             ($this->hour === $other->getHour() && $this->minutes === $other->getMinutes() && $this->seconds > $other->getSeconds())
         ;
+    }
+
+    public function isAnteMeridian()
+    {
+        return $this->hour < 12;
+    }
+
+    public function isPostMeridian()
+    {
+        return false === $this->isAnteMeridian();
     }
 
     public function __toString()
