@@ -7,9 +7,19 @@ use TimeMachine\Time\Model\Date;
 
 class DateTest extends TestCase
 {
+    /**
+     * @var Date
+     */
+    protected $date;
+
+    public function setUp()
+    {
+        $this->date = new Date(2013, 2, 10);
+    }
+
     public function testHowToCreateADateOnly()
     {
-        $this->markTestIncomplete();
+        $this->assertInstanceOf('TimeMachine\Time\Model\Date', $this->date);
     }
 
     public function testHowToComeBackAtBeginOfCurrentWeek()
@@ -22,12 +32,14 @@ class DateTest extends TestCase
 
     public function testHowToKnowIfADateIsAfterBeforeEqualToAnOther()
     {
-        $this->markTestIncomplete();
+        $this->assertTrue($this->date->before(new Date(2013, 3, 1)));
+        $this->assertTrue($this->date->after(new Date(2011, 3, 1)));
+        $this->assertTrue($this->date->equals($this->date));
     }
 
     public function testHowToConvertADddTimeDateObjectIntoRegularDateTimeObject()
     {
-        $this->markTestIncomplete();
+        $this->assertInstanceOf('\DateTime', $this->date->toDateTime());
     }
 
     public function testHowToKnowIfDateIsDuringWeekendOrWeekday()
@@ -37,7 +49,11 @@ class DateTest extends TestCase
 
     public function testHowToGetPreviousNextDate()
     {
-        $this->markTestIncomplete();
+        $next     = $this->date->next();
+        $previous = $this->date->previous();
+
+        $this->assertEquals($next, new Date(2013, 2, 11));
+        $this->assertEquals($previous, new Date(2013, 2,9));
     }
 
     public function testHowToAddRemoveADurationFromItCanReturnDateOrTimePoint()
@@ -47,7 +63,12 @@ class DateTest extends TestCase
 
     public function testHowToTransformADateIntoATimePoint()
     {
-        $this->markTestIncomplete();
+        $timePoint = $this->date->toTimePoint();
+
+        $this->assertInstanceOf('TimeMachine\Time\Model\TimePoint', $timePoint);
+        $this->assertEquals($timePoint->getYear(), 2013);
+        $this->assertEquals($timePoint->getMonth(), 2);
+        $this->assertEquals($timePoint->getDay(), 10);
     }
 
     public function testHowToKnowThePositionInDaysWeeksMonthsYearsSinceAnOtherDate()

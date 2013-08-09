@@ -10,9 +10,9 @@ class Date
 
     public function __construct($year, $month, $day)
     {
-        $this->year = (int)$year;
-        $this->month = (int)$month;
-        $this->day = (int)$day;
+        $this->day   = (int) $day;
+        $this->month = (int) $month;
+        $this->year  = (int) $year;
     }
 
     public function during(Duration $duration)
@@ -23,13 +23,18 @@ class Date
         return new DateInterval($begin->getDate(), $end->getDate());
     }
 
-    public function greater(Date $date)
+    public function after(Date $date)
     {
         return
             $this->year > $date->getYear() ||
             ($this->year >= $date->getYear() && $this->month > $date->getMonth()) ||
             ($this->year >= $date->getYear() && $this->month >= $date->getMonth() && $this->day > $date->getDay())
         ;
+    }
+
+    public function before(Date $date)
+    {
+        return !$this->after($date);
     }
 
     public function equals(Date $date)
@@ -75,10 +80,12 @@ class Date
 
     public function toDateTime()
     {
-        $date = new \Datetime();
-        $date->setDate($this->year, $this->month, $this->day);
+        return (new \Datetime())->setDate($this->year, $this->month, $this->day);
+    }
 
-        return $date;
+    public function toTimePoint()
+    {
+        return new TimePoint($this->year, $this->month, $this->day, null, null);
     }
 
     /**
