@@ -9,7 +9,7 @@ class DateTest extends TestCase
 {
     public function testHowToCreateADateOnly()
     {
-
+        $this->markTestIncomplete();
     }
 
     public function testHowToComeBackAtBeginOfCurrentWeek()
@@ -22,46 +22,46 @@ class DateTest extends TestCase
 
     public function testHowToKnowIfADateIsAfterBeforeEqualToAnOther()
     {
-
+        $this->markTestIncomplete();
     }
 
     public function testHowToConvertADddTimeDateObjectIntoRegularDateTimeObject()
     {
-
+        $this->markTestIncomplete();
     }
 
     public function testHowToKnowIfDateIsDuringWeekendOrWeekday()
     {
-
+        $this->markTestIncomplete();
     }
 
     public function testHowToGetPreviousNextDate()
     {
-
+        $this->markTestIncomplete();
     }
 
     public function testHowToAddRemoveADurationFromItCanReturnDateOrTimePoint()
     {
-
+        $this->markTestIncomplete();
     }
 
     public function testHowToTransformADateIntoATimePoint()
     {
-
+        $this->markTestIncomplete();
     }
 
     public function testHowToKnowThePositionInDaysWeeksMonthsYearsSinceAnOtherDate()
     {
-
+        $this->markTestIncomplete();
     }
 
     public function testHowToKnowDiffBetweenItAndAnOtherDate()
     {
-
+        $this->markTestIncomplete();
     }
 
     public function testHowToKnowDiffBetweenItAndATimePoint()
     {
-
+        $this->markTestIncomplete();
     }
 }
