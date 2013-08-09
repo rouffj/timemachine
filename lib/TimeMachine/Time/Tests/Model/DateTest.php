@@ -1,6 +1,6 @@
 <?php
 
-namespace TimeMachine\Tests\Time;
+namespace TimeMachine\Time\Tests\Model;
 
 use TimeMachine\Time\Model\Date;
 use TimeMachine\Time\Tests\TestCase;

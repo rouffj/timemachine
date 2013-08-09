@@ -10,5 +10,10 @@
         <testsuite name="Time">
             <directory>./lib/TimeMachine/Time/Tests</directory>
         </testsuite>
+
+
+        <testsuite name="TimeHowTo">
+            <directory>./lib/TimeMachine/Time/Tests/HowTo</directory>
+        </testsuite>
     </testsuites>
 </phpunit>

@@ -1,6 +1,6 @@
 <?php
 
-namespace TimeMachine\Tests\Time;
+namespace TimeMachine\Time\Tests\Model;
 
 use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Time\Model\Duration;

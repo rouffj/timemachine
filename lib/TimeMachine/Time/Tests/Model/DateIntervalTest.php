@@ -1,6 +1,6 @@
 <?php
 
-namespace TimeMachine\Time\Tests\Time\Model;
+namespace TimeMachine\Time\Tests\Model;
 
 use TimeMachine\Time\Model\DateInterval;
 use TimeMachine\Time\Model\Date;

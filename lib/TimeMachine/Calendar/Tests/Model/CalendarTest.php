@@ -1,6 +1,6 @@
 <?php
 
-namespace TimeMachine\Calendar\Tests\Calendar\Model;
+namespace TimeMachine\Calendar\Tests\Model;
 
 use TimeMachine\Calendar\Exception\CalendarEventException;
 use TimeMachine\Calendar\Model\Calendar;
