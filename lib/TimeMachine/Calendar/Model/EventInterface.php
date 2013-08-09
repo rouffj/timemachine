@@ -14,5 +14,5 @@ interface EventInterface
      *
      * @return bool
      */
-    function equals(EventInterface $event);
+    function isEquals(EventInterface $event);
 }

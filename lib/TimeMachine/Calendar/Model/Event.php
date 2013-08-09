@@ -18,9 +18,9 @@ class Event implements EventInterface
         return $this->interval;
     }
 
-    public function equals(EventInterface $event)
+    public function isEquals(EventInterface $event)
     {
-        return $this->interval->getBegin()->equals($event->getInterval()->getBegin())
-            && $this->interval->getEnd()->equals($event->getInterval()->getEnd());
+        return $this->interval->getBegin()->isEquals($event->getInterval()->getBegin())
+            && $this->interval->getEnd()->isEquals($event->getInterval()->getEnd());
     }
 }

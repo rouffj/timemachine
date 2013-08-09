@@ -47,7 +47,7 @@ class Date
         return !$this->isAfter($date);
     }
 
-    public function equals(Date $date)
+    public function isEquals(Date $date)
     {
         return
             $this->year === $date->getYear() &&

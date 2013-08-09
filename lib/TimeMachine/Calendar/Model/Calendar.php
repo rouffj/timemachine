@@ -224,7 +224,7 @@ class Calendar implements CalendarInterface
 
         $offset = 0;
         foreach ($events as $event) {
-            if ($event->getInterval()->getEnd()->isAfter($begin) || $event->getInterval()->getEnd()->equals($begin)) {
+            if ($event->getInterval()->getEnd()->isAfter($begin) || $event->getInterval()->getEnd()->isEquals($begin)) {
                 break;
             } else {
                 $offset ++;

@@ -13,11 +13,11 @@ class TimeInterval implements IntervalInterface
         $this->end = $endTime;
     }
 
-    public function equals(TimeInterval $interval)
+    public function isEquals(TimeInterval $interval)
     {
         return
-            $this->begin->equals($interval->getBegin()) &&
-            $this->end->equals($interval->getEnd())
+            $this->begin->isEquals($interval->getBegin()) &&
+            $this->end->isEquals($interval->getEnd())
         ;
     }
 
