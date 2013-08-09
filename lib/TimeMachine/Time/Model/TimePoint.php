@@ -27,18 +27,18 @@ class TimePoint
 
     public function plus(Duration $duration)
     {
-        $date = $this->asPHPDateTime();
+        $date = $this->toDateTime();
         $date->add($duration->asPHPDateInterval());
 
-        return $this->buildFromPHPDateTime($date);
+        return $this->fromDateTime($date);
     }
 
     public function minus(Duration $duration)
     {
-        $date = $this->asPHPDateTime();
+        $date = $this->toDateTime();
         $date->sub($duration->asPHPDateInterval());
 
-        return $this->buildFromPHPDateTime($date);
+        return $this->fromDateTime($date);
     }
 
     public function after(TimePoint $point)
@@ -52,6 +52,13 @@ class TimePoint
          }
 
         return false;
+    }
+
+    public function before(TimePoint $other)
+    {
+        return 
+            !$this->after($other) &&
+            !$this->equals($other);
     }
 
     public function equals(TimePoint $point)
@@ -107,7 +114,7 @@ class TimePoint
         return $this->time->getSeconds();
     }
 
-    public function asPHPDateTime()
+    public function toDateTime()
     {
         $dtime = $this->date->toDateTime();
         $dtime->setTime($this->time->getHour(), $this->time->getMinutes(), $this->time->getSeconds());
@@ -125,7 +132,7 @@ class TimePoint
         return $this->time;
     }
 
-    private function buildFromPHPDateTime(\DateTime $date)
+    private function fromDateTime(\DateTime $date)
     {
         return new self(
             $date->format('Y'),

@@ -3,13 +3,23 @@
 namespace TimeMachine\Time\Tests\HowTo;
 
 use TimeMachine\Time\Tests\TestCase;
+use TimeMachine\Time\Model\TimePoint;
+use TimeMachine\Time\Model\Duration;
+use TimeMachine\Time\Model\TimeUnit;
 
 class TimePointTest extends TestCase
 {
-    public function testHowToKnowIfAItIsBeforeAfterEqualAnOtherTimePoint()
-    {
-        $this->markTestIncomplete();
-    }
+    public function testHowToKnowIfItIsBeforeAfterEqualAnOtherTimePoint()
+	{
+        $first = new TimePoint(2013, 3, 12, 18, 27);
+        $second = new TimePoint(2013, 6, 23, 6, 31, 11);
+        $third = new TimePoint(2013, 6, 23, 6, 31, 11);
+
+        $this->assertEquals($second->after($first), true);
+        $this->assertEquals($second->before($third), false);
+        $this->assertEquals($first->after($second), false);
+        $this->assertEquals($third->equals($second), true);
+	}
 
     public function testHowToKnowIfAItIsBbeforeAfterEqualAGivenDate()
     {
@@ -31,13 +41,21 @@ class TimePointTest extends TestCase
         $this->markTestIncomplete();
     }
 
-    public function testHowToAddRemoveDurationFromIt()
-    {
-        $this->markTestIncomplete();
-    }
+	public function testHowToAddRemoveDurationFromIt()
+	{
+        $startTimePoint = new TimePoint(2013, 3, 12, 18, 27);
+        $stopTimePoint = new TimePoint(2013, 3, 14, 18, 27);
+        $duration = new Duration(2, TimeUnit::day());
+        $result = $startTimePoint->plus($duration);
+        $this->assertEquals($result, $stopTimePoint);
+	}
 
-    public function testHowToConvertADddTimePointObjectIntoRegularDateTimeobject()
-    {
-        $this->markTestIncomplete();
-    }
+	public function testHowToConvertADddTimePointObjectIntoRegularDateTimeobject()
+	{
+        $timepoint = new TimePoint(2013, 3, 12, 18, 27, 11);
+        $datetime = new \DateTime();
+        $datetime->setDate(2013, 3, 12);
+        $datetime->setTime(18, 27, 11);
+        $this->assertEquals($timepoint->toDateTime(), $datetime);
+	
 }
