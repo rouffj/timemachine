@@ -36,6 +36,16 @@ class TimeInterval implements IntervalInterface
         return !$this->isBefore($interval) && !$this->isAfter($interval);
     }
 
+    public function isPartiallyBefore(IntervalInterface $interval)
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    public function isPartiallyAfter(IntervalInterface $interval)
+    {
+        throw new \Exception('Not implemented');
+    }
+
     public function getBegin()
     {
         return $this->begin;
