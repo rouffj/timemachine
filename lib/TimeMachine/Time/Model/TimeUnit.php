@@ -11,24 +11,24 @@ class TimeUnit
     const MINUTE = 'I';
     const SECOND = 'S';
 
-    private $type = null;
+    private $unit;
 
-    private function __construct($type)
+    private function __construct($unit)
     {
-        $this->type = $type;
+        $this->unit = $unit;
     }
 
     public function getCode()
     {
-        return (self::MINUTE === $this->type) ? 'M' : $this->type;
+        return (self::MINUTE === $this->unit) ? 'M' : $this->type;
     }
 
     public function isTime()
     {
         return
-            self::HOUR === $this->type ||
-            self::MINUTE === $this->type ||
-            self::SECOND === $this->type
+            self::HOUR === $this->unit ||
+            self::MINUTE === $this->unit ||
+            self::SECOND === $this->unit
         ;
     }
 

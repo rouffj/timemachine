@@ -25,7 +25,12 @@ class DateInterval implements IntervalInterface
         return $this->current;
     }
 
-    public function getLength()
+    /**
+     * Get duration in days separating the begin and end date of DateInterval.
+     *
+     * @return Duration Expressed in days.
+     */
+    public function getDuration()
     {
         $begin = clone $this->begin;
         $duration = 1;
@@ -34,7 +39,7 @@ class DateInterval implements IntervalInterface
             $duration = $duration + 1;
         }
 
-        return $duration;
+        return new Duration($duration, TimeUnit::day());
     }
 
     /**
