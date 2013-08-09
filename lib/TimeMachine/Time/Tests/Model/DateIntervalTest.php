@@ -4,17 +4,19 @@ namespace TimeMachine\Time\Tests\Model;
 
 use TimeMachine\Time\Model\DateInterval;
 use TimeMachine\Time\Model\Date;
+use TimeMachine\Time\Model\Duration;
+use TimeMachine\Time\Model\TimeUnit;
 use TimeMachine\Time\Tests\TestCase;
 
 class DateIntervalTest extends TestCase
 {
-    public function testGetLength()
+    public function testGetDuration()
     {
         $interval = new DateInterval(new Date(2012, 01, 01), new Date(2012, 01, 01));
-        $this->assertEquals(1, $interval->getLength());
+        $this->assertEquals(new Duration(1, TimeUnit::day()), $interval->getDuration());
 
         $interval = new DateInterval(new Date(2012, 01, 01), new Date(2012, 01, 03));
-        $this->assertEquals(3, $interval->getLength());
+        $this->assertEquals(new Duration(3, TimeUnit::day()), $interval->getDuration());
     }
 
     public function testNextEquals()

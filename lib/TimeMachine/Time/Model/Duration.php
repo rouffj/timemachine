@@ -5,18 +5,18 @@ namespace TimeMachine\Time\Model;
 class Duration
 {
     private $value = null;
-    private $type = null;
+    private $unit = null;
 
-    public function __construct($duration, TimeUnit $type)
+    public function __construct($duration, TimeUnit $unit)
     {
         $this->value = $duration;
-        $this->type = $type;
+        $this->unit = $unit;
     }
 
     public function asPHPDateInterval()
     {
-        $timeSpec = ($this->type->isTime()) ? 'PT' : 'P';
-        $timeSpec = sprintf('%s%s%s', $timeSpec, $this->value, $this->type->getCode());
+        $timeSpec = ($this->unit->isTime()) ? 'PT' : 'P';
+        $timeSpec = sprintf('%s%s%s', $timeSpec, $this->value, $this->unit->getCode());
 
         return new \DateInterval($timeSpec);
     }
