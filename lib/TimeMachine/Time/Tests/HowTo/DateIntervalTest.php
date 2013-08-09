@@ -48,7 +48,17 @@ class DateIntervalTest extends TestCase
 
     public function testHowToKnowIfADateIntervalIsBeforeAfterDuringOtherDateInterval()
     {
-        $this->markTestIncomplete();
+        $interval = new DateInterval(new Date(2013, 6, 1), new Date(2013, 6, 15));
+        $before = new DateInterval(new Date(2013, 5, 20), new Date(2013, 5, 30));
+        $after = new DateInterval(new Date(2013, 6, 16), new Date(2013, 6, 20));
+        $during = new DateInterval(new Date(2013, 6, 2), new Date(2013, 6, 10));
+        $partiallyDuring = new DateInterval(new Date(2013, 1, 1), new Date(2013, 6, 10));
+
+        $this->assertTrue($before->isBefore($interval));
+        $this->assertTrue($after->isAfter($interval));
+        $this->assertTrue($during->isDuring($interval));
+        $this->assertTrue($interval->isDuring($interval));
+        $this->assertFalse($partiallyDuring->isDuring($interval));
     }
 
     public function testHowToKnowIfADateIntervalIsBeforeAfterDuringAGivenDate()

@@ -58,17 +58,30 @@ class DateInterval implements IntervalInterface
         return $this->end;
     }
 
-    public function isBefore(IntervalInterface $interval)
+    public function isBefore(IntervalInterface $other)
+    {
+        return $this->begin->isBefore($other->getBegin()) && $this->begin->isBefore($other->getEnd());
+    }
+
+    public function isAfter(IntervalInterface $other)
+    {
+        return $this->begin->isAfter($other->getBegin()) && $this->begin->isAfter($other->getEnd());
+    }
+
+    public function isDuring(IntervalInterface $other)
+    {
+        return
+            $this->begin === max($this->begin, $other->getBegin()) &&
+            $this->end === min($this->end, $other->getEnd())
+        ;
+    }
+
+    public function isPartiallyBefore(IntervalInterface $interval)
     {
         throw new \Exception('Not implemented');
     }
 
-    public function isAfter(IntervalInterface $interval)
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    public function isDuring(IntervalInterface $interval)
+    public function isPartiallyAfter(IntervalInterface $interval)
     {
         throw new \Exception('Not implemented');
     }

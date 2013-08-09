@@ -3,16 +3,27 @@
 namespace TimeMachine\Time\Tests\HowTo;
 
 use TimeMachine\Time\Tests\TestCase;
+use TimeMachine\Time\Model\TimeOfDay;
+
 
 class TimeOfDayTest extends TestCase
 {
     public function testHowToKnowIfATimeOfDayIsBeforeAfterEqualAnOtherTimeOfDay()
     {
-        $this->markTestIncomplete();
+        $first = new TimeOfDay(14, 59, 37);
+        $second = new TimeOfDay(14, 59, 38);
+        $third = new TimeOfDay(15, 23); 
+        $four = new TimeOfDay(15, 23);
+        $this->assertEquals(true, $first->isBefore($second));
+        $this->assertEquals(true, $third->isAfter($second));
+        $this->assertEquals(true, $four->isEquals($third));
     }
 
-    public function testHowToKnowIfItIsTheAfterMidnightPastMidnight()
+    public function testHowToKnowIfItIsTheAnteMeridianPostMeridian()
     {
-        $this->markTestIncomplete();
+        $ante = new TimeOfDay(11, 59, 59);
+        $post = new TimeOfDay(12, 37, 21);
+        $this->assertEquals(true, $ante->isAnteMeridian());
+        $this->assertEquals(true, $post->isPostMeridian());
     }
 }

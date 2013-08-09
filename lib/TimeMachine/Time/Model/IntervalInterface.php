@@ -7,9 +7,11 @@ namespace TimeMachine\Time\Model;
  */
 interface IntervalInterface
 {
-    function getBegin();
-    function getEnd();
-    function isBefore(IntervalInterface $interval);
-    function isAfter(IntervalInterface $interval);
-    function isDuring(IntervalInterface $interval);
+    public function getBegin();
+    public function getEnd();
+    public function isBefore(IntervalInterface $interval);
+    public function isAfter(IntervalInterface $interval);
+    public function isDuring(IntervalInterface $interval);
+    public function isPartiallyBefore(IntervalInterface $interval);
+    public function isPartiallyAfter(IntervalInterface $interval);
 }
