@@ -3,9 +3,10 @@ PHPUNIT_OPTS=
 
 help:
 	@echo "test        Run all tests"
-	@echo "example    Allow to run examples"
+	@echo "howto-time  Allow to run Howtos of Time component"
+	@echo "example     Allow to run examples"
 
-howto:
+howto-time:
 	$(PHPUNIT_BIN) --testdox --testsuite TimeHowTo
 
 test:
