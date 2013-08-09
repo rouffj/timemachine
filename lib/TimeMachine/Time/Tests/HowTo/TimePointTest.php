@@ -16,7 +16,7 @@ class TimePointTest extends TestCase
         $third = new TimePoint(2013, 6, 23, 6, 31, 11);
 
         $this->assertEquals($second->isAfter($first), true);
-        $this->assertEquals($second->before($third), false);
+        $this->assertEquals($second->isBefore($third), false);
         $this->assertEquals($first->isAfter($second), false);
         $this->assertEquals($third->equals($second), true);
     }

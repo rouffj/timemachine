@@ -54,7 +54,7 @@ class TimePoint
         return false;
     }
 
-    public function before(TimePoint $other)
+    public function isBefore(TimePoint $other)
     {
         return 
             !$this->isAfter($other) &&

@@ -32,7 +32,7 @@ class Date
         ;
     }
 
-    public function before(Date $date)
+    public function isBefore(Date $date)
     {
         return !$this->isAfter($date);
     }
