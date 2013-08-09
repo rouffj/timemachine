@@ -23,7 +23,7 @@ class Date
         return new DateInterval($begin->getDate(), $end->getDate());
     }
 
-    public function after(Date $date)
+    public function isAfter(Date $date)
     {
         return
             $this->year > $date->getYear() ||
@@ -34,7 +34,7 @@ class Date
 
     public function before(Date $date)
     {
-        return !$this->after($date);
+        return !$this->isAfter($date);
     }
 
     public function equals(Date $date)

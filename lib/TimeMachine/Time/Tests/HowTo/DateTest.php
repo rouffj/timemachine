@@ -33,7 +33,7 @@ class DateTest extends TestCase
     public function testHowToKnowIfADateIsAfterBeforeEqualToAnOther()
     {
         $this->assertTrue($this->date->before(new Date(2013, 3, 1)));
-        $this->assertTrue($this->date->after(new Date(2011, 3, 1)));
+        $this->assertTrue($this->date->isAfter(new Date(2011, 3, 1)));
         $this->assertTrue($this->date->equals($this->date));
     }
 

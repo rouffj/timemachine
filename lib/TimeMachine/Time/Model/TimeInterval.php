@@ -23,12 +23,12 @@ class TimeInterval implements IntervalInterface
 
     public function isBefore(IntervalInterface $interval)
     {
-        return $interval->getEnd()->after($this->getBegin()) && $interval->getBegin()->after($this->getEnd());
+        return $interval->getEnd()->isAfter($this->getBegin()) && $interval->getBegin()->isAfter($this->getEnd());
     }
 
     public function isAfter(IntervalInterface $interval)
     {
-        return $this->begin->after($interval->getEnd());
+        return $this->begin->isAfter($interval->getEnd());
     }
 
     public function isDuring(IntervalInterface $interval)
@@ -48,11 +48,10 @@ class TimeInterval implements IntervalInterface
 
     public function getLength()
     {
-        $begin = $this->begin->asPHPDateTime();
-        $end = $this->end->asPHPDateTime();
+        $begin = $this->begin->toDateTime();
+        $end = $this->end->toDateTime();
         $diff = $begin->diff($end);
 
         return new Duration($diff->format('%H'), TimeUnit::hour());
     }
 }
-

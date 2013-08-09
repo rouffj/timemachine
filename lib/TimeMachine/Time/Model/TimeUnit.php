@@ -20,7 +20,7 @@ class TimeUnit
 
     public function getCode()
     {
-        return (self::MINUTE === $this->unit) ? 'M' : $this->type;
+        return (self::MINUTE === $this->unit) ? 'M' : $this->unit;
     }
 
     public function isTime()

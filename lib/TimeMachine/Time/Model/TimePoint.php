@@ -41,13 +41,13 @@ class TimePoint
         return $this->fromDateTime($date);
     }
 
-    public function after(TimePoint $point)
+    public function isAfter(TimePoint $point)
     {
          if ($this->date->equals($point->getDate())) {
             if ($this->time->greater($point->getTimeOfDay())){
                 return true;
             }
-         } else if ($this->date->greater($point->getDate())) {
+         } else if ($this->date->isAfter($point->getDate())) {
             return true;
          }
 
@@ -57,7 +57,7 @@ class TimePoint
     public function before(TimePoint $other)
     {
         return 
-            !$this->after($other) &&
+            !$this->isAfter($other) &&
             !$this->equals($other);
     }
 

@@ -77,10 +77,10 @@ class Calendar implements CalendarInterface
     /**
      * {@inheritdoc}
      */
-    public function getEventAfter(TimePoint $point)
+    public function getEventisAfter(TimePoint $point)
     {
         foreach ($this->events as $event) {
-            if ($event->getInterval()->getBegin()->after($point)) {
+            if ($event->getInterval()->getBegin()->isAfter($point)) {
                 return $event;
             }
         }
@@ -152,7 +152,7 @@ class Calendar implements CalendarInterface
         $calendars = array();
         $first = $current = $this->getFirst()->getInterval()->getBegin();
         $end = $this->getLast()->getInterval()->getEnd();
-        while (!$current->after($end)) {
+        while (!$current->isAfter($end)) {
             $newCurrent = $current->plus($duration);
             $this->calendars[] = $this->between($current->until($newCurrent));
             $current = $newCurrent;
@@ -224,7 +224,7 @@ class Calendar implements CalendarInterface
 
         $offset = 0;
         foreach ($events as $event) {
-            if ($event->getInterval()->getEnd()->after($begin) || $event->getInterval()->getEnd()->equals($begin)) {
+            if ($event->getInterval()->getEnd()->isAfter($begin) || $event->getInterval()->getEnd()->equals($begin)) {
                 break;
             } else {
                 $offset ++;
@@ -238,7 +238,7 @@ class Calendar implements CalendarInterface
 
         $length = count($events);
         foreach (array_reverse($events) as $event) {
-            if ($end->after($event->getInterval()->getBegin())) {
+            if ($end->isAfter($event->getInterval()->getBegin())) {
                 break;
             } else {
                 $length --;

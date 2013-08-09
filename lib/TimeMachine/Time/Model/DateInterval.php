@@ -18,7 +18,7 @@ class DateInterval implements IntervalInterface
     public function nextDate()
     {
         $this->current = $this->current->next();
-        return false === $this->current->greater($this->end);
+        return false === $this->current->isAfter($this->end);
     }
 
     public function getCurrent()
