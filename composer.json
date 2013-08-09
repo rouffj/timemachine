@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-0": {
-            "TimeMachine": ["./lib/", "./tests", "./examples"]
+            "TimeMachine": ["./lib/", "./examples"]
         }
     }
 }
