@@ -3,8 +3,12 @@
 <phpunit bootstrap="vendor/autoload.php" colors="true">
 
     <testsuites>
-        <testsuite name="Test suite">
-            <directory suffix="Test.php">./tests</directory>
+        <testsuite name="Calendar">
+            <directory>./lib/TimeMachine/Calendar/Tests</directory>
+        </testsuite>
+
+        <testsuite name="Time">
+            <directory>./lib/TimeMachine/Time/Tests</directory>
         </testsuite>
     </testsuites>
 </phpunit>

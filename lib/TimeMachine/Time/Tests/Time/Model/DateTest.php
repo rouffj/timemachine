@@ -2,9 +2,8 @@
 
 namespace TimeMachine\Tests\Time;
 
-use TimeMachine\Time\Model\DateInterval;
 use TimeMachine\Time\Model\Date;
-use TimeMachine\Tests\TestCase;
+use TimeMachine\Time\Tests\TestCase;
 
 class DateTest extends TestCase
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace TimeMachine\Tests\Time;
+namespace TimeMachine\Time\Tests\Time\Model;
 
 use TimeMachine\Time\Model\DateInterval;
 use TimeMachine\Time\Model\Date;
-use TimeMachine\Tests\TestCase;
+use TimeMachine\Time\Tests\TestCase;
 
 class DateIntervalTest extends TestCase
 {

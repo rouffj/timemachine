@@ -6,7 +6,7 @@ use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Time\Model\Duration;
 use TimeMachine\Time\Model\TimeUnit;
 use TimeMachine\Time\Model\TimeInterval;
-use TimeMachine\Tests\TestCase;
+use TimeMachine\Time\Tests\TestCase;
 
 class TimePointTest extends TestCase
 {
