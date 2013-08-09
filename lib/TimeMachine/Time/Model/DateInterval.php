@@ -10,6 +10,9 @@ class DateInterval implements IntervalInterface
 
     public function __construct(Date $beginDate, Date $endDate)
     {
+        if($endDate->isBefore($beginDate)) {
+            throw new \Exception('DateInterval: the begin date must be before the end date.');
+        }    
         $this->begin = $beginDate;
         $this->end = $endDate;
         $this->current = $this->begin;
@@ -33,14 +36,7 @@ class DateInterval implements IntervalInterface
      */
     public function getDuration()
     {
-        $begin = clone $this->begin;
-        $duration = 1;
-        while (false === $this->end->isEquals($begin)) {
-            $begin = $begin->next();
-            $duration = $duration + 1;
-        }
-
-        return new Duration($duration, TimeUnit::day());
+        return $this->begin->diff($this->end);
     }
 
     /**

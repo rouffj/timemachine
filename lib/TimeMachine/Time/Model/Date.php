@@ -52,7 +52,10 @@ class Date
 
     public function isBefore(Date $date)
     {
-        return !$this->isAfter($date);
+        return 
+            false === $this->isAfter($date) &&
+            false === $this->isEquals($date)
+        ;
     }
 
     public function isEquals(Date $date)

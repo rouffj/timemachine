@@ -13,10 +13,10 @@ class DateIntervalTest extends TestCase
     public function testGetDuration()
     {
         $interval = new DateInterval(new Date(2012, 01, 01), new Date(2012, 01, 01));
-        $this->assertEquals(new Duration(1, TimeUnit::day()), $interval->getDuration());
+        $this->assertEquals(new Duration(0, TimeUnit::day()), $interval->getDuration());
 
         $interval = new DateInterval(new Date(2012, 01, 01), new Date(2012, 01, 03));
-        $this->assertEquals(new Duration(3, TimeUnit::day()), $interval->getDuration());
+        $this->assertEquals(new Duration(2, TimeUnit::day()), $interval->getDuration());
     }
 
     public function testNextEquals()

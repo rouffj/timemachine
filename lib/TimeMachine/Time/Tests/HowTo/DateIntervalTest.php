@@ -15,7 +15,7 @@ class DateIntervalTest extends TestCase
         $interval = new DateInterval(new Date(2013, 1, 1), new Date(2013, 1, 20));
         $duration = $interval->getDuration();
 
-        $this->assertEquals(new Duration(20, TimeUnit::day()), $duration);
+        $this->assertEquals(new Duration(19, TimeUnit::day()), $duration);
     }
 
     public function testHowToGetNumberOfHoursBetween2Dates()

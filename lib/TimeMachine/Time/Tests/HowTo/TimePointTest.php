@@ -6,6 +6,7 @@ use TimeMachine\Time\Tests\TestCase;
 use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Time\Model\Duration;
 use TimeMachine\Time\Model\TimeUnit;
+use TimeMachine\Time\Model\Date;
 
 class TimePointTest extends TestCase
 {
@@ -21,14 +22,20 @@ class TimePointTest extends TestCase
         $this->assertEquals($third->isEquals($second), true);
     }
 
-    public function testHowToKnowIfAItIsBbeforeAfterEqualAGivenDate()
+    public function testHowToKnowIfItIsBeforeAfterEqualAGivenDate()
     {
-        $this->markTestIncomplete();
+        $timepoint = new TimePoint(2013, 3, 12, 18, 27);
+        $datebefore = new Date(2013, 1, 1);
+        $dateafter = new Date(2013, 8, 15);
+        $dateequal = new Date(2013, 3, 12);
+        $this->assertEquals(true, $datebefore->isBefore($timepoint->getDate()));
+        $this->assertEquals(true, $dateafter->isAfter($timepoint->getDate()));
+        $this->assertEquals(true, $dateequal->isEquals($timepoint->getDate()));
     }
 
-    public function testHowToKnowIfAItIsBbeforeAfterEqualAGivenDateInterval()
+    public function testHowToKnowIfItIsBeforeAfterDuringAGivenDateInterval()
     {
-        $this->markTestIncomplete();
+        
     }
 
     public function testHowToKnowIfAItIsBbeforeAfterEqualAGivenTimeInterval()
