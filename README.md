@@ -58,6 +58,19 @@ TimeMachine\Time\Tests\HowTo\TimeInterval
  [ ] How to transform a time interval into a date interval destroy data
  [ ] How to know how long a time interval are in at least seconds minutes hours days weeks years
 
+TimeMachine\Time\Tests\HowTo\TimeOfDay
+ [x] How to know if a time of day is before after equal an other time of day
+ [x] How to know if it is the ante meridian post meridian
+
+TimeMachine\Time\Tests\HowTo\TimePoint
+ [x] How to know if it is before after equal an other time point
+ [x] How to know if it is before after equal a given date
+ [x] How to know if it is before after during a given date interval
+ [ ] How to know if a it is bbefore after equal a given time interval
+ [ ] How to know if it is during night or daylight
+ [x] How to add remove duration from it
+ [x] How to convert a ddd time point object into regular date timeobject
+
 ```
 
 Inspired by: http://timeandmoney.sourceforge.net/timealgebra.html
