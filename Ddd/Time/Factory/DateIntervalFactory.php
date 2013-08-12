@@ -1,9 +1,9 @@
 <?php
 
-namespace TimeMachine\Time\Factory;
+namespace Ddd\Time\Factory;
 
-use TimeMachine\Time\Model\Date;
-use TimeMachine\Time\Model\DateInterval;
+use Ddd\Time\Model\Date;
+use Ddd\Time\Model\DateInterval;
 
 class DateIntervalFactory
 {

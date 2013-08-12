@@ -5,7 +5,7 @@ namespace TimeMachine\Calendar\Model;
 interface EventInterface
 {
     /**
-     * @return \TimeMachine\Time\Model\TimeInterval
+     * @return \Ddd\Time\Model\TimeInterval
      */
     function getInterval();
 

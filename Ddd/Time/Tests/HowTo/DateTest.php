@@ -1,12 +1,12 @@
 <?php
 
-namespace TimeMachine\Time\Tests\HowTo;
+namespace Ddd\Time\Tests\HowTo;
 
-use TimeMachine\Time\Model\Duration;
-use TimeMachine\Time\Model\TimePoint;
-use TimeMachine\Time\Model\TimeUnit;
-use TimeMachine\Time\Tests\TestCase;
-use TimeMachine\Time\Model\Date;
+use Ddd\Time\Model\Duration;
+use Ddd\Time\Model\TimePoint;
+use Ddd\Time\Model\TimeUnit;
+use Ddd\Time\Tests\TestCase;
+use Ddd\Time\Model\Date;
 
 class DateTest extends TestCase
 {
@@ -14,7 +14,7 @@ class DateTest extends TestCase
     {
         $date = new Date(2013, 1, 1);
 
-        $this->assertInstanceOf('TimeMachine\Time\Model\Date', $date);
+        $this->assertInstanceOf('Ddd\Time\Model\Date', $date);
     }
 
     public function testHowToComeBackAtBeginOfCurrentWeek()
@@ -99,7 +99,7 @@ class DateTest extends TestCase
         $jan1   = new Date(2013, 1, 1);
         $timePoint = $jan1->toTimePoint();
 
-        $this->assertInstanceOf('TimeMachine\Time\Model\TimePoint', $timePoint);
+        $this->assertInstanceOf('Ddd\Time\Model\TimePoint', $timePoint);
         $this->assertEquals($timePoint->getYear(), 2013);
         $this->assertEquals($timePoint->getMonth(), 1);
         $this->assertEquals($timePoint->getDay(), 1);
@@ -114,7 +114,7 @@ class DateTest extends TestCase
      *  - Fetch the position of a date from another
      *  - How many days form my birthday
      *
-     * Returns a Duration Class @see TimeMachine\Time\Model\Duration.
+     * Returns a Duration Class @see Ddd\Time\Model\Duration.
      *
      */
     public function testHowToKnowDiffBetweenItAndAnOtherDate()
@@ -123,7 +123,7 @@ class DateTest extends TestCase
         $jan10 = new Date(2013, 1, 10);
         $diff = $jan1->diff($jan10);
 
-        $this->assertInstanceOf('TimeMachine\Time\Model\Duration', $diff);
+        $this->assertInstanceOf('Ddd\Time\Model\Duration', $diff);
         $this->assertEquals($diff, new Duration(9, TimeUnit::day()));
     }
 

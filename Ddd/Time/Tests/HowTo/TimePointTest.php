@@ -1,12 +1,12 @@
 <?php
 
-namespace TimeMachine\Time\Tests\HowTo;
+namespace Ddd\Time\Tests\HowTo;
 
-use TimeMachine\Time\Tests\TestCase;
-use TimeMachine\Time\Model\TimePoint;
-use TimeMachine\Time\Model\Duration;
-use TimeMachine\Time\Model\TimeUnit;
-use TimeMachine\Time\Model\Date;
+use Ddd\Time\Tests\TestCase;
+use Ddd\Time\Model\TimePoint;
+use Ddd\Time\Model\Duration;
+use Ddd\Time\Model\TimeUnit;
+use Ddd\Time\Model\Date;
 
 class TimePointTest extends TestCase
 {

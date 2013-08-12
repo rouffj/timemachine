@@ -1,8 +1,8 @@
 <?php
 
-namespace TimeMachine\Time\Factory;
+namespace Ddd\Time\Factory;
 
-use TimeMachine\Time\Model\TimePoint;
+use Ddd\Time\Model\TimePoint;
 
 class TimePointFactory
 {

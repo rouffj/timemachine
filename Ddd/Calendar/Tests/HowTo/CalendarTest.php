@@ -5,9 +5,9 @@ namespace TimeMachine\Calendar\Tests\Howto;
 use TimeMachine\Calendar\Tests\TestCase;
 use TimeMachine\Calendar\Model\Calendar;
 use TimeMachine\Calendar\Model\Event;
-use TimeMachine\Time\Model\TimePoint;
-use TimeMachine\Time\Factory\TimeIntervalFactory;
-use TimeMachine\Time\Factory\DateIntervalFactory;
+use Ddd\Time\Model\TimePoint;
+use Ddd\Time\Factory\TimeIntervalFactory;
+use Ddd\Time\Factory\DateIntervalFactory;
 
 class CalendarTest extends TestCase
 {

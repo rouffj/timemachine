@@ -1,12 +1,12 @@
 <?php
 
-namespace TimeMachine\Time\Tests\HowTo;
+namespace Ddd\Time\Tests\HowTo;
 
-use TimeMachine\Time\Tests\TestCase;
-use TimeMachine\Time\Model\DateInterval;
-use TimeMachine\Time\Model\Date;
-use TimeMachine\Time\Model\TimeUnit;
-use TimeMachine\Time\Model\Duration;
+use Ddd\Time\Tests\TestCase;
+use Ddd\Time\Model\DateInterval;
+use Ddd\Time\Model\Date;
+use Ddd\Time\Model\TimeUnit;
+use Ddd\Time\Model\Duration;
 
 class DateIntervalTest extends TestCase
 {

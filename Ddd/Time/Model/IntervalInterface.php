@@ -1,6 +1,6 @@
 <?php
 
-namespace TimeMachine\Time\Model;
+namespace Ddd\Time\Model;
 
 /**
  * @author Jean-François Simon <jeanfrancois.simon@sensiolabs.com>

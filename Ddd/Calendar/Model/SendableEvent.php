@@ -2,7 +2,7 @@
 
 namespace TimeMachine\Calendar\Model;
 
-use TimeMachine\Time\Model\TimeInterval;
+use Ddd\Time\Model\TimeInterval;
 
 class SendableEvent extends Event implements SendableEventInterface
 {

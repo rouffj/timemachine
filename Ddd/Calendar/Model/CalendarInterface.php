@@ -2,10 +2,10 @@
 
 namespace TimeMachine\Calendar\Model;
 
-use TimeMachine\Time\Model\TimePoint;
-use TimeMachine\Time\Model\TimeInterval;
+use Ddd\Time\Model\TimePoint;
+use Ddd\Time\Model\TimeInterval;
 use TimeMachine\Calendar\Model\EventInterface;
-use TimeMachine\Time\Factory\TimePointFactory;
+use Ddd\Time\Factory\TimePointFactory;
 use TimeMachine\Calendar\Service\EventProviderInterface;
 
 /**

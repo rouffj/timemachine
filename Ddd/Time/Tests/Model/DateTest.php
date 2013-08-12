@@ -1,9 +1,9 @@
 <?php
 
-namespace TimeMachine\Time\Tests\Model;
+namespace Ddd\Time\Tests\Model;
 
-use TimeMachine\Time\Model\Date;
-use TimeMachine\Time\Tests\TestCase;
+use Ddd\Time\Model\Date;
+use Ddd\Time\Tests\TestCase;
 
 class DateTest extends TestCase
 {

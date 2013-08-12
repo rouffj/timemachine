@@ -1,8 +1,8 @@
 <?php
 
-namespace TimeMachine\Time\Tests\HowTo;
+namespace Ddd\Time\Tests\HowTo;
 
-use TimeMachine\Time\Tests\TestCase;
+use Ddd\Time\Tests\TestCase;
 
 class TimeIntervalTest extends TestCase
 {

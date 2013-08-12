@@ -1,13 +1,13 @@
 <?php
 
-namespace TimeMachine\Time\Tests\Model;
+namespace Ddd\Time\Tests\Model;
 
-use TimeMachine\Time\Model\TimePoint;
-use TimeMachine\Time\Model\Duration;
-use TimeMachine\Time\Model\TimeUnit;
-use TimeMachine\Time\Model\TimeInterval;
-use TimeMachine\Time\Factory\TimeIntervalFactory;
-use TimeMachine\Time\Tests\TestCase;
+use Ddd\Time\Model\TimePoint;
+use Ddd\Time\Model\Duration;
+use Ddd\Time\Model\TimeUnit;
+use Ddd\Time\Model\TimeInterval;
+use Ddd\Time\Factory\TimeIntervalFactory;
+use Ddd\Time\Tests\TestCase;
 
 class TimeIntervalTest extends TestCase
 {

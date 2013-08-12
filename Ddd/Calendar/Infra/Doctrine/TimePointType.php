@@ -4,7 +4,7 @@ namespace TimeMachine\Calendar\Infra\Doctrine;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
-use TimeMachine\Time\Factory\TimePointFactory;
+use Ddd\Time\Factory\TimePointFactory;
 
 /**
  * My custom datatype.

@@ -7,11 +7,11 @@ use TimeMachine\Calendar\Model\Calendar;
 use TimeMachine\Calendar\Model\Event;
 use TimeMachine\Calendar\Model\EventInterface;
 use TimeMachine\Calendar\Model\Strategy\NoOverlapStrategy;
-use TimeMachine\Time\Factory\TimeIntervalFactory;
-use TimeMachine\Time\Model\Duration;
-use TimeMachine\Time\Model\TimeInterval;
-use TimeMachine\Time\Model\TimePoint;
-use TimeMachine\Time\Model\TimeUnit;
+use Ddd\Time\Factory\TimeIntervalFactory;
+use Ddd\Time\Model\Duration;
+use Ddd\Time\Model\TimeInterval;
+use Ddd\Time\Model\TimePoint;
+use Ddd\Time\Model\TimeUnit;
 use TimeMachine\Calendar\Tests\TestCase;
 
 class CalendarTest extends TestCase

@@ -1,8 +1,8 @@
 <?php
 
-namespace TimeMachine\Time\Factory;
+namespace Ddd\Time\Factory;
 
-use TimeMachine\Time\Model\Date;
+use Ddd\Time\Model\Date;
 
 class DateFactory
 {

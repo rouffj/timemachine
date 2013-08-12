@@ -7,8 +7,8 @@ use TimeMachine\Calendar\Model\CalendarInterface;
 use TimeMachine\Calendar\Service\CalendarLoaderInterface;
 use TimeMachine\Calendar\Service\CalendarPersisterInterface;
 use TimeMachine\Calendar\Model\Event;
-use TimeMachine\Time\Factory\TimeIntervalFactory;
-use TimeMachine\Time\Model\TimeInterval;
+use Ddd\Time\Factory\TimeIntervalFactory;
+use Ddd\Time\Model\TimeInterval;
 
 class DoctorCalendarRepository implements CalendarLoaderInterface, CalendarPersisterInterface
 {

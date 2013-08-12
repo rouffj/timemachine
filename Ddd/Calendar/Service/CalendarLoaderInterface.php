@@ -2,7 +2,7 @@
 
 namespace TimeMachine\Calendar\Service;
 
-use TimeMachine\Time\Model\TimeInterval;
+use Ddd\Time\Model\TimeInterval;
 
 interface CalendarLoaderInterface
 {

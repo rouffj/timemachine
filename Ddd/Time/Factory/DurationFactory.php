@@ -1,9 +1,9 @@
 <?php
 
-namespace TimeMachine\Time\Factory;
+namespace Ddd\Time\Factory;
 
-use TimeMachine\Time\Model\TimeUnit;
-use TimeMachine\Time\Model\Duration;
+use Ddd\Time\Model\TimeUnit;
+use Ddd\Time\Model\Duration;
 
 class DurationFactory
 {

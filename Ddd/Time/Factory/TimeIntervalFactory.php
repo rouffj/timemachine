@@ -1,10 +1,10 @@
 <?php
 
-namespace TimeMachine\Time\Factory;
+namespace Ddd\Time\Factory;
 
-use TimeMachine\Time\Model\DateInterval;
-use TimeMachine\Time\Model\TimeInterval;
-use TimeMachine\Time\Model\TimePoint;
+use Ddd\Time\Model\DateInterval;
+use Ddd\Time\Model\TimeInterval;
+use Ddd\Time\Model\TimePoint;
 
 class TimeIntervalFactory
 {
