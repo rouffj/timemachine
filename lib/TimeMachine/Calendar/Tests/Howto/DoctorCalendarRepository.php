@@ -1,6 +1,6 @@
 <?php
 
-namespace TimeMachine\Examples\Time;
+namespace TimeMachine\Calendar\Tests\HowTo;
 
 use TimeMachine\Calendar\Model\Calendar;
 use TimeMachine\Calendar\Model\CalendarInterface;

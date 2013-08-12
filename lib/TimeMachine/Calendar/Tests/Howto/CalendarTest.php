@@ -1,16 +1,15 @@
 <?php
 
-namespace TimeMachine\Examples\Time;
+namespace TimeMachine\Calendar\Tests\Howto;
 
-use TimeMachine\Tests\TestCase;
-use TimeMachine\Time\Model\TimePoint;
+use TimeMachine\Calendar\Tests\TestCase;
 use TimeMachine\Calendar\Model\Calendar;
-use TimeMachine\Calendar\Model\BaseStrategy;
 use TimeMachine\Calendar\Model\Event;
+use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Time\Factory\TimeIntervalFactory;
 use TimeMachine\Time\Factory\DateIntervalFactory;
 
-class DoctorTest extends TestCase
+class CalendarTest extends TestCase
 {
     private $calendar;
 
@@ -18,6 +17,11 @@ class DoctorTest extends TestCase
     {
         $repository = new DoctorCalendarRepository();
         $this->calendar = $repository->load();
+    }
+
+    public function testHowToLoadEventsFromDatastore()
+    {
+        $this->markTestIncomplete();
     }
 
     public function testHowToRetrieveAllMyAppointments()

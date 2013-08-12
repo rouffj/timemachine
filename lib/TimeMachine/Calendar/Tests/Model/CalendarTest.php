@@ -12,7 +12,7 @@ use TimeMachine\Time\Model\Duration;
 use TimeMachine\Time\Model\TimeInterval;
 use TimeMachine\Time\Model\TimePoint;
 use TimeMachine\Time\Model\TimeUnit;
-use TimeMachine\Time\Tests\TestCase;
+use TimeMachine\Calendar\Tests\TestCase;
 
 class CalendarTest extends TestCase
 {
