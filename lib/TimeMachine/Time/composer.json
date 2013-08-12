@@ -1,7 +1,7 @@
 {
-    "name": "timemachine/timemachine",
+    "name": "ddd/time",
     "type": "library",
-    "description": "A code library based on basic concepts in recurring domains such as time and money. Distilled model concepts will yield a coherent design that is simple to use and easy to change to fit the needs of different application development projects.",
+    "description": "",
     "keywords": ["time","money"],
     "homepage": "https://github.com/ddd-php/Time",
     "license": "MIT",
