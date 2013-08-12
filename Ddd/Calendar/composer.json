@@ -22,7 +22,7 @@
         "ddd/time": "*"
     },
     "autoload": {
-        "psr-0": { "TimeMachine\\Calendar": "" }
+        "psr-0": { "Ddd\\Calendar": "" }
     },
-    "target-dir": "TimeMachine/Calendar"
+    "target-dir": "Ddd/Calendar"
 }
