@@ -4,12 +4,12 @@ TimeMachine
 Installation
 ------------
 
-Using Composer, just require the `timemachine/timemachine` package:
+Using Composer, just require the `ddd/time` package:
 
 ``` javascript
 {
     "require": {
-        "timemachine/timemachine": "dev-master"
+        "ddd/time": "dev-master"
     }
 }
 ```
