@@ -22,66 +22,100 @@ class DateTest extends TestCase
 
     public function testHowToCreateADateOnly()
     {
-        $this->assertInstanceOf('TimeMachine\Time\Model\Date', $this->date);
+        $date = new Date(2013, 1, 1);
+
+        $this->assertInstanceOf('TimeMachine\Time\Model\Date', $date);
     }
 
     public function testHowToComeBackAtBeginOfCurrentWeek()
     {
-        $date = new Date(2013, 1, 4);
-        $begin = $date->beginOfWeek();
+        $friday = new Date(2013, 1, 4);
+        $monday = $friday->beginOfWeek();
 
-        $this->assertEquals(new Date(2012, 12, 31), $begin);
+        $this->assertEquals(new Date(2012, 12, 31), $monday);
     }
 
     public function testHowToKnowIfADateIsAfterBeforeEqualToAnOther()
     {
-        $this->assertTrue($this->date->isBefore(new Date(2013, 3, 1)));
-        $this->assertTrue($this->date->isAfter(new Date(2011, 3, 1)));
-        $this->assertTrue($this->date->isEquals($this->date));
+        $jan1 = new Date(2013, 1, 1);
+
+        $this->assertTrue($jan1->isBefore(new Date(2013, 1, 2)));
+        $this->assertTrue($jan1->isAfter(new Date(2012, 12, 31)));
+        $this->assertTrue($jan1->isEquals($jan1));
     }
 
+    /**
+     * Usecases:
+     * - I want to display a date in custom format in templates.
+     *
+     */
     public function testHowToConvertADddTimeDateObjectIntoRegularDateTimeObject()
     {
-        $this->assertInstanceOf('\DateTime', $this->date->toDateTime());
+        $jan1 = new Date(2013, 1, 1);
+
+        $this->assertEquals(new \DateTime('2013-01-01 00:00:00'), $jan1->toDateTime());
     }
 
     public function testHowToKnowIfDateIsDuringWeekendOrWeekday()
     {
-        $this->assertTrue($this->date->isWeekEndDay());
-        $this->assertFalse($this->date->isWeekDay());
+        $tuesday = new Date(2013, 1, 1);
+        $saturday = $tuesday->plus(new Duration(4, TimeUnit::day()));
 
-        $weekday = $this->date->plus(new Duration(3, TimeUnit::day()));
-
-        $this->assertFalse($weekday->isWeekEndDay());
-        $this->assertTrue($weekday->isWeekDay());
+        $this->assertFalse($tuesday->isWeekEndDay());
+        $this->assertTrue($tuesday->isWeekDay());
+        $this->assertTrue($saturday->isWeekEndDay());
+        $this->assertFalse($saturday->isWeekDay());
     }
 
     public function testHowToGetPreviousNextDate()
     {
-        $next     = $this->date->next();
-        $previous = $this->date->previous();
+        $jan1   = new Date(2013, 1, 1);
+        $dec31  = $jan1->previous();
+        $jan2   = $jan1->next();
 
-        $this->assertEquals($next, new Date(2013, 2, 11));
-        $this->assertEquals($previous, new Date(2013, 2,9));
+        $this->assertEquals(new Date(2012, 12, 31), $dec31);
+        $this->assertEquals(new Date(2013, 1, 2), $jan2);
     }
 
-    public function testHowToAddRemoveADurationFromItCanReturnDateOrTimePoint()
+    public function testHowToAddRemoveADurationFromItInDays()
     {
-        $daysBefore = $this->date->minus(new Duration(1, TimeUnit::day()));
-        $daysAfter  = $this->date->plus(new Duration(2, TimeUnit::day()));
+        $jan1   = new Date(2013, 1, 1);
+        $dec31 = $jan1->minus(new Duration(1, TimeUnit::day()));
+        $jan3  = $jan1->plus(new Duration(2, TimeUnit::day()));
 
-        $this->assertEquals($daysBefore, new Date(2013, 2, 9));
-        $this->assertEquals($daysAfter, new Date(2013, 2, 12));
+        $this->assertEquals(new Date(2012, 12, 31), $dec31);
+        $this->assertEquals(new Date(2013, 1, 3), $jan3);
+    }
+
+    public function testHowToAddRemoveADurationFromItInYearsMonthsWeeks()
+    {
+        $this->markTestIncomplete();
+    }
+
+    public function testHowToAddRemoveADurationFromItInHoursMinutesSeconds()
+    {
+        $this->markTestIncomplete();
+    }
+
+    /**
+     * eg. Allow to add/remove 2 days, 5 hours and 42 minutes easily.
+     */
+    public function testHowToAddRemoveACompositeDuration()
+    {
     }
 
     public function testHowToTransformADateIntoATimePoint()
     {
-        $timePoint = $this->date->toTimePoint();
+        $jan1   = new Date(2013, 1, 1);
+        $timePoint = $jan1->toTimePoint();
 
         $this->assertInstanceOf('TimeMachine\Time\Model\TimePoint', $timePoint);
         $this->assertEquals($timePoint->getYear(), 2013);
-        $this->assertEquals($timePoint->getMonth(), 2);
-        $this->assertEquals($timePoint->getDay(), 10);
+        $this->assertEquals($timePoint->getMonth(), 1);
+        $this->assertEquals($timePoint->getDay(), 1);
+        $this->assertEquals($timePoint->getHour(), 0);
+        $this->assertEquals($timePoint->getMinutes(), 0);
+        $this->assertEquals($timePoint->getSeconds(), 0);
     }
 
     /**
@@ -95,8 +129,9 @@ class DateTest extends TestCase
      */
     public function testHowToKnowDiffBetweenItAndAnOtherDate()
     {
-        $date = new Date(2013, 2, 1);
-        $diff = $this->date->diff($date);
+        $jan1 = new Date(2013, 1, 1);
+        $jan10 = new Date(2013, 1, 10);
+        $diff = $jan1->diff($jan10);
 
         $this->assertInstanceOf('TimeMachine\Time\Model\Duration', $diff);
         $this->assertEquals($diff, new Duration(9, TimeUnit::day()));
@@ -104,6 +139,6 @@ class DateTest extends TestCase
 
     public function testHowToKnowDiffBetweenItAndATimePoint()
     {
-        $this->markTestIncomplete();
+        $this->markTestIncomplete('Should return a composite duration');
     }
 }

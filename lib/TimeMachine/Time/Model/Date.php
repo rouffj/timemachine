@@ -101,7 +101,11 @@ class Date
 
     public function toDateTime()
     {
-        return (new \Datetime())->setDate($this->year, $this->month, $this->day);
+        $dateTime = new \Datetime();
+        $dateTime->setDate($this->year, $this->month, $this->day);
+        $dateTime->setTime(0, 0, 0);
+
+        return $dateTime;
     }
 
     public function toTimePoint()
