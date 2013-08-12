@@ -10,16 +10,6 @@ use TimeMachine\Time\Model\Date;
 
 class DateTest extends TestCase
 {
-    /**
-     * @var Date
-     */
-    protected $date;
-
-    public function setUp()
-    {
-        $this->date = new Date(2013, 2, 10);
-    }
-
     public function testHowToCreateADateOnly()
     {
         $date = new Date(2013, 1, 1);
