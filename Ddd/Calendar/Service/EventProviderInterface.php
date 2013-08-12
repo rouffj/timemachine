@@ -1,6 +1,6 @@
 <?php
 
-namespace TimeMachine\Calendar\Service;
+namespace Ddd\Calendar\Service;
 
 interface EventProviderInterface
 {

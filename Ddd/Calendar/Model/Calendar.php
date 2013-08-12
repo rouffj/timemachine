@@ -1,16 +1,16 @@
 <?php
 
-namespace TimeMachine\Calendar\Model;
+namespace Ddd\Calendar\Model;
 
 use Ddd\Time\Model\TimePoint;
 use Ddd\Time\Model\TimeInterval;
 use Ddd\Time\Factory\TimePointFactory;
 use Ddd\Time\Model\Duration;
 
-use TimeMachine\Calendar\Service\EventProviderInterface;
-use TimeMachine\Calendar\Model\EventInterface;
-use TimeMachine\Calendar\Model\Strategy\BaseStrategy;
-use TimeMachine\Calendar\Model\Strategy\StrategyInterface;
+use Ddd\Calendar\Service\EventProviderInterface;
+use Ddd\Calendar\Model\EventInterface;
+use Ddd\Calendar\Model\Strategy\BaseStrategy;
+use Ddd\Calendar\Model\Strategy\StrategyInterface;
 
 /**
  * Represents a calendar

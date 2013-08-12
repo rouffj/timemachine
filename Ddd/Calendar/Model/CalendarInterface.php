@@ -1,12 +1,12 @@
 <?php
 
-namespace TimeMachine\Calendar\Model;
+namespace Ddd\Calendar\Model;
 
 use Ddd\Time\Model\TimePoint;
 use Ddd\Time\Model\TimeInterval;
-use TimeMachine\Calendar\Model\EventInterface;
+use Ddd\Calendar\Model\EventInterface;
 use Ddd\Time\Factory\TimePointFactory;
-use TimeMachine\Calendar\Service\EventProviderInterface;
+use Ddd\Calendar\Service\EventProviderInterface;
 
 /**
  * Calendar interface

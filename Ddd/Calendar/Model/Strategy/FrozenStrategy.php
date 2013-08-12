@@ -1,9 +1,9 @@
 <?php
 
-namespace TimeMachine\Calendar\Model\Strategy;
+namespace Ddd\Calendar\Model\Strategy;
 
-use TimeMachine\Calendar\Model\EventInterface;
-use TimeMachine\Calendar\Exception\CalendarEventException;
+use Ddd\Calendar\Model\EventInterface;
+use Ddd\Calendar\Exception\CalendarEventException;
 
 /**
  * Strategy which don't permit anything.

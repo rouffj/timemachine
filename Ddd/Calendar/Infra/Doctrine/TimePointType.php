@@ -1,5 +1,5 @@
 <?php
-namespace TimeMachine\Calendar\Infra\Doctrine;
+namespace Ddd\Calendar\Infra\Doctrine;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;

@@ -1,6 +1,6 @@
 <?php
 
-namespace TimeMachine\Calendar\Model;
+namespace Ddd\Calendar\Model;
 
 interface NamedEventInterface extends EventInterface
 {

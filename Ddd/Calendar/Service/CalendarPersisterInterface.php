@@ -1,9 +1,9 @@
 <?php
 
-namespace TimeMachine\Calendar\Service;
+namespace Ddd\Calendar\Service;
 
-use TimeMachine\Calendar\Model\CalendarInterface;
-use TimeMachine\Calendar\Model\EventInterface;
+use Ddd\Calendar\Model\CalendarInterface;
+use Ddd\Calendar\Model\EventInterface;
 
 interface CalendarPersisterInterface
 {

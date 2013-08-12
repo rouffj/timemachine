@@ -1,10 +1,10 @@
 <?php
 
-namespace TimeMachine\Calendar\Tests\Howto;
+namespace Ddd\Calendar\Tests\Howto;
 
-use TimeMachine\Calendar\Tests\TestCase;
-use TimeMachine\Calendar\Model\Calendar;
-use TimeMachine\Calendar\Model\Event;
+use Ddd\Calendar\Tests\TestCase;
+use Ddd\Calendar\Model\Calendar;
+use Ddd\Calendar\Model\Event;
 use Ddd\Time\Model\TimePoint;
 use Ddd\Time\Factory\TimeIntervalFactory;
 use Ddd\Time\Factory\DateIntervalFactory;

@@ -1,12 +1,12 @@
 <?php
 
-namespace TimeMachine\Calendar\Tests\HowTo;
+namespace Ddd\Calendar\Tests\HowTo;
 
-use TimeMachine\Calendar\Model\Calendar;
-use TimeMachine\Calendar\Model\CalendarInterface;
-use TimeMachine\Calendar\Service\CalendarLoaderInterface;
-use TimeMachine\Calendar\Service\CalendarPersisterInterface;
-use TimeMachine\Calendar\Model\Event;
+use Ddd\Calendar\Model\Calendar;
+use Ddd\Calendar\Model\CalendarInterface;
+use Ddd\Calendar\Service\CalendarLoaderInterface;
+use Ddd\Calendar\Service\CalendarPersisterInterface;
+use Ddd\Calendar\Model\Event;
 use Ddd\Time\Factory\TimeIntervalFactory;
 use Ddd\Time\Model\TimeInterval;
 

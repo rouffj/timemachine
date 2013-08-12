@@ -1,8 +1,8 @@
 <?php
 
-namespace TimeMachine\Calendar\Exception;
+namespace Ddd\Calendar\Exception;
 
-use TimeMachine\Calendar\Model\EventInterface;
+use Ddd\Calendar\Model\EventInterface;
 
 /**
  * Calendar event exception.

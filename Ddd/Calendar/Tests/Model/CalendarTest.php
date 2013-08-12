@@ -1,18 +1,18 @@
 <?php
 
-namespace TimeMachine\Calendar\Tests\Model;
+namespace Ddd\Calendar\Tests\Model;
 
-use TimeMachine\Calendar\Exception\CalendarEventException;
-use TimeMachine\Calendar\Model\Calendar;
-use TimeMachine\Calendar\Model\Event;
-use TimeMachine\Calendar\Model\EventInterface;
-use TimeMachine\Calendar\Model\Strategy\NoOverlapStrategy;
+use Ddd\Calendar\Exception\CalendarEventException;
+use Ddd\Calendar\Model\Calendar;
+use Ddd\Calendar\Model\Event;
+use Ddd\Calendar\Model\EventInterface;
+use Ddd\Calendar\Model\Strategy\NoOverlapStrategy;
 use Ddd\Time\Factory\TimeIntervalFactory;
 use Ddd\Time\Model\Duration;
 use Ddd\Time\Model\TimeInterval;
 use Ddd\Time\Model\TimePoint;
 use Ddd\Time\Model\TimeUnit;
-use TimeMachine\Calendar\Tests\TestCase;
+use Ddd\Calendar\Tests\TestCase;
 
 class CalendarTest extends TestCase
 {

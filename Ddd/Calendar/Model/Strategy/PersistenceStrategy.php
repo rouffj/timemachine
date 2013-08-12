@@ -1,11 +1,11 @@
 <?php
 
-namespace TimeMachine\Calendar\Model\Strategy;
+namespace Ddd\Calendar\Model\Strategy;
 
-use TimeMachine\Calendar\Model\CalendarInterface;
-use TimeMachine\Calendar\Model\EventInterface;
-use TimeMachine\Calendar\Service\EventPersisterInterface;
-use TimeMachine\Calendar\Service\CalendarPersisterInterface;
+use Ddd\Calendar\Model\CalendarInterface;
+use Ddd\Calendar\Model\EventInterface;
+use Ddd\Calendar\Service\EventPersisterInterface;
+use Ddd\Calendar\Service\CalendarPersisterInterface;
 
 /**
  * Strategy decorator with persister.

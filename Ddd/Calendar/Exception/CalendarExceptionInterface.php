@@ -1,6 +1,6 @@
 <?php
 
-namespace TimeMachine\Calendar\Exception;
+namespace Ddd\Calendar\Exception;
 
 /**
  * @author Jean-François Simon <contact@jfsimon.fr>
