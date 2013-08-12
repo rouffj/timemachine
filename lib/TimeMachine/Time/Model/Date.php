@@ -85,18 +85,12 @@ class Date
 
     public function next()
     {
-        $date = $this->toDateTime();
-        $date->add(new \DateInterval('P1D'));
-
-        return new self($date->format('Y'), $date->format('m'), $date->format('d'));
+        return $this->plus(new Duration(1, TimeUnit::day()));
     }
 
     public function previous()
     {
-        $date = $this->toDateTime();
-        $date->sub(new \DateInterval('P1D'));
-
-        return new self($date->format('Y'), $date->format('m'), $date->format('d'));
+        return $this->minus(new Duration(1, TimeUnit::day()));
     }
 
     public function toDateTime()

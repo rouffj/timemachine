@@ -10,9 +10,10 @@ class DateInterval implements IntervalInterface
 
     public function __construct(Date $beginDate, Date $endDate)
     {
-        if($endDate->isBefore($beginDate)) {
+        if ($endDate->isBefore($beginDate)) {
             throw new \Exception('DateInterval: the begin date must be before the end date.');
-        }    
+        }
+
         $this->begin = $beginDate;
         $this->end = $endDate;
         $this->current = $this->begin;
